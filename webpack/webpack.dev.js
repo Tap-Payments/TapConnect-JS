@@ -11,7 +11,7 @@ module.exports = {
     library: 'Connect',
     globalObject: 'this',
     libraryTarget: 'umd',
-    publicPath: '/',
+    // publicPath: '/',
   },
   module: {
     rules: [

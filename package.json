@@ -1,4 +1,5 @@
 {
+  "homepage": "https://tap-payments.github.io/TapConnect-JS",
   "name": "@tap-payments/js-connect",
   "version": "0.0.1-beta.1",
   "description": "Auth Component, used to Connect Merchants with Tap Payments",
@@ -9,7 +10,9 @@
     "transpile": "babel src -d dist --copy-files",
     "prepublishOnly": "npm run transpile",
     "build": "cross-env NODE_ENV=production webpack",
-    "deploy": "gh-pages -d demo/dist",
+    "build_dev": "cross-env NODE_ENV=development webpack",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build_dev",
     "publish-demo": "npm run build && npm run deploy"
   },
   "author": "Khaled N. <k.naqawa@tap.company> (https://tap.company)",
@@ -27,6 +30,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "file-loader": "^1.1.11",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.6.0",
     "mini-css-extract-plugin": "^0.5.0",
