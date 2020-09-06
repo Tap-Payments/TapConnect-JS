@@ -1,0 +1,157 @@
+.stepMargins {
+	margin: 0px 24px !important;
+}
+
+.passwordFeild {
+	width: 100% !important;
+	margin-bottom: 20px;
+}
+.passwordFeildReset {
+	margin-top: 30px;
+}
+#password-help-label {
+	font-size: 11px;
+	/* margin-top: 0px; */
+	transition: width 0.75s;
+	/* text-align: left; */
+	/* overflow:hidden; */
+	white-space: nowrap;
+	/* font-family: 'inherit'; */
+	overflow: hidden;
+	text-overflow: clip;
+	height: 15px;
+	max-width: fit-content !important;
+	margin-left: 3px;
+	margin-right: 3px;
+	/* overflow-wrap: break-word; */
+}
+
+[dir='rtl'] #password-help-label {
+	line-height: 10px;
+}
+
+#help-labels-container {
+	display: flex;
+	flex-direction: row;
+	height: 30px;
+	align-items: center;
+	margin-top: 3px;
+}
+
+.visible {
+	pointer-events: auto;
+	-webkit-animation-name: fadeIn; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+	animation-name: fadeIn;
+	animation-duration: 0.5s;
+}
+
+.hidden {
+	-webkit-transition: opacity 0.15s; /* For Safari 3.1 to 6.0 */
+	transition: opacity 0.15s;
+	opacity: 0;
+	pointer-events: none;
+	display: none;
+}
+
+/* //checkbox */
+
+.checkbox {
+	position: relative;
+	width: 16px;
+	top: -8px;
+}
+
+.checkbox:after {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 1.5px;
+	background: #1185ff;
+	transform: translate(3px, 11px) rotate(-45deg);
+	transform-origin: left;
+	transition: all 150ms;
+	transition-delay: 0ms;
+}
+
+.checkbox:before {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 1.5px;
+	background: #1185ff;
+	transform: translate(0px, 7px) rotate(45deg);
+	transform-origin: left;
+	transition: all 150ms;
+	transition-delay: 150ms;
+}
+
+.show:before {
+	width: 6px;
+	transition-delay: 0ms;
+}
+
+.show:after {
+	width: 14px;
+	transition-delay: 150ms;
+}
+
+/* //checkbox DoneAll */
+.checkboxDone {
+	position: relative;
+	width: 16px;
+	top: 0px;
+	left: -6px;
+}
+
+.checkboxDone:after {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 1.5px;
+	background: #1185ff;
+	transform: translate(3px, 11px) rotate(-45deg);
+	transform-origin: left;
+	transition: all 150ms;
+	transition-delay: 0ms;
+}
+
+.checkboxDone:before {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 1.5px;
+	background: #1185ff;
+	transform: translate(0px, 7px) rotate(45deg);
+	transform-origin: left;
+	transition: all 150ms;
+	transition-delay: 150ms;
+}
+
+.showDone:before {
+	width: 6px;
+	transition-delay: 0ms;
+}
+
+.showDone:after {
+	width: 14px;
+	transition-delay: 150ms;
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

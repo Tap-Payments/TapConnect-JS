@@ -1,0 +1,192 @@
+[
+  {
+    "sector_id": "23",
+    "sector_name_en": "Accessories",
+    "sector_name_ar": "اكسسوارات"
+  },
+  {
+    "sector_id": "22",
+    "sector_name_en": "Accounting",
+    "sector_name_ar": "محاسبة"
+  },
+  {
+    "sector_id": "25",
+    "sector_name_en": "Art/Photo/Film",
+    "sector_name_ar": "تصوير فوتوغرافي/تصوير أفلام"
+  },
+  {
+    "sector_id": "26",
+    "sector_name_en": "Beauty",
+    "sector_name_ar": "تجميل"
+  },
+  {
+    "sector_id": "56",
+    "sector_name_en": "Body Care",
+    "sector_name_ar": "العناية بالجسم"
+  },
+  {
+    "sector_id": "28",
+    "sector_name_en": "Cleaning - Services",
+    "sector_name_ar": "خدمات تنظيف"
+  },
+  {
+    "sector_id": "29",
+    "sector_name_en": "Computer Services",
+    "sector_name_ar": "خدمات كمبيوتر"
+  },
+  {
+    "sector_id": "30",
+    "sector_name_en": "Consultant",
+    "sector_name_ar": "استشارات"
+  },
+  {
+    "sector_id": "31",
+    "sector_name_en": "Dental Care",
+    "sector_name_ar": "طب أسنان"
+  },
+  {
+    "sector_id": "32",
+    "sector_name_en": "Education",
+    "sector_name_ar": "تعليم"
+  },
+  {
+    "sector_id": "15",
+    "sector_name_en": "Electronics",
+    "sector_name_ar": "الكترونيات"
+  },
+  {
+    "sector_id": "24",
+    "sector_name_en": "Fashion/Apparel",
+    "sector_name_ar": "ازياء"
+  },
+  {
+    "sector_id": "17",
+    "sector_name_en": "Food and Beverage",
+    "sector_name_ar": "الأغذية والمشروبات"
+  },
+  {
+    "sector_id": "174",
+    "sector_name_en": "Gifts",
+    "sector_name_ar": "هدايا"
+  },
+  {
+    "sector_id": "33",
+    "sector_name_en": "Grocery",
+    "sector_name_ar": "بقالة"
+  },
+  {
+    "sector_id": "58",
+    "sector_name_en": "Health",
+    "sector_name_ar": "صحة"
+  },
+  {
+    "sector_id": "57",
+    "sector_name_en": "Home",
+    "sector_name_ar": "منازل"
+  },
+  {
+    "sector_id": "34",
+    "sector_name_en": "Landscaping",
+    "sector_name_ar": "تجهيز حدائق"
+  },
+  {
+    "sector_id": "35",
+    "sector_name_en": "Legal Services",
+    "sector_name_ar": "خدمات قانونية"
+  },
+  {
+    "sector_id": "18",
+    "sector_name_en": "Media Services",
+    "sector_name_ar": "خدمات إعلانية"
+  },
+  {
+    "sector_id": "36",
+    "sector_name_en": "Medical Practitioner",
+    "sector_name_ar": "طبيب"
+  },
+  {
+    "sector_id": "37",
+    "sector_name_en": "Medical Services",
+    "sector_name_ar": "خدمات طبية"
+  },
+  {
+    "sector_id": "39",
+    "sector_name_en": "Membership Organization",
+    "sector_name_ar": "منظمات "
+  },
+  {
+    "sector_id": "40",
+    "sector_name_en": "Music/Entertainment",
+    "sector_name_ar": "موسيقى و ترفيه"
+  },
+  {
+    "sector_id": "41",
+    "sector_name_en": "Outdoor Markets",
+    "sector_name_ar": "أسواق الهواء الطلق"
+  },
+  {
+    "sector_id": "42",
+    "sector_name_en": "Personal Services",
+    "sector_name_ar": "خدمات شخصية"
+  },
+  {
+    "sector_id": "44",
+    "sector_name_en": "Professional Services",
+    "sector_name_ar": "خدمات احترافية"
+  },
+  {
+    "sector_id": "45",
+    "sector_name_en": "Real Estate",
+    "sector_name_ar": "عقارات"
+  },
+  {
+    "sector_id": "46",
+    "sector_name_en": "Recreation",
+    "sector_name_ar": "الترفيهية"
+  },
+  {
+    "sector_id": "47",
+    "sector_name_en": "Repair Services",
+    "sector_name_ar": "خدمات إصلاح"
+  },
+  {
+    "sector_id": "55",
+    "sector_name_en": "Software - Development / Design",
+    "sector_name_ar": "تطوير و تصميم برمجيات"
+  },
+  {
+    "sector_id": "62",
+    "sector_name_en": "Sports",
+    "sector_name_ar": "الرياضة"
+  },
+  {
+    "sector_id": "50",
+    "sector_name_en": "Taxi/Limo",
+    "sector_name_ar": "تكسي/ليموزين"
+  },
+  {
+    "sector_id": "51",
+    "sector_name_en": "Tourism",
+    "sector_name_ar": "سياحة"
+  },
+  {
+    "sector_id": "52",
+    "sector_name_en": "Trade Contractor",
+    "sector_name_ar": "مقاولات"
+  },
+  {
+    "sector_id": "53",
+    "sector_name_en": "Veterinary",
+    "sector_name_ar": "طب بيطري"
+  },
+  {
+    "sector_id": "54",
+    "sector_name_en": "Web Dev/Design",
+    "sector_name_ar": "تطوير و تصميم مواقع ويب"
+  },
+  {
+    "sector_id": "61",
+    "sector_name_en": "Other",
+    "sector_name_ar": "أخرى"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 10,
+    "value": "freelancer",
+    "type_name_en": "Freelancer",
+    "type_name_ar": "أعمال حرة"
+  },
+  {
+    "id": 11,
+    "value": "homebusiness",
+    "type_name_en": "Home Business",
+    "type_name_ar": "مشاريع منزلية"
+  },
+  {
+    "id": 12,
+    "value": "company",
+    "type_name_en": "Company",
+    "type_name_ar": "شركة"
+  }
+]

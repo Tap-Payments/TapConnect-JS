@@ -1,0 +1,41 @@
+{
+  "source": "browser|app",
+  "device": {
+    "name": "",
+    "type": "Desktop",
+    "brand": "",
+    "model": "",
+    "os": {
+      "name": "Mac OS",
+      "version": "10_15_2"
+    }
+  },
+  "browser": {
+    "name": "Chrome",
+    "version": "79.0.3945.88",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
+    "browser_id": "bd0a69ca23c8e1a13d97f74e5469a6cc"
+  },
+  "app": {
+    "identifier": "tap_dashboard_sandbox",
+    "name": "Tap Dashboard Sandbox",
+    "version": "V0.0.0",
+    "requirer": "SDK",
+    "requirer_version": "2.7.2",
+    "app_locale": "en",
+    "sdk_version": "2.7.2",
+    "requirer_sim_network_name": "T-Mobile",
+    "requirer_sim_country_iso": "us",
+    "universal_id": "6252525226672"
+  },
+  "connection": {
+    "ip": "",
+    "mac": ""
+  },
+  "entry": {
+    "name": "name",
+    "interface": "interface",
+    "type": "type",
+    "version": "version"
+  }
+}

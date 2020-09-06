@@ -1,0 +1,92 @@
+[
+  {
+    "id": "sector_4iF2veqGgvhrW75",
+    "name": {
+      "ar": "Ø§ÙØ·Ø¨Ø§Ø¹Ø© Ø«ÙØ§Ø«ÙØ© Ø§ÙØ£Ø¨Ø¹Ø§Ø¯",
+      "en": "3D Printing"
+    },
+    "status": "active",
+    "created": 1594895398430
+  },
+  {
+    "id": "sector_xzW0i1U7fxJWrGI",
+    "name": {
+      "ar": "Ø§ÙØ³Ø³ÙØ§Ø±Ø§Øª",
+      "en": "Accessories"
+    },
+    "status": "active",
+    "created": 1594895398430
+  },
+  {
+    "id": "sector_Vi2Dy828EgUeDVJ",
+    "name": {
+      "ar": "Ø§ÙØ³Ø³ÙØ§Ø±Ø§Øª Ø±Ø¬Ø§ÙÙ",
+      "en": "Accessories - Men"
+    },
+    "status": "active",
+    "created": 1594895398430
+  },
+  {
+    "id": "sector_U40IukDERIfxHli",
+    "name": {
+      "ar": "ÙØ­Ø§Ø³Ø¨Ø©",
+      "en": "Accounting"
+    },
+    "status": "active",
+    "created": 1594895398431
+  },
+  {
+    "id": "sector_pe8R2WoIr3v7YjZ",
+    "name": {
+      "ar": "Ø§ÙØªØ³ÙÙÙ Ø§ÙØ¥Ø¹ÙØ§ÙÙ",
+      "en": "Advertising / Marketing"
+    },
+    "status": "active",
+    "created": 1594895398434
+  },
+  {
+    "id": "sector_aOes9dFp8OeG7FY",
+    "name": {
+      "ar": "Ø§ÙØ¥Ø¹ÙØ§Ù - Ø¹Ø¨Ø± Ø§ÙØ§ÙØªØ±ÙØª",
+      "en": "Advertising / Marketing - Online"
+    },
+    "status": "active",
+    "created": 1594895398434
+  },
+  {
+    "id": "sector_4aipBzFTVm3KALa",
+    "name": {
+      "ar": "ÙÙÙÙØ§Øª / Ø§ÙØªØ¯ÙØ¦Ø©",
+      "en": "Air Conditioning"
+    },
+    "status": "active",
+    "created": 1594895398435
+  },
+  {
+    "id": "sector_zgUsqOnf5GFTgeU",
+    "name": {
+      "ar": "",
+      "en": "Appliances - Restaurants"
+    },
+    "status": "active",
+    "created": 1594895398435
+  },
+  {
+    "id": "sector_V8J48ihStBDnzHT",
+    "name": {
+      "ar": "ØªØµÙÙØ± ÙÙØªÙØºØ±Ø§ÙÙ/ØªØµÙÙØ± Ø£ÙÙØ§Ù",
+      "en": "Art/Photo/Film"
+    },
+    "status": "active",
+    "created": 1594895398436
+  },
+  {
+    "id": "sector_kGkRnF3mBx88MdA",
+    "name": {
+      "ar": "Ø§ÙÙÙÙÙ / Ø§ÙØ­Ø±Ù Ø§ÙÙØ¯ÙÙØ© / Ø§ÙØªØµÙÙÙ",
+      "en": "Arts / Crafts / Design"
+    },
+    "status": "active",
+    "created": 1594895398436
+  }
+]

@@ -1,0 +1,120 @@
+/* Code div ltr */
+.inputIconCode {
+  opacity: 0;
+  /* color: #757575; */
+  width: 35px;
+  top: 0px;
+  padding-top: 4px;
+  line-height: 25px;
+  cursor: default;
+  transition: border-bottom 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 0.3s ease-in-out, opacity 0.3s;
+}
+
+/* hide code div */
+#codeHideltr {
+  position: absolute;
+  opacity: 0;
+  transform: translate(-50px, 0px) scale(0);
+}
+#codeHidertl {
+  position: absolute;
+  opacity: 0;
+  transform: translate(50px, 0px) scale(0);
+}
+/* show code div */
+#codeShowltr,
+#codeShowrtl {
+  position: absolute;
+  transform: translate(0px, 0px) scale(1);
+  opacity: 1;
+}
+
+/* code div arrow */
+.countryIcon {
+  height: 25px;
+  width: 25px;
+  border-radius: 50px;
+}
+
+.tester-div {
+  width: auto;
+  visibility: hidden;
+  position: fixed;
+  overflow: auto;
+  font-size: 20px;
+  font-family: inherit;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.24px;
+}
+
+/* inputFilled type div */
+.inputFilled {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* border-bottom: 1px solid #ebebed; */
+}
+.inputFilled:after {
+  position: absolute;
+  bottom: -1px;
+  content: '';
+  width: 100%;
+  opacity: 0;
+}
+
+/* input hover state */
+.inputFilled:hover:after {
+  opacity: 1;
+}
+.inputFilled:hover:focus-within:after {
+  opacity: 0;
+}
+
+/* input ltr direction FILLED   */
+.inputIcon {
+  -webkit-transition: padding-left 0.3s ease-in-out, padding-right 0.3s ease-in-out, background-size 0.3s ease-in-out,
+    background-position-y 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  transition: padding-left 0.3s ease-in-out, padding-right 0.3s ease-in-out, background-size 0.3s ease-in-out,
+    background-position-y 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  background-size: 0px;
+  padding-inline-start: 0px;
+  background-position-y: 15px;
+
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+/* inputIcon hide FILLED rtl and ltr*/
+.inputIcon.hide {
+  background-size: 0px;
+  position: relative;
+}
+
+/* inputIcon show FILLED */
+.inputIcon.show {
+  position: relative;
+  padding-inline-start: 35px;
+  background-size: 110px;
+  background-position-y: 11px;
+  repeat: none;
+}
+
+/* active state */
+.inputFilled input:focus ~ .bar:before,
+.inputFilled input:focus ~ .bar:after {
+  outline: 0;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  width: 50%;
+}
+
+::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
