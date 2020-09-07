@@ -124,7 +124,7 @@ class ConnectVM {
 
   goBack() {
     this.hideLoader(false);
-    this.updatePageMod(PageMode.LANDING, null, this.isConnect);
+    this.updatePageMode(PageMode.LANDING, null, this.isConnect);
 
     window.history.pushState(
       '',
