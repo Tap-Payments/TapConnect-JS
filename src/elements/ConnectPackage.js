@@ -3,7 +3,6 @@ import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/sty
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Landing from './Landing/Landing';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { observer } from 'mobx-react';
 import { useVm } from '../hooks';
