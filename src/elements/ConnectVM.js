@@ -1,10 +1,12 @@
 import { action, observable, decorate } from 'mobx';
 
-import { PageMode } from './Constants/constants';
+import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import ConnectDataSource from './ConnectDataSource';
 import ConnectPackage from './ConnectPackage';
 import axios from 'axios';
+
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
+
 class ConnectVM {
   constructor(props) {
     this.props = props;
@@ -38,30 +40,73 @@ class ConnectVM {
     this.hideLoader = this.hideLoader.bind(this);
 
     this.goBack = this.goBack.bind(this);
+    this.initializePageMode = this.initializePageMode.bind(this);
     this.updatePageMode = this.updatePageMode.bind(this);
+    this.updateAnimationType = this.updateAnimationType.bind(this);
 
-    this.updatePageMode(props.pageMode, true);
+    this.initializePageMode(props.pageMode);
   }
 
-  updatePageMode(mode, isInitial, isConnect) {
-    console.log('  updatePageMode(mode, isInitial) ');
-    console.log(mode);
-    console.log(isInitial);
-    console.log(isConnect);
-    if (isInitial) {
-      this.activePageMode = mode;
-      this.isConnect = mode == PageMode.CONNECT && !(mode == PageMode.LANDING) ? true : false;
+  initializePageMode(mode) {
+    if (mode == PageMode.CONNECT) {
+      this.isConnect = true;
+      if (window.location.pathname.search(this.props.signinDirectory) > 0) {
+        this.activePageMode = PageMode.LOGIN;
+      } else if (window.location.pathname.search(this.props.signupDirectory) > 0) {
+        this.activePageMode = PageMode.SIGNUP;
+      } else if (window.location.pathname.search(this.props.forgotDirectory) > 0) {
+        this.activePageMode = PageMode.FORGOT;
+      } else {
+        this.activePageMode = PageMode.LOGIN;
+      }
     } else {
-      this.openPopup = false;
-      if (this.openController != null) this.openController = false;
+      this.isConnect = false;
+      this.activePageMode = mode;
+    }
+    this.updateAnimationType(this.activePageMode);
+  }
+  updatePageMode(mode, isInitial, isConnect) {
+    this.openPopup = false;
+    if (this.openController != null) this.openController = false;
+    this.updateAnimationType(mode);
+
+    this.onAnimationExited = () => {
       setTimeout(() => {
         this.activePageMode = mode;
         this.isConnect = isConnect || (mode == PageMode.CONNECT && !(mode == PageMode.LANDING)) ? true : false;
         this.openPopup = true;
         if (this.openController != null) this.openController = true;
-      }, 1000);
-    }
+
+        this.onAnimationExited = null;
+      }, 200);
+    };
   }
+  updateAnimationType(mode) {
+    switch (mode) {
+      case PageMode.FORGOT:
+        this.animationType = AnimationType.SLIDEUP;
+        break;
+      case PageMode.LOGIN:
+        this.animationType = this.showBackButton ? AnimationType.SLIDEUP : AnimationType.SLIDEDOWN;
+
+        break;
+      case PageMode.SIGNUP:
+        this.animationType = AnimationType.SLIDEUP;
+        break;
+      case PageMode.LANDING:
+        this.animationType = AnimationType.SLIDEDOWN;
+      case PageMode.CONNECT:
+        this.animationType = AnimationType.SLIDEDOWN;
+        break;
+      default:
+        this.animationType = AnimationType.SLIDEUP;
+        break;
+    }
+
+    console.log('new animation type');
+    console.log(this.animationType);
+  }
+
   onFinishedFetchingData() {
     this.isLoading = false;
   }
@@ -191,8 +236,8 @@ class ConnectVM {
         if (response && response.lead_id) {
           this.storeLeadID(response.lead_id);
           if (
-            this.props.activePageMode == PageMode.CONNECT ||
-            (this.props.activePageMode == PageMode.LANDING && this.isLandingConnect)
+            this.props.pageMode == PageMode.CONNECT ||
+            (this.props.pageMode == PageMode.LANDING && this.isLandingConnect)
           )
             this.moveToSignup();
         }
@@ -209,10 +254,7 @@ class ConnectVM {
   }
 
   onSignupSuccess(response, browserID) {
-    if (
-      this.props.activePageMode == PageMode.CONNECT ||
-      (this.props.activePageMode == PageMode.LANDING && this.isLandingConnect)
-    )
+    if (this.props.pageMode == PageMode.CONNECT || (this.props.pageMode == PageMode.LANDING && this.isLandingConnect))
       this.moveToLogin();
 
     if (this.props.onSuccess) this.props.onSuccess(response, browserID);
@@ -232,6 +274,8 @@ decorate(ConnectVM, {
   isConnect: observable,
   openController: observable,
   openPopup: observable,
+  animationType: observable,
+  onAnimationExited: observable,
 });
 
 export default ConnectVM;

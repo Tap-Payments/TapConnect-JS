@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dialog, Slide, Fade } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,12 +29,22 @@ const TransitionRight = React.forwardRef(function Transition(props, ref) {
 function TapDialog(props) {
   const themeMUI = useTheme();
   const classes = useStyles();
+  const [animation, setAnimation] = useState(props.animation);
 
+  const transitionEndHandler = () => {
+    if (animation != props.animation) setAnimation(props.animation);
+  };
   return (
     <Dialog
-      onTransitionEnd={(e) => console.log(e)}
+      onExited={(e) => {
+        /// wait till animation is done, then update the animation type if there is a new one
+        /// then, callback
+        console.log('%c Animation Exited', 'background:pink; color:black;');
+        transitionEndHandler();
+        if (props.onExited) props.onExited();
+      }}
       dir={themeMUI.direction}
-      TransitionComponent={props.animation}
+      TransitionComponent={animation}
       transitionDuration={props.animationDuration}
       onClose={props.onClose}
       open={props.open}
@@ -51,13 +61,19 @@ class AnimationEngine extends React.Component {
       open: props.open,
       animation: Fade,
     };
+
+    this.getAnimation = this.getAnimation.bind(this);
   }
 
   componentWillMount() {
-    console.log(this.props.animationType);
+    this.setState({
+      animation: this.getAnimation(this.props.animationType),
+    });
+  }
 
+  getAnimation(animationType) {
     let Transition = Fade;
-    switch (this.props.animationType) {
+    switch (animationType) {
       case 'fade':
         Transition = Fade;
         break;
@@ -77,13 +93,23 @@ class AnimationEngine extends React.Component {
         Transition = Fade;
         break;
     }
-    this.setState({
-      animation: Transition,
-    });
+
+    return Transition;
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({ open: props.open });
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.animationType !== prevProps.animationType) {
+      this.setState({
+        animation: this.getAnimation(this.props.animationType),
+      });
+    }
+
+    if (this.props.open !== prevProps.open) {
+      this.setState({
+        open: this.props.open,
+      });
+    }
   }
 
   handleClose() {
@@ -100,6 +126,7 @@ class AnimationEngine extends React.Component {
   render() {
     return (
       <TapDialog
+        onExited={this.props.onExited}
         animationDuration={this.props.animationDuration}
         animation={this.state.animation}
         onClose={this.handleClose.bind(this)}

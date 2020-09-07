@@ -57,21 +57,30 @@ function ForgotPassword(props) {
       </AnimationEngine>
     </Fragment>
   ) : (
-    <ForgotPasswordTemplate
-      id={'forgot-password-tap-card-130820'}
-      {...props}
-      page={vm.page}
-      errorInfo={vm.errorInfo}
-      activeStepInfo={vm.page === 0 && vm.showInitialLoader ? null : toJS(vm.activeStepInfo)}
-      loadingStatus={vm.loadingStatus}
-      onSubmit={vm.onSubmit}
-      showLoader={vm.showInitialLoader}
-      onGoBack={vm.goBack}
-      {...RESET_PASSWORD_INFO}
-      moveToLogin={vm.moveToLogin}
-      direction={vm.direction}
-      storeResetPassword={vm.storeResetPassword}
-    />
+    <Fragment>
+      {
+        <NavigationButtons
+          type={vm.direction == 'rtl' ? 'next' : 'back'}
+          btnStyle={{ background: '#15151575' }}
+          onClick={vm.page == 0 ? vm.moveToLogin : vm.goBack}
+        />
+      }
+      <ForgotPasswordTemplate
+        id={'forgot-password-tap-card-130820'}
+        {...props}
+        page={vm.page}
+        errorInfo={vm.errorInfo}
+        activeStepInfo={vm.page === 0 && vm.showInitialLoader ? null : toJS(vm.activeStepInfo)}
+        loadingStatus={vm.loadingStatus}
+        onSubmit={vm.onSubmit}
+        showLoader={vm.showInitialLoader}
+        onGoBack={vm.goBack}
+        {...RESET_PASSWORD_INFO}
+        moveToLogin={vm.moveToLogin}
+        direction={vm.direction}
+        storeResetPassword={vm.storeResetPassword}
+      />
+    </Fragment>
   );
 }
 ForgotPassword.defaultProps = {

@@ -65,21 +65,40 @@ function Signup(props) {
       </AnimationEngine>
     </Fragment>
   ) : (
-    <SignupTemplate
-      id={'signup-tap-card-150720'}
-      page={vm.page}
-      errorInfo={vm.errorInfo}
-      activeStepInfo={vm.page === 0 && vm.showInitialLoader ? null : toJS(vm.activeStepInfo)}
-      loadingStatus={vm.loadingStatus}
-      onSubmit={vm.onSubmit}
-      showLoader={vm.showInitialLoader}
-      onGoBack={vm.goBack}
-      {...props}
-      {...SIGNUP_INFO}
-      moveToLogin={vm.moveToLogin}
-      direction={vm.direction}
-      storeConfirmedPassword={vm.storeConfirmedPassword}
-    />
+    <Fragment>
+      {' '}
+      {props.showBackButton && vm.page == 0 ? (
+        <NavigationButtons
+          type={vm.direction == 'rtl' ? 'next' : 'back'}
+          btnStyle={{ background: '#15151575' }}
+          onClick={vm.goBack}
+        />
+      ) : (
+        vm.page != 0 &&
+        ((vm.page == 2 && props.initialLeadID == null) || vm.page != 2) && (
+          <NavigationButtons
+            type={vm.direction == 'rtl' ? 'next' : 'back'}
+            btnStyle={{ background: '#15151575' }}
+            onClick={vm.goBack}
+          />
+        )
+      )}
+      <SignupTemplate
+        id={'signup-tap-card-150720'}
+        page={vm.page}
+        errorInfo={vm.errorInfo}
+        activeStepInfo={vm.page === 0 && vm.showInitialLoader ? null : toJS(vm.activeStepInfo)}
+        loadingStatus={vm.loadingStatus}
+        onSubmit={vm.onSubmit}
+        showLoader={vm.showInitialLoader}
+        onGoBack={vm.goBack}
+        {...props}
+        {...SIGNUP_INFO}
+        moveToLogin={vm.moveToLogin}
+        direction={vm.direction}
+        storeConfirmedPassword={vm.storeConfirmedPassword}
+      />
+    </Fragment>
   );
 }
 Signup.defaultProps = {

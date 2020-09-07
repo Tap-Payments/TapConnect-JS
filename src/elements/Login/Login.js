@@ -58,31 +58,41 @@ function Login(props) {
       />
     </AnimationEngine>
   ) : (
-    <LoginTemplate
-      {...vm.props}
-      id={'login-tap-card-240620'}
-      showSignupSection={props.showSignupSection}
-      direction={vm.direction}
-      title={vm.title}
-      newUser={vm.newUser}
-      showHeaderLogo={props.showHeaderLogo}
-      emailTextField={vm.emailTextField}
-      activeTextFieldName={vm.activeTextFieldName}
-      passwordTextField={vm.passwordTextField}
-      otpTextField={vm.otpTextField}
-      showLoader={vm.showInitialLoader}
-      verifyValue={vm.verifyValue}
-      editButtonInfo={vm.editButtonInfo}
-      checkBoxInfo={vm.checkBoxInfo}
-      dropdownInfos={vm.dropdownInfos}
-      forgotPasswordInfo={vm.forgotPasswordInfo}
-      errorInfo={vm.errorInfo}
-      loadingStatus={vm.loadingStatus}
-      signUpInfo={vm.signUpInfo}
-      onSubmit={vm.onFormSubmit}
-      moveToSignup={vm.moveToSignup}
-      moveToForgot={vm.moveToForgot}
-    />
+    <Fragment>
+      {' '}
+      {props.showBackButton && (
+        <NavigationButtons
+          type={vm.direction == 'rtl' ? 'next' : 'back'}
+          btnStyle={{ background: '#15151575' }}
+          onClick={vm.goBack}
+        />
+      )}
+      <LoginTemplate
+        {...vm.props}
+        id={'login-tap-card-240620'}
+        showSignupSection={props.showSignupSection}
+        direction={vm.direction}
+        title={vm.title}
+        newUser={vm.newUser}
+        showHeaderLogo={props.showHeaderLogo}
+        emailTextField={vm.emailTextField}
+        activeTextFieldName={vm.activeTextFieldName}
+        passwordTextField={vm.passwordTextField}
+        otpTextField={vm.otpTextField}
+        showLoader={vm.showInitialLoader}
+        verifyValue={vm.verifyValue}
+        editButtonInfo={vm.editButtonInfo}
+        checkBoxInfo={vm.checkBoxInfo}
+        dropdownInfos={vm.dropdownInfos}
+        forgotPasswordInfo={vm.forgotPasswordInfo}
+        errorInfo={vm.errorInfo}
+        loadingStatus={vm.loadingStatus}
+        signUpInfo={vm.signUpInfo}
+        onSubmit={vm.onFormSubmit}
+        moveToSignup={vm.moveToSignup}
+        moveToForgot={vm.moveToForgot}
+      />
+    </Fragment>
   );
 }
 Login.defaultProps = {

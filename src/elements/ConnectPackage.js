@@ -80,12 +80,13 @@ class ConnectPackage extends Component {
       <div className="tap-connect-unique-module" id="tap-connect-unique-module">
         <ThemeProvider theme={this.combineTheme}>
           <AnimationEngine
+            onExited={ConnectPackage.vm.onAnimationExited}
             open={
               ConnectPackage.vm.openController == null ? ConnectPackage.vm.openPopup : ConnectPackage.vm.openController
             }
             animationDuration={this.props.animationDuration}
             closeOnOutsideClick={this.props.closeOnOutsideClick}
-            animationType={AnimationType.SLIDEUP}
+            animationType={ConnectPackage.vm.animationType}
             onClose={(e) => {
               if (this.props.onClose) this.props.onClose(e);
               if (ConnectPackage.vm.openController != null) ConnectPackage.close();

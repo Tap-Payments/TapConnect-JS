@@ -655,12 +655,12 @@ class SignupVM {
         },
       },
       (data) => {
-        if (data.signup_token) {
+        if (data && data.signup_token) {
           this.signUpToken = data.signup_token;
           this.update('User info is updated', 6);
           this.changeStep(7);
         } else {
-          if (data.errors != null) {
+          if (data && data.errors != null) {
             this.setError(this.getErrorString(data));
           }
         }
