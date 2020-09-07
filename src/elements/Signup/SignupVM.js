@@ -71,7 +71,7 @@ class SignupVM {
     this.signUpToken = null;
     this.direction = props.language ? props.language : props.theme.direction;
     this.itemGetTextPattern = this.direction === 'rtl' ? 'item.name.ar' : 'item.name.en';
-    this.searchPattern = this.direction === 'ltr' ? 'item.name.en' : 'item.name.ar';
+    this.searchPattern = this.direction === 'rtl' ? 'item.name.ar' : 'item.name.en';
     this.sectors = props.dataSource.sectors || [];
     this.selectedSectorIndex = '';
     this.selectedSectorId = '';
@@ -250,10 +250,10 @@ class SignupVM {
           if (item)
             return (
               <div>
-                <span style={{ float: this.direction === 'ltr' ? 'left' : 'right' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
-                <span style={{ float: this.direction === 'ltr' ? 'right' : 'left' }}>{'+' + item.idd_prefix}</span>
+                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>{'+' + item.idd_prefix}</span>
               </div>
             );
         };
@@ -308,7 +308,7 @@ class SignupVM {
         this.activeStepInfo[1].isSelected = (item) => item.id === this.selectedSectorId;
 
         this.activeStepInfo[1].getSelectedItem = (item) => {
-          if (item) return this.direction === 'ltr' ? item.name.en : item.name.ar;
+          if (item) return this.direction === 'rtl' ? item.name.ar : item.name.en;
         };
 
         this.activeStepInfo[1].filter = (value) => {
@@ -318,7 +318,7 @@ class SignupVM {
         };
 
         this.activeStepInfo[1].renderMenuItem = (item) => {
-          if (item) return this.direction === 'ltr' ? item.name.en : item.name.ar;
+          if (item) return this.direction === 'rtl' ? item.name.ar : item.name.en;
         };
 
         this.sectors.map((item, index) => {
@@ -414,10 +414,10 @@ class SignupVM {
           if (item)
             return (
               <div>
-                <span style={{ float: this.direction === 'ltr' ? 'left' : 'right' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
                   <img src={item.logo} height={'25px'} width={'25px'} style={{ borderRadius: '50px' }} />
                 </span>
-                <span style={{ float: this.direction === 'ltr' ? 'right' : 'left' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
               </div>
@@ -539,10 +539,10 @@ class SignupVM {
           if (item)
             return (
               <div>
-                <span style={{ float: this.direction === 'ltr' ? 'left' : 'right' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
-                <span style={{ float: this.direction === 'ltr' ? 'right' : 'left' }}>{'+' + item.idd_prefix}</span>
+                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>{'+' + item.idd_prefix}</span>
               </div>
             );
         };
