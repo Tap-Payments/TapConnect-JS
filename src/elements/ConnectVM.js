@@ -65,7 +65,7 @@ class ConnectVM {
     }
     this.updateAnimationType(this.activePageMode);
   }
-  updatePageMode(mode, isInitial, isConnect) {
+  updatePageMode(mode, isConnect) {
     this.openPopup = false;
     if (this.openController != null) this.openController = false;
     this.updateAnimationType(mode);
@@ -113,7 +113,7 @@ class ConnectVM {
 
   moveToForgot() {
     this.hideLoader(false);
-    this.updatePageMode(PageMode.FORGOT, null, this.isConnect);
+    this.updatePageMode(PageMode.FORGOT, this.isConnect);
     window.history.pushState(
       '',
       '',
@@ -124,7 +124,7 @@ class ConnectVM {
 
   goBack() {
     this.hideLoader(false);
-    this.updatePageMode(PageMode.LANDING, null, this.isConnect);
+    this.updatePageMode(PageMode.LANDING, this.isConnect);
 
     window.history.pushState(
       '',
@@ -145,8 +145,8 @@ class ConnectVM {
     if (window.location.pathname.search(this.props.landingDirectory) > 0) this.showBackButton = true;
     else this.showBackButton = false;
 
-    if (this.isConnect || this.activePageMode == PageMode.LANDING) {
-      this.updatePageMode(PageMode.SIGNUP, null, true);
+    if (this.isConnect || this.pageMode == PageMode.LANDING) {
+      this.updatePageMode(PageMode.SIGNUP, true);
 
       window.history.pushState(
         '',
@@ -173,7 +173,7 @@ class ConnectVM {
       this.showBackButton = false;
     }
 
-    this.updatePageMode(PageMode.CONNECT, null, true);
+    this.updatePageMode(PageMode.CONNECT, true);
 
     window.history.pushState(
       '',
@@ -197,8 +197,8 @@ class ConnectVM {
     if (window.location.pathname.search(this.props.landingDirectory) > 0) this.showBackButton = true;
     else this.showBackButton = false;
 
-    if (this.isConnect || this.activePageMode == PageMode.LANDING || this.activePageMode == PageMode.FORGOT) {
-      this.updatePageMode(PageMode.LOGIN, null, true);
+    if (this.isConnect || this.pageMode == PageMode.LANDING || this.activePageMode == PageMode.FORGOT) {
+      this.updatePageMode(PageMode.LOGIN, true);
 
       window.history.pushState(
         '',
