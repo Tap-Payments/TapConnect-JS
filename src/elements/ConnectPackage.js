@@ -51,7 +51,7 @@ class ConnectPackage extends Component {
     console.log('open');
     console.log('open');
     if (mode) {
-      ConnectPackage.vm.updatePageMode(mode, true);
+      ConnectPackage.vm.initializePageMode(mode);
     }
     ConnectPackage.vm.openController = true;
   }
