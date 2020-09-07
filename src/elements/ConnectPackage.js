@@ -97,7 +97,6 @@ class ConnectPackage extends Component {
             {ConnectPackage.vm.activePageMode == PageMode.FORGOT ? (
               <ForgotPassword
                 {...this.props}
-                // // animationType={AnimationType.SLIDEUP}
                 initialLeadID={ConnectPackage.vm.leadId}
                 moveToLogin={ConnectPackage.vm.moveToLogin}
                 hideInitialLoader={ConnectPackage.vm.hideInitialLoader}
@@ -108,7 +107,6 @@ class ConnectPackage extends Component {
               ConnectPackage.vm.activePageMode == PageMode.CONNECT ? (
               <Login
                 {...this.props}
-                // // // animationType={ConnectPackage.vm.showBackButton ? AnimationType.SLIDEUP : AnimationType.SLIDEDOWN}
                 onLoginSuccess={ConnectPackage.vm.onLoginSuccess}
                 moveToSignup={ConnectPackage.vm.moveToSignup}
                 showSignupSection={ConnectPackage.vm.isConnect ? true : false}
@@ -122,7 +120,6 @@ class ConnectPackage extends Component {
             ) : ConnectPackage.vm.activePageMode == PageMode.SIGNUP ? (
               <Signup
                 {...this.props}
-                // // animationType={AnimationType.SLIDEUP}
                 initialLeadID={ConnectPackage.vm.leadId}
                 moveToLogin={ConnectPackage.vm.moveToLogin}
                 onSignupSuccess={ConnectPackage.vm.onSignupSuccess}
@@ -135,7 +132,6 @@ class ConnectPackage extends Component {
             ) : (
               <Landing
                 {...this.props}
-                // // animationType={AnimationType.SLIDEDOWN}
                 moveToSignup={ConnectPackage.vm.moveToSignup}
                 moveToConnect={ConnectPackage.vm.moveToConnect}
                 moveToLogin={ConnectPackage.vm.moveToLogin}
