@@ -73,7 +73,7 @@ class ConnectVM {
     this.onAnimationExited = () => {
       setTimeout(() => {
         this.activePageMode = mode;
-        this.isConnect = isConnect || (mode == PageMode.CONNECT && !(mode == PageMode.LANDING)) ? true : false;
+        this.isConnect = isConnect || mode == PageMode.CONNECT ? true : false;
         this.openPopup = true;
         if (this.openController != null) this.openController = true;
 
@@ -93,8 +93,6 @@ class ConnectVM {
       case PageMode.SIGNUP:
         this.animationType = AnimationType.SLIDEUP;
         break;
-      case PageMode.LANDING:
-        this.animationType = AnimationType.SLIDEDOWN;
       case PageMode.CONNECT:
         this.animationType = AnimationType.SLIDEDOWN;
         break;
@@ -124,7 +122,7 @@ class ConnectVM {
 
   goBack() {
     this.hideLoader(false);
-    this.updatePageMode(PageMode.LANDING, this.isConnect);
+    this.updatePageMode(PageMode.CONNECT, this.isConnect);
 
     window.history.pushState(
       '',
@@ -145,7 +143,7 @@ class ConnectVM {
     if (window.location.pathname.search(this.props.landingDirectory) > 0) this.showBackButton = true;
     else this.showBackButton = false;
 
-    if (this.isConnect || this.pageMode == PageMode.LANDING) {
+    if (this.isConnect) {
       this.updatePageMode(PageMode.SIGNUP, true);
 
       window.history.pushState(
@@ -197,7 +195,7 @@ class ConnectVM {
     if (window.location.pathname.search(this.props.landingDirectory) > 0) this.showBackButton = true;
     else this.showBackButton = false;
 
-    if (this.isConnect || this.pageMode == PageMode.LANDING || this.activePageMode == PageMode.FORGOT) {
+    if (this.isConnect || this.activePageMode == PageMode.FORGOT) {
       this.updatePageMode(PageMode.LOGIN, true);
 
       window.history.pushState(
@@ -235,11 +233,7 @@ class ConnectVM {
       function () {
         if (response && response.lead_id) {
           this.storeLeadID(response.lead_id);
-          if (
-            this.props.pageMode == PageMode.CONNECT ||
-            (this.props.pageMode == PageMode.LANDING && this.isLandingConnect)
-          )
-            this.moveToSignup();
+          if (this.props.pageMode == PageMode.CONNECT) this.moveToSignup();
         }
 
         if (this.props.onSuccess) this.props.onSuccess(response, browserID);
@@ -254,8 +248,7 @@ class ConnectVM {
   }
 
   onSignupSuccess(response, browserID) {
-    if (this.props.pageMode == PageMode.CONNECT || (this.props.pageMode == PageMode.LANDING && this.isLandingConnect))
-      this.moveToLogin();
+    if (this.props.pageMode == PageMode.CONNECT) this.moveToLogin();
 
     if (this.props.onSuccess) this.props.onSuccess(response, browserID);
   }

@@ -130,12 +130,17 @@ class ConnectPackage extends Component {
                 goBack={ConnectPackage.vm.goBack}
               />
             ) : (
-              <Landing
+              <Login
                 {...this.props}
+                onLoginSuccess={ConnectPackage.vm.onLoginSuccess}
                 moveToSignup={ConnectPackage.vm.moveToSignup}
-                moveToConnect={ConnectPackage.vm.moveToConnect}
-                moveToLogin={ConnectPackage.vm.moveToLogin}
+                showSignupSection={ConnectPackage.vm.isConnect ? true : false}
+                moveToForgot={ConnectPackage.vm.moveToForgot}
+                initialAuthType={ConnectPackage.vm.initialAuthType}
                 hideInitialLoader={ConnectPackage.vm.hideInitialLoader}
+                dataSource={ConnectPackage.vm.dataSource}
+                showBackButton={ConnectPackage.vm.showBackButton}
+                goBack={ConnectPackage.vm.goBack}
               />
             )}
           </AnimationEngine>

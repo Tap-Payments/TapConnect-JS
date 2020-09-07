@@ -35,7 +35,6 @@ const PageMode = {
   SIGNUP: 'signup',
   FORGOT: 'reset',
   CONNECT: 'connect',
-  LANDING: 'landing',
 };
 
 const SIGNUP_STEPS_ARRAY = [
