@@ -80,6 +80,7 @@ class ConnectPackage extends Component {
       <div className="tap-connect-unique-module" id="tap-connect-unique-module">
         <ThemeProvider theme={this.combineTheme}>
           <AnimationEngine
+            bypass={this.props.dialogMode == DialogMode.FULLPAGE}
             onExited={ConnectPackage.vm.onAnimationExited}
             open={
               ConnectPackage.vm.openController == null ? ConnectPackage.vm.openPopup : ConnectPackage.vm.openController
@@ -96,7 +97,6 @@ class ConnectPackage extends Component {
             {ConnectPackage.vm.activePageMode == PageMode.FORGOT ? (
               <ForgotPassword
                 {...this.props}
-                dialogMode={DialogMode.FULLPAGE}
                 // // animationType={AnimationType.SLIDEUP}
                 initialLeadID={ConnectPackage.vm.leadId}
                 moveToLogin={ConnectPackage.vm.moveToLogin}
@@ -108,7 +108,6 @@ class ConnectPackage extends Component {
               ConnectPackage.vm.activePageMode == PageMode.CONNECT ? (
               <Login
                 {...this.props}
-                dialogMode={DialogMode.FULLPAGE}
                 // // // animationType={ConnectPackage.vm.showBackButton ? AnimationType.SLIDEUP : AnimationType.SLIDEDOWN}
                 onLoginSuccess={ConnectPackage.vm.onLoginSuccess}
                 moveToSignup={ConnectPackage.vm.moveToSignup}
@@ -123,7 +122,6 @@ class ConnectPackage extends Component {
             ) : ConnectPackage.vm.activePageMode == PageMode.SIGNUP ? (
               <Signup
                 {...this.props}
-                dialogMode={DialogMode.FULLPAGE}
                 // // animationType={AnimationType.SLIDEUP}
                 initialLeadID={ConnectPackage.vm.leadId}
                 moveToLogin={ConnectPackage.vm.moveToLogin}
@@ -137,7 +135,6 @@ class ConnectPackage extends Component {
             ) : (
               <Landing
                 {...this.props}
-                dialogMode={DialogMode.FULLPAGE}
                 // // animationType={AnimationType.SLIDEDOWN}
                 moveToSignup={ConnectPackage.vm.moveToSignup}
                 moveToConnect={ConnectPackage.vm.moveToConnect}

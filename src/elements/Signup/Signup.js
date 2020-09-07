@@ -20,60 +20,16 @@ function Signup(props) {
 
   // if (!props.hideInitialLoader) if (vm.showInitialLoader) return null;
 
-  return props.dialogMode === DialogMode.POPUP ? (
+  return (
     <Fragment>
-      <AnimationEngine
-        open={props.openPopup}
-        animationDuration={props.animationDuration}
-        closeOnOutsideClick={props.closeOnOutsideClick}
-        onClose={props.onClose}
-        onCancel={props.onCancel}
-        animationType={props.animationType}
-      >
-        {props.showBackButton && vm.page == 0 ? (
-          <NavigationButtons
-            type={vm.direction == 'rtl' ? 'next' : 'back'}
-            btnStyle={{ background: '#15151575' }}
-            onClick={vm.goBack}
-          />
-        ) : (
-          vm.page != 0 &&
-          ((vm.page == 2 && props.initialLeadID == null) || vm.page != 2) && (
-            <NavigationButtons
-              type={vm.direction == 'rtl' ? 'next' : 'back'}
-              btnStyle={{ background: '#15151575' }}
-              onClick={vm.goBack}
-            />
-          )
-        )}
-        {/* <NavigationButtons type="next" onClick={() => console.log('next pressed')} /> */}
-        <SignupTemplate
-          id={'signup-tap-card-150720'}
-          page={vm.page}
-          errorInfo={vm.errorInfo}
-          activeStepInfo={vm.page === 0 && vm.showInitialLoader ? null : toJS(vm.activeStepInfo)}
-          loadingStatus={vm.loadingStatus}
-          onSubmit={vm.onSubmit}
-          showLoader={vm.showInitialLoader}
-          onGoBack={vm.goBack}
-          {...props}
-          {...SIGNUP_INFO}
-          moveToLogin={vm.moveToLogin}
-          direction={vm.direction}
-          storeConfirmedPassword={vm.storeConfirmedPassword}
-        />
-      </AnimationEngine>
-    </Fragment>
-  ) : (
-    <Fragment>
-      {' '}
-      {props.showBackButton && vm.page == 0 ? (
+      {props.dialogMode === DialogMode.POPUP && props.showBackButton && vm.page == 0 ? (
         <NavigationButtons
           type={vm.direction == 'rtl' ? 'next' : 'back'}
           btnStyle={{ background: '#15151575' }}
           onClick={vm.goBack}
         />
       ) : (
+        props.dialogMode === DialogMode.POPUP &&
         vm.page != 0 &&
         ((vm.page == 2 && props.initialLeadID == null) || vm.page != 2) && (
           <NavigationButtons
@@ -83,6 +39,7 @@ function Signup(props) {
           />
         )
       )}
+      {/* <NavigationButtons type="next" onClick={() => console.log('next pressed')} /> */}
       <SignupTemplate
         id={'signup-tap-card-150720'}
         page={vm.page}

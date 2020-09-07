@@ -15,52 +15,9 @@ function Login(props) {
 
   // if (!props.hideInitialLoader) if (vm.showInitialLoader) return null;
 
-  return props.dialogMode === DialogMode.POPUP ? (
-    <AnimationEngine
-      open={props.openPopup}
-      animationDuration={props.animationDuration}
-      closeOnOutsideClick={props.closeOnOutsideClick}
-      onClose={props.onClose}
-      onCancel={props.onCancel}
-      animationType={props.animationType}
-    >
-      {props.showBackButton && (
-        <NavigationButtons
-          type={vm.direction == 'rtl' ? 'next' : 'back'}
-          btnStyle={{ background: '#15151575' }}
-          onClick={vm.goBack}
-        />
-      )}
-      <LoginTemplate
-        {...vm.props}
-        id={'login-tap-card-240620'}
-        showSignupSection={props.showSignupSection}
-        direction={vm.direction}
-        title={vm.title}
-        newUser={vm.newUser}
-        showHeaderLogo={props.showHeaderLogo}
-        emailTextField={vm.emailTextField}
-        activeTextFieldName={vm.activeTextFieldName}
-        passwordTextField={vm.passwordTextField}
-        otpTextField={vm.otpTextField}
-        showLoader={vm.showInitialLoader}
-        verifyValue={vm.verifyValue}
-        editButtonInfo={vm.editButtonInfo}
-        checkBoxInfo={vm.checkBoxInfo}
-        dropdownInfos={vm.dropdownInfos}
-        forgotPasswordInfo={vm.forgotPasswordInfo}
-        errorInfo={vm.errorInfo}
-        loadingStatus={vm.loadingStatus}
-        signUpInfo={vm.signUpInfo}
-        onSubmit={vm.onFormSubmit}
-        moveToSignup={vm.moveToSignup}
-        moveToForgot={vm.moveToForgot}
-      />
-    </AnimationEngine>
-  ) : (
+  return (
     <Fragment>
-      {' '}
-      {props.showBackButton && (
+      {props.dialogMode === DialogMode.POPUP && props.showBackButton && (
         <NavigationButtons
           type={vm.direction == 'rtl' ? 'next' : 'back'}
           btnStyle={{ background: '#15151575' }}

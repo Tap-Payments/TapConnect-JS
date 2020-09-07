@@ -124,6 +124,8 @@ class AnimationEngine extends React.Component {
   }
 
   render() {
+    if (this.props.bypass) return this.props.children;
+
     return (
       <TapDialog
         onExited={this.props.onExited}

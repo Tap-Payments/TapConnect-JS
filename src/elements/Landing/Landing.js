@@ -14,29 +14,9 @@ import { DialogMode } from '../Constants/constants';
 function Landing(props) {
   const vm = useVm(LandingVM, props);
 
-  if (!props.hideInitialLoader) if (vm.showInitialLoader) return null;
+  // if (!props.hideInitialLoader) if (vm.showInitialLoader) return null;
 
-  return props.dialogMode === DialogMode.POPUP ? (
-    <Fragment>
-      <AnimationEngine
-        open={vm.openLandingPopup}
-        animationDuration={props.animationDuration}
-        closeOnOutsideClick={props.closeOnOutsideClick}
-        onClose={props.onClose}
-        onCancel={props.onCancel}
-        animationType={props.animationType}
-      >
-        <LandingTemplate
-          {...props}
-          id={'landing-tap-card-010920'}
-          moveToSignup={vm.moveToSignup}
-          moveToConnect={vm.moveToConnect}
-          moveToLogin={vm.moveToLogin}
-          direction={vm.direction}
-        />
-      </AnimationEngine>
-    </Fragment>
-  ) : (
+  return (
     <LandingTemplate
       {...props}
       id={'landing-tap-card-010920'}
@@ -47,6 +27,7 @@ function Landing(props) {
     />
   );
 }
+
 Landing.defaultProps = {
   footer: 'signup_powered_by',
   companyName: 'signup_tap_payments',
