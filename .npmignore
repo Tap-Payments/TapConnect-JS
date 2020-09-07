@@ -1,5 +1,9 @@
 src
 demo
+webpack
+readme.md
+package.json
+dist
 .babelrc
 .gitignore
 webpack.config.js
