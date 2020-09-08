@@ -128,9 +128,13 @@ export default class MenuWrapper extends React.Component {
             this.state.dropdownInfos.map((item, index) => (
               <MenuItem
                 key={index}
-                ref={props.isSelected(item) ? props.selectedMenuItemRef : null}
+                ref={
+                  props.isSelected && typeof props.isSelected === 'function' && props.isSelected(item)
+                    ? props.selectedMenuItemRef
+                    : null
+                }
                 direction={props.direction}
-                selected={props.isSelected(item)}
+                selected={props.isSelected && typeof props.isSelected === 'function' && props.isSelected(item)}
                 style={
                   index === 0
                     ? {
