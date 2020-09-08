@@ -64,5 +64,6 @@ class TapAuthButton extends Component {
 TapAuthButton.defaultProps = {
   buttonText: 'login',
   pageMode: PageMode.LOGIN,
+  direction: 'ltr',
 };
 export default observer(TapAuthButton);
