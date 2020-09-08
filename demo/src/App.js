@@ -99,7 +99,7 @@ class App extends Component {
               <TapAuthButton
                 // initialLeadID={vm.initialLeadID}
                 pageMode={PageMode.CONNECT}
-                buttonText={'Connect'}
+                buttonText={'ربط'}
                 countryCode={'965'}
                 variant={'outlined'}
                 animationType={AnimationType.SLIDEUP}
@@ -118,7 +118,7 @@ class App extends Component {
               <TapAuthButton
                 // initialLeadID={vm.initialLeadID}
                 pageMode={PageMode.LOGIN}
-                buttonText={'Login'}
+                buttonText={'تسجيل دخول'}
                 countryCode={'965'}
                 variant={'outlined'}
                 // onCancel={vm.onCancel}
@@ -139,7 +139,7 @@ class App extends Component {
               <TapAuthButton
                 // initialLeadID={vm.initialLeadID}
                 pageMode={PageMode.SIGNUP}
-                buttonText={'Signup'}
+                buttonText={'تسجيل جديد'}
                 countryCode={'965'}
                 variant={'outlined'}
                 // onCancel={vm.onCancel}
