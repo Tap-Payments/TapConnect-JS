@@ -307,7 +307,7 @@ class ForgotPasswordVM {
           break;
 
         case 3:
-          this.openForgotPasswordPopup = false;
+          this.moveToLogin();
           this.props.onForgotPasswordSuccess();
       }
     }
