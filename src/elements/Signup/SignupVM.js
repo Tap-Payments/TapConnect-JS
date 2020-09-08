@@ -749,6 +749,8 @@ class SignupVM {
           });
           break;
         case 8:
+          this.changeLoader(false);
+
           break;
         default:
           //// update lead

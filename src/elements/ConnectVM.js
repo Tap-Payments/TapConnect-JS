@@ -248,7 +248,11 @@ class ConnectVM {
   }
 
   onSignupSuccess(response, browserID) {
-    if (this.props.pageMode == PageMode.CONNECT) this.moveToLogin();
+    if (this.isConnect) {
+      this.moveToLogin();
+    } else {
+      ConnectPackage.close();
+    }
 
     if (this.props.onSuccess) this.props.onSuccess(response, browserID);
   }
