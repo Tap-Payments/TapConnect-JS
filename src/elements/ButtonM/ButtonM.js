@@ -42,6 +42,8 @@ class TapAuthButton extends Component {
       <ThemeProvider theme={this.combineTheme}>
         <ButtonTemplate
           buttonText={this.props.buttonText}
+          variant={this.props.variant}
+          showLogo={this.props.showLogo}
           onClick={() => {
             TapAuthButton.open(this.props.pageMode);
           }}
@@ -65,5 +67,7 @@ TapAuthButton.defaultProps = {
   buttonText: 'login',
   pageMode: PageMode.LOGIN,
   direction: 'ltr',
+  variant: 'contained',
+  showLogo: true,
 };
 export default observer(TapAuthButton);

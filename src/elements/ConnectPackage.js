@@ -75,6 +75,10 @@ class ConnectPackage extends Component {
     //// ensure only one instance in the DOM
     if (this.isDuplicateInstance) return null;
     if (ConnectPackage.vm.isLoading) return this.props.hideInitialLoader ? null : <TapLoader />;
+
+    console.log('this.combineTheme.direction');
+    console.log(this.combineTheme.direction);
+
     return (
       <div className="tap-connect-unique-module" id="tap-connect-unique-module">
         <ThemeProvider theme={this.combineTheme}>

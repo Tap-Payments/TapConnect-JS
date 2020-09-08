@@ -31,74 +31,132 @@ class App extends Component {
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
             height: '100%',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <div style={{ width: '230px', marginBottom: '15px' }}>
-            <TapAuthButton
-              // initialLeadID={vm.initialLeadID}
-              pageMode={PageMode.CONNECT}
-              buttonText={'connect'}
-              countryCode={'965'}
-              animationType={AnimationType.SLIDEUP}
-              animationDuration={500}
-              closeOnOutsideClick={false}
-              // defaultEmailOrMobile={vm.initialUsername}
-              hideInitialLoader={this.props.hideInitialLoader}
-              onSuccess={this.handleSuccess}
-              theme={
-                {
-                  // direction: vm.appDirection,
-                }
-              }
-            />
+          <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
+            <div style={{ width: '230px', marginBottom: '15px' }}>
+              <TapAuthButton
+                // initialLeadID={vm.initialLeadID}
+                pageMode={PageMode.CONNECT}
+                buttonText={'Connect'}
+                countryCode={'965'}
+                animationType={AnimationType.SLIDEUP}
+                animationDuration={500}
+                closeOnOutsideClick={false}
+                // defaultEmailOrMobile={vm.initialUsername}
+                hideInitialLoader={this.props.hideInitialLoader}
+                onSuccess={this.handleSuccess}
+                theme={{
+                  direction: 'ltr',
+                }}
+              />
+            </div>
+            <div style={{ width: '230px', marginBottom: '15px' }}>
+              <TapAuthButton
+                // initialLeadID={vm.initialLeadID}
+                pageMode={PageMode.LOGIN}
+                buttonText={'Login'}
+                countryCode={'965'}
+                // onCancel={vm.onCancel}
+                animationType={AnimationType.SLIDEUP}
+                animationDuration={500}
+                closeOnOutsideClick={false}
+                // defaultEmailOrMobile={vm.initialUsername}
+                hideInitialLoader={this.props.hideInitialLoader}
+                // moveToSignup={vm.moveToSignup}
+                onSuccess={this.handleSuccess}
+                theme={{
+                  direction: 'ltr',
+                }}
+              />
+            </div>
+            <div style={{ width: '230px', marginBottom: '15px' }}>
+              <TapAuthButton
+                // initialLeadID={vm.initialLeadID}
+                pageMode={PageMode.SIGNUP}
+                buttonText={'Signup'}
+                countryCode={'965'}
+                // onCancel={vm.onCancel}
+                animationType={AnimationType.SLIDEUP}
+                animationDuration={500}
+                closeOnOutsideClick={false}
+                // defaultEmailOrMobile={vm.initialUsername}
+                hideInitialLoader={this.props.hideInitialLoader}
+                // moveToLogin={vm.moveToLogin}
+                onSuccess={this.handleSuccess}
+                theme={{
+                  direction: 'ltr',
+                }}
+              />
+            </div>
+            {/* <Button onClick={() => this.handleSuccess({ ee: 'sss' })} /> */}
           </div>
-          <div style={{ width: '230px', marginBottom: '15px' }}>
-            <TapAuthButton
-              // initialLeadID={vm.initialLeadID}
-              pageMode={PageMode.LOGIN}
-              buttonText={'login'}
-              countryCode={'965'}
-              // onCancel={vm.onCancel}
-              animationType={AnimationType.SLIDEUP}
-              animationDuration={500}
-              closeOnOutsideClick={false}
-              // defaultEmailOrMobile={vm.initialUsername}
-              hideInitialLoader={this.props.hideInitialLoader}
-              // moveToSignup={vm.moveToSignup}
-              onSuccess={this.handleSuccess}
-              theme={
-                {
-                  // direction: vm.appDirection,
-                }
-              }
-            />
+          <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
+            <div style={{ width: '230px', marginBottom: '15px' }}>
+              <TapAuthButton
+                // initialLeadID={vm.initialLeadID}
+                pageMode={PageMode.CONNECT}
+                buttonText={'Connect'}
+                countryCode={'965'}
+                variant={'outlined'}
+                animationType={AnimationType.SLIDEUP}
+                animationDuration={500}
+                closeOnOutsideClick={false}
+                // defaultEmailOrMobile={vm.initialUsername}
+                hideInitialLoader={this.props.hideInitialLoader}
+                onSuccess={this.handleSuccess}
+                showLogo={false}
+                theme={{
+                  direction: 'rtl',
+                }}
+              />
+            </div>
+            <div style={{ width: '230px', marginBottom: '15px' }}>
+              <TapAuthButton
+                // initialLeadID={vm.initialLeadID}
+                pageMode={PageMode.LOGIN}
+                buttonText={'Login'}
+                countryCode={'965'}
+                variant={'outlined'}
+                // onCancel={vm.onCancel}
+                animationType={AnimationType.SLIDEUP}
+                animationDuration={500}
+                closeOnOutsideClick={false}
+                // defaultEmailOrMobile={vm.initialUsername}
+                hideInitialLoader={this.props.hideInitialLoader}
+                // moveToSignup={vm.moveToSignup}
+                onSuccess={this.handleSuccess}
+                showLogo={false}
+                theme={{
+                  direction: 'rtl',
+                }}
+              />
+            </div>
+            <div style={{ width: '230px', marginBottom: '15px' }}>
+              <TapAuthButton
+                // initialLeadID={vm.initialLeadID}
+                pageMode={PageMode.SIGNUP}
+                buttonText={'Signup'}
+                countryCode={'965'}
+                variant={'outlined'}
+                // onCancel={vm.onCancel}
+                animationType={AnimationType.SLIDEUP}
+                animationDuration={500}
+                closeOnOutsideClick={false}
+                // defaultEmailOrMobile={vm.initialUsername}
+                hideInitialLoader={this.props.hideInitialLoader}
+                // moveToLogin={vm.moveToLogin}
+                onSuccess={this.handleSuccess}
+                showLogo={false}
+                theme={{
+                  direction: 'rtl',
+                }}
+              />
+            </div>
           </div>
-          <div style={{ width: '230px', marginBottom: '15px' }}>
-            <TapAuthButton
-              // initialLeadID={vm.initialLeadID}
-              pageMode={PageMode.SIGNUP}
-              buttonText={'signup'}
-              countryCode={'965'}
-              // onCancel={vm.onCancel}
-              animationType={AnimationType.SLIDEUP}
-              animationDuration={500}
-              closeOnOutsideClick={false}
-              // defaultEmailOrMobile={vm.initialUsername}
-              hideInitialLoader={this.props.hideInitialLoader}
-              // moveToLogin={vm.moveToLogin}
-              onSuccess={this.handleSuccess}
-              theme={
-                {
-                  // direction: vm.appDirection,
-                }
-              }
-            />
-          </div>
-          {/* <Button onClick={() => this.handleSuccess({ ee: 'sss' })} /> */}
         </div>
       </Fragment>
     );

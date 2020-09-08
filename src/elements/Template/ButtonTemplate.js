@@ -6,8 +6,8 @@ import tapLogo from '../../assets/whiteLogo.svg';
 const useStyles = makeStyles((theme) => ({
   signUpButton: {
     width: '100%',
-    justifyContent: 'space-between',
     height: '50px',
+    borderRadius: '30px',
     ...theme.typography.body1_bold,
     fontSize: '20px',
   },
@@ -22,10 +22,11 @@ export default function LandingTemplate(props) {
 
   return (
     <Button
-      startIcon={<img className={classes.logo} src={tapLogo} />}
+      style={{ justifyContent: props.showLogo ? 'space-between' : 'center' }}
+      startIcon={props.showLogo ? <img className={classes.logo} src={tapLogo} /> : null}
       endIcon={<img src={''} />}
       className={classes.signUpButton}
-      variant="contained"
+      variant={props.variant}
       onClick={props.onClick}
     >
       {props.buttonText}
