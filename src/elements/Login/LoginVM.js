@@ -15,7 +15,7 @@ class LoginVM {
 
     this.ipObject = this.FP && this.FP.ipObject;
     console.log(this.ipObject);
-
+    this.isConnect = props.isConnect;
     this.props = props;
     this.newUser = false;
     this.loginSteps = LOGIN_STEPS.CREATE;
@@ -264,7 +264,9 @@ class LoginVM {
             } else {
               this.newUser = data.new_user;
               this.update('Username is verified', LOGIN_STEPS.CREATE);
-              this.changeLoginStep(data);
+
+              if (this.newUser && !this.isConnect) this.setError('login_user_does_not_exists_error');
+              else this.changeLoginStep(data);
             }
           else this.setError('login_server_error');
           console.log('data');

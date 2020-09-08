@@ -115,6 +115,7 @@ class ConnectPackage extends Component {
                 dataSource={ConnectPackage.vm.dataSource}
                 showBackButton={ConnectPackage.vm.showBackButton}
                 goBack={ConnectPackage.vm.goBack}
+                isConnect={ConnectPackage.vm.isConnect}
               />
             ) : ConnectPackage.vm.activePageMode == PageMode.SIGNUP ? (
               <Signup
