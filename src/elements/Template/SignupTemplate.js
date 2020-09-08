@@ -118,7 +118,7 @@ export default function SignupTemplate(props) {
               <div
                 style={{
                   float: props.direction === 'ltr' ? 'left' : 'right',
-                  paddingInlineEnd: '10px',
+                  paddingInlineEnd: props.page == 3 ? '0px' : '10px',
                 }}
               >
                 <img
