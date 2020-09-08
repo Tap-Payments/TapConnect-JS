@@ -12,6 +12,13 @@ class TapAuthButton extends Component {
   constructor(props) {
     super(props);
     let vm = new ButtonVM(props);
+
+    if (document.body.hasAttribute('tap-connect-button-unique')) {
+      this.isDuplicateInstance = true;
+    } else {
+      document.body.setAttribute('tap-connect-button-unique', true);
+      this.isDuplicateInstance = false;
+    }
     this.vm = vm;
     this.combineTheme = createMuiTheme({
       direction: this.vm.direction,
@@ -40,14 +47,16 @@ class TapAuthButton extends Component {
           }}
           direction={this.vm.direction}
         />
-        <ConnectPackage
-          {...this.props}
-          dialogMode={DialogMode.POPUP}
-          hideInitialLoader={true}
-          closeOnOutsideClick={true}
-          openPopup={this.vm.openPopup}
-          onClose={this.vm.onClose}
-        />
+        {!this.isDuplicateInstance && (
+          <ConnectPackage
+            {...this.props}
+            dialogMode={DialogMode.POPUP}
+            hideInitialLoader={true}
+            closeOnOutsideClick={true}
+            openPopup={this.vm.openPopup}
+            onClose={this.vm.onClose}
+          />
+        )}
       </ThemeProvider>
     );
   }
