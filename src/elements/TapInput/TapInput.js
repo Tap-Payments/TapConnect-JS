@@ -472,6 +472,7 @@ TapInput.defaultProps = {
   inputType: InputTypeEnum.ANY,
   tapCardId: 'login-tap-card-240620',
   inputProps: { autoFocus: false },
+  direction: 'ltr',
 };
 
 export default TapInput;
