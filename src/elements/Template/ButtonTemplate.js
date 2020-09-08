@@ -18,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LandingTemplate(props) {
-  const classes = useStyles();
-  const { t } = useTranslation();
+  let classes = useStyles();
 
   return (
     <Button
@@ -29,7 +28,7 @@ export default function LandingTemplate(props) {
       variant="contained"
       onClick={props.onClick}
     >
-      {t(props.buttonText)}
+      {props.buttonText}
     </Button>
   );
 }
