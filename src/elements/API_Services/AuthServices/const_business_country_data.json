@@ -228,6 +228,80 @@
       "idd_prefix": 962,
       "logo": "https://logos.b-cdn.net/country/JO.png",
       "digits": 9
+    },
+    {
+      "created": 1577690965000,
+      "updated": 1577691209000,
+      "countryId": "cou_VQ4O1311012Ebu57214",
+      "name": {
+        "created": 1577690965000,
+        "updated": 1577691209000,
+        "textId": "txt_6kHt13110123Vfg7214",
+        "arabic": "سنغافورة",
+        "english": "Singapore",
+        "french": "Singapour",
+        "spanish": "Singapur",
+        "russian": "Сингапур",
+        "chinese": "新加坡"
+      },
+      "iso2": "SG",
+      "iso3": "SGP",
+      "numeric": 702,
+      "continent": "AS",
+      "capital": "Singapore",
+      "geoNameId": "1880251",
+      "idd_prefix": 65,
+      "logo": "https://logos.b-cdn.net/country/SG.png",
+      "digits": 8
+    },
+    {
+      "created": 1577690965000,
+      "updated": 1577691209000,
+      "countryId": "cou_P5lb1311012DpXa7214",
+      "name": {
+        "created": 1577690965000,
+        "updated": 1577691209000,
+        "textId": "txt_35zB1311012HGnb7214",
+        "arabic": "الولايات المتحدة الأمريكية",
+        "english": "United States of America",
+        "french": "États-Unis d'Amérique",
+        "spanish": "Estados Unidos de América",
+        "russian": "Соединенные Штаты Америки",
+        "chinese": "美利坚合众国"
+      },
+      "iso2": "US",
+      "iso3": "USA",
+      "numeric": 840,
+      "continent": "NA",
+      "capital": "Washington",
+      "geoNameId": "6252001",
+      "idd_prefix": 1,
+      "logo": "https://logos.b-cdn.net/country/US.png",
+      "digits": 10
+    },
+    {
+      "created": 1577690965000,
+      "updated": 1577691209000,
+      "countryId": "cou_Ec2P13110126UAt7214",
+      "name": {
+        "created": 1577690965000,
+        "updated": 1577691209000,
+        "textId": "txt_4gdN13110126C4G7214",
+        "arabic": "منطقة هونغ كونغ الصينية الإدارية الخاصة",
+        "english": "China, Hong Kong Special Administrative Region",
+        "french": "Chine, région administrative spéciale de Hong Kong",
+        "spanish": "China, región administrativa especial de Hong Kong",
+        "russian": "Китай, Специальный административный район Гонконг",
+        "chinese": "中国香港特别行政区"
+      },
+      "iso2": "HK",
+      "iso3": "HKG",
+      "numeric": 344,
+      "continent": "AS",
+      "capital": "Hong Kong",
+      "geoNameId": "1819730",
+      "idd_prefix": 852,
+      "digits": 8
     }
   ]
 }
