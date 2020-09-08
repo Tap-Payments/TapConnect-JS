@@ -96,7 +96,7 @@ class ConnectDataSource {
     });
   }
   async getBusinessCountryInfos() {
-    await GetCountriesService.getCountriesData((data) => {
+    await GetCountriesService.getStaticBusinessCountryData((data) => {
       if (data && data.list) {
         filterCountries(data.list).then((filteredCountries) => {
           this.businessCountries = filteredCountries.sort(sortCountries(this.direction));
