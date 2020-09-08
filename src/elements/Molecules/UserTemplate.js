@@ -74,33 +74,36 @@ export default function UserTemplate(props) {
           <TextFieldTemplate textField={props.textField[1]} style={{ marginTop: '0px' }} />
         )}
       </Grid>
+      {location.href.search('tap.company') > 0 && (
+        <Fragment>
+          <SocialMediaDivider>{t('signup_social_media_helper')}</SocialMediaDivider>
 
-      <SocialMediaDivider>{t('signup_social_media_helper')}</SocialMediaDivider>
-
-      <Grid container style={{ justifyContent: 'center', marginTop: '20px' }} direction="row">
-        <FacebookLogin
-          appId={facebookID}
-          autoLoad
-          cookie
-          xfbml
-          callback={responseFacebook}
-          render={(renderProps) => <FacebookButton {...renderProps} />}
-        />
-        <GoogleLogin
-          clientId={googleID}
-          render={(renderProps) => <GoogleButton {...renderProps} />}
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
-        <LinkedinLogin
-          clientId={linkedinID}
-          redirectUrl={window.location.origin}
-          onSuccess={responseLinkedin}
-          onError={responseLinkedin}
-          render={(renderProps) => <LinkedinButton {...renderProps} />}
-        />
-      </Grid>
+          <Grid container style={{ justifyContent: 'center', marginTop: '20px' }} direction="row">
+            <FacebookLogin
+              appId={facebookID}
+              autoLoad
+              cookie
+              xfbml
+              callback={responseFacebook}
+              render={(renderProps) => <FacebookButton {...renderProps} />}
+            />
+            <GoogleLogin
+              clientId={googleID}
+              render={(renderProps) => <GoogleButton {...renderProps} />}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+            <LinkedinLogin
+              clientId={linkedinID}
+              redirectUrl={window.location.origin}
+              onSuccess={responseLinkedin}
+              onError={responseLinkedin}
+              render={(renderProps) => <LinkedinButton {...renderProps} />}
+            />
+          </Grid>
+        </Fragment>
+      )}
     </Fragment>
   );
 }
