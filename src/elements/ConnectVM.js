@@ -196,7 +196,7 @@ class ConnectVM {
     else this.showBackButton = false;
 
     if (this.isConnect || this.activePageMode == PageMode.FORGOT) {
-      this.updatePageMode(PageMode.LOGIN, true);
+      this.updatePageMode(PageMode.LOGIN, this.isConnect);
 
       window.history.pushState(
         '',
