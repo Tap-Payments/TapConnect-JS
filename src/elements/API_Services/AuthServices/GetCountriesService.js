@@ -42,44 +42,7 @@ class GetCountriesService {
   }
 
   static async getStaticBusinessCountryData(callback) {
-    let countries = constant_business_country_temp.list.filter((country) => {
-      if (!country.logo) return false;
-      if (!country.iso2 || country.iso2 == undefined || country.iso2 == null || country.iso2 == '') return false;
-      if (!country.iso3 || country.iso3 == undefined || country.iso3 == null || country.iso3 == '') return false;
-      if (!country.digits || country.digits == undefined || country.digits == null || country.digits == '')
-        return false;
-      if (
-        !country.idd_prefix ||
-        country.idd_prefix == undefined ||
-        country.idd_prefix == null ||
-        country.idd_prefix == '' ||
-        country.idd_prefix == 0
-      )
-        return false;
-      return true;
-    });
-    console.log(countries);
-    callback(countries);
-    return;
-
-    var res;
-
-    await axios
-      .post(URL)
-      .then(async function (response) {
-        console.log(response);
-
-        res = response.data;
-        if (res.code == 200) {
-        }
-      })
-      .catch(function (error) {
-        // console.log(error);
-        return { error: 'error' };
-      });
-    // console.log(res);
-
-    await callback(res);
+    callback(constant_business_country_temp);
   }
 }
 
