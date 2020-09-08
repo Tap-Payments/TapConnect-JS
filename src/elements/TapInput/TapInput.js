@@ -131,7 +131,7 @@ class TapInput extends React.Component {
       this.setState({
         inputCssClass: this.inputClass + ' show',
         inputCssClassCode: 'codeShow',
-        countryIcon: this.state.countryIcon || props.countryIcon,
+        countryIcon: props.countryIcon,
         inputLength: this.tempMaxLength || props.maxLength,
       });
     }
