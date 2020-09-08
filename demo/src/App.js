@@ -1,6 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/index';
 function App(props) {
+  const [message, setMessage] = useState('response');
+
+  const handleSuccess = (response) => {
+    console.log(response);
+    if (response) {
+      setTimeout(() => {
+        alert(JSON.stringify(response));
+      }, 2000);
+    }
+  };
   return (
     <Fragment>
       <div
@@ -23,7 +33,7 @@ function App(props) {
             closeOnOutsideClick={false}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
-            // onSuccess={vm.onSuccess}
+            onSuccess={handleSuccess}
             theme={
               {
                 // direction: vm.appDirection,
@@ -44,7 +54,7 @@ function App(props) {
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToSignup={vm.moveToSignup}
-            // onSuccess={vm.onSuccess}
+            onSuccess={handleSuccess}
             theme={
               {
                 // direction: vm.appDirection,
@@ -52,7 +62,7 @@ function App(props) {
             }
           />
         </div>
-        <div style={{ width: '230px' }}>
+        <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.SIGNUP}
@@ -65,7 +75,7 @@ function App(props) {
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToLogin={vm.moveToLogin}
-            // onSuccess={vm.onSuccess}
+            onSuccess={handleSuccess}
             theme={
               {
                 // direction: vm.appDirection,
@@ -73,6 +83,8 @@ function App(props) {
             }
           />
         </div>
+
+        {/* <code style={{ background: 'lightgrey', margin: '10px', padding: '10px' }}>{message}</code> */}
       </div>
     </Fragment>
   );
