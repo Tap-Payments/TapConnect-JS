@@ -35,7 +35,7 @@ class ForgotPasswordService {
     // return;
     let reqBody = JSON.parse(JSON.stringify(body));
     axios
-      .put(MW_URL + '/password/reset', reqBody, this.getHeaders())
+      .put(axios.defaults.connectMW + '/password/reset', reqBody, this.getHeaders())
       .then(async function (response) {
         callback(response.data ? { ...response.data } : null);
       })

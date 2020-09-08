@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import querystring from 'querystring';
 
-import { MW_URL } from '../../API_Services/index';
-// const LINKEDIN_MW = 'http://localhost:3300/middleware/linkedin';
-const LINKEDIN_MW = MW_URL + '/linkedin';
+const LINKEDIN_MW = '/linkedin';
 import axios from 'axios';
 export const errors = {
   POPUP_CLOSED: 'popup closed',
@@ -89,7 +87,7 @@ class LinkedinLogin extends React.PureComponent {
   _proceedWithTapsMiddleware(code) {
     var thiz = this;
     axios
-      .post(LINKEDIN_MW, {
+      .post(axios.defaults.connectMW + LINKEDIN_MW, {
         code: code,
         redirect_uri: this.props.redirectUrl,
       })
