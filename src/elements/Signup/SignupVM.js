@@ -248,7 +248,7 @@ class SignupVM {
           if (item)
             return (
               <div>
-                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left', paddingInlineEnd: '10px' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
                 <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>{'+' + item.idd_prefix}</span>
@@ -537,7 +537,7 @@ class SignupVM {
           if (item)
             return (
               <div>
-                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left', paddingInlineEnd: '10px' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
                 <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>{'+' + item.idd_prefix}</span>
