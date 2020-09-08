@@ -18,6 +18,7 @@ export function prepareBusinessNameRequest(businessName, selectedSectorId, brand
 export function prepareBusinessTypeRequest(businessType, businessCountry) {
   return {
     business_type: businessType,
+    business_country: businessCountry,
   };
 }
 export function prepareBusinessLicensedRequest(isLicensed) {
