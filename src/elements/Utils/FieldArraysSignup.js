@@ -122,10 +122,10 @@ const BUSINESS_TYPE_LICENSED = [
 
 const BUSINESS_LICENSED = {
   title: 'signup_business_licensed',
-  noButtonText: 'No',
+  noButtonText: 'no',
   noButtonVariant: 'contained',
   noLoadingStatus: false,
-  yesButtonText: 'Yes',
+  yesButtonText: 'yes',
   onClickNo: () => {},
   yesButtonVariant: 'contained',
   yesLoadingStatus: false,
