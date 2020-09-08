@@ -265,7 +265,7 @@ class LoginVM {
               this.newUser = data.new_user;
               this.update('Username is verified', LOGIN_STEPS.CREATE);
 
-              if (this.newUser && !this.isConnect) this.setError('login_user_does_not_exists_error');
+              if (this.newUser && !this.isConnect) this.setError('login_user_does_not_exist_error');
               else this.changeLoginStep(data);
             }
           else this.setError('login_server_error');
