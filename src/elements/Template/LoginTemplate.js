@@ -86,7 +86,7 @@ export default function LoginTemplate(props) {
             {props.showHeaderLogo ? (
               <div
                 style={{
-                  float: props.direction === 'ltr' ? 'left' : 'right',
+                  float: props.direction === 'rtl' ? 'right' : 'left',
                   paddingInlineEnd: '10px',
                 }}
               >
@@ -103,8 +103,8 @@ export default function LoginTemplate(props) {
               style={
                 props.showHeaderLogo
                   ? {
-                      paddingTop: props.direction === 'ltr' ? '4px' : '3px',
-                      float: props.direction === 'ltr' ? 'right' : 'left',
+                      paddingTop: props.direction === 'rtl' ? '3px' : '4px',
+                      float: props.direction === 'rtl' ? 'left' : 'right',
                     }
                   : {}
               }

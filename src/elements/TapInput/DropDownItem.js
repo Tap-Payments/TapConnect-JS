@@ -14,14 +14,14 @@ function DropDownItem(props) {
       id={props.id}
       onClick={props.onClick}
     >
-      <span style={{ float: props.direction === 'ltr' ? 'left' : 'right', paddingInlineEnd: '10px' }}>
+      <span style={{ float: props.direction === 'rtl' ? 'right' : 'left', paddingInlineEnd: '10px' }}>
         {props.textEndIsImage ? (
           <img style={{ height: '25px', width: '25px', borderRadius: '50px' }} src={textEnd} />
         ) : (
           textEnd
         )}
       </span>
-      <span dir={'ltr'} style={{ float: props.direction === 'ltr' ? 'right' : 'left' }}>
+      <span dir={'ltr'} style={{ float: props.direction === 'rtl' ? 'left' : 'right' }}>
         {props.textStartIsImage ? (
           <img style={{ height: '25px', width: '25px', borderRadius: '50px' }} src={textStart} />
         ) : (

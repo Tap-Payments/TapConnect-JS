@@ -43,7 +43,7 @@ export default function Licensed(props) {
 
       <Button
         variant={props.infos.noButtonVariant}
-        className={props.direction === 'ltr' ? classes.buttonStart : classes.buttonEnd}
+        className={props.direction === 'rtl' ? classes.buttonEnd : classes.buttonStart}
         onClick={props.infos.onClickNo}
       >
         {props.infos.noLoadingStatus ? (
@@ -60,7 +60,7 @@ export default function Licensed(props) {
       </Button>
       <Button
         variant={props.infos.yesButtonVariant}
-        className={props.direction === 'ltr' ? classes.buttonEnd : classes.buttonStart}
+        className={props.direction === 'rtl' ? classes.buttonStart : classes.buttonEnd}
         onClick={props.infos.onClickYes}
       >
         {props.infos.yesLoadingStatus ? (
