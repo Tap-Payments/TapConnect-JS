@@ -45,7 +45,7 @@ import { InputTypeEnum } from '../TapInput/TapInput';
 class SignupVM {
   constructor(props) {
     this.FP = props.dataSource && props.dataSource.FP;
-
+    this.isConnect = props.isConnect;
     this.ipObject = this.FP && this.FP.ipObject;
     console.log(this.ipObject);
     this.props = props;
@@ -58,7 +58,6 @@ class SignupVM {
     this.signupService.browserID = 'TEMP_BROWSER_ID';
     this.signupService.leadID = props.initialLeadID;
     this.page = this.signupService.leadID ? 2 : 0;
-    this.openSignupPopup = props.openPopup || true;
 
     this.businessName = null;
     this.firstName = null;
@@ -157,7 +156,6 @@ class SignupVM {
   }
 
   moveToLogin() {
-    this.openSignupPopup = false;
     setTimeout(() => {
       if (this.props.moveToLogin) this.props.moveToLogin();
     }, 300);
@@ -834,8 +832,6 @@ class SignupVM {
         return error ? false : preparePasswordRequest(this.confirmedNewPassword, this.signUpToken);
 
       case 8: //// final step, don't proceed
-        this.openSignupPopup = false;
-
         this.props.onSignupSuccess('success', this.FP.browser.browser_id);
       default:
         return {};
@@ -848,8 +844,6 @@ class SignupVM {
 
   goBack() {
     if (this.props.showBackButton && this.page == 0) {
-      this.openSignupPopup = false;
-
       setTimeout(() => {
         if (this.props.goBack) this.props.goBack();
       }, 300);
