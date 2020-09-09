@@ -6,83 +6,55 @@ import ConnectPackage from './ConnectPackage';
 import axios from 'axios';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { theme } from './theme/index';
+import _defaultProps from './defaultProps';
 
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
 class ConnectVM {
   constructor(props) {
-    console.log('ConnectVM');
-    console.log(props);
-    this.props = props;
-    this.liveMode = props.liveMode;
-    this.language = props.language;
-    this.direction = props.direction ? props.direction : props.theme.direction;
-
-    axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
-    ConnectDataSource.updateDSDirection(this.direction);
-    ConnectDataSource.updateDSLanguage(this.language);
-    ConnectDataSource.onFailure = this.onFailure;
-
-    this.combinedTheme = createMuiTheme({
-      direction: this.direction,
-      palette: { ...theme.palette, ...props.theme.palette },
-      typography: { ...theme.typography, ...props.theme.typography },
-      overrides: { ...theme.overrides, ...props.theme.overrides },
-    });
-    this.leadId = null;
-    this.hideInitialLoader = false;
-    this.isLoading = true;
-    this.showBackButton = false;
-    this.openController = null;
-    this.openPopup = props.openPopup;
-
-    //// check if there is an initial step to jump to
-    this.initialAuthType = props.initialAuthType;
     this.onFinishedFetchingData = this.onFinishedFetchingData.bind(this);
-
     this.onLoginSuccess = this.onLoginSuccess.bind(this);
     this.onSignupSuccess = this.onSignupSuccess.bind(this);
     this.onForgotPasswordSuccess = this.onForgotPasswordSuccess.bind(this);
-
     this.onFailure = this.onFailure.bind(this);
-
     this.moveToSignup = this.moveToSignup.bind(this);
     this.storeLeadID = this.storeLeadID.bind(this);
     this.moveToLogin = this.moveToLogin.bind(this);
     this.moveToForgot = this.moveToForgot.bind(this);
     this.moveToConnect = this.moveToConnect.bind(this);
     this.hideLoader = this.hideLoader.bind(this);
-
     this.goBack = this.goBack.bind(this);
     this.initializePageMode = this.initializePageMode.bind(this);
     this.updatePageMode = this.updatePageMode.bind(this);
     this.updateAnimationType = this.updateAnimationType.bind(this);
     this.reConstruct = this.reConstruct.bind(this);
 
-    this.initializePageMode(props.pageMode);
+    console.log('ConnectVM');
+    console.log(props);
+    this.reConstruct(props);
   }
   reConstruct(props) {
-    this.props = props;
-    this.liveMode = props.liveMode;
-    this.language = props.language;
-    this.direction = props.direction ? props.direction : props.theme.direction;
+    this.props = { ..._defaultProps, ...props };
+    this.liveMode = this.props.liveMode;
+    this.language = this.props.language;
+    this.direction = this.props.direction ? this.props.direction : this.props.theme.direction;
     axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
     ConnectDataSource.updateDSDirection(this.direction);
     ConnectDataSource.updateDSLanguage(this.language);
     ConnectDataSource.onFailure = this.onFailure;
     this.combinedTheme = createMuiTheme({
       direction: this.direction,
-      palette: { ...theme.palette, ...props.theme.palette },
-      typography: { ...theme.typography, ...props.theme.typography },
-      overrides: { ...theme.overrides, ...props.theme.overrides },
+      palette: { ...theme.palette, ...this.props.theme.palette },
+      typography: { ...theme.typography, ...this.props.theme.typography },
+      overrides: { ...theme.overrides, ...this.props.theme.overrides },
     });
     this.leadId = null;
     this.hideInitialLoader = false;
     this.isLoading = true;
     this.showBackButton = false;
     this.openController = null;
-    this.openPopup = props.openPopup;
-    this.initializePageMode(props.pageMode);
+    this.openPopup = this.props.openPopup;
+    this.initializePageMode(this.props.pageMode);
   }
 
   initializePageMode(mode) {
@@ -301,19 +273,20 @@ class ConnectVM {
 }
 
 decorate(ConnectVM, {
-  initialUsername: observable,
-  signUp: observable,
-  hideInitialLoader: observable,
-  isLoading: observable,
-  activePageMode: observable,
-  isConnect: observable,
+  // initialUsername: observable,
+  // signUp: observable,
+  // hideInitialLoader: observable,
+  // isLoading: observable,
+  // activePageMode: observable,
+  // isConnect: observable,
   openController: observable,
   openPopup: observable,
-  animationType: observable,
-  onAnimationExited: observable,
-  direction: observable,
-  language: observable,
-  combinedTheme: observable,
+  // animationType: observable,
+  // onAnimationExited: observable,
+  // direction: observable,
+  // language: observable,
+  // combinedTheme: observable,
+  // props: observable,
 });
 
 export default ConnectVM;
