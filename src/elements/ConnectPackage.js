@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
@@ -9,7 +9,6 @@ import { observer } from 'mobx-react';
 import { useVm } from '../hooks';
 import AnimationEngine from './Animation/AnimationEngine';
 
-import { theme } from './theme/index';
 import _defaultProps from './defaultProps';
 import ConnectVM from './ConnectVM';
 import TapLoader from './Login_Loader/Loader';
@@ -26,12 +25,6 @@ class ConnectPackage extends Component {
       this.isDuplicateInstance = false;
 
       ConnectPackage.vm = new ConnectVM(props);
-      this.combineTheme = createMuiTheme({
-        direction: ConnectPackage.vm.direction,
-        palette: { ...theme.palette, ...props.theme.palette },
-        typography: { ...theme.typography, ...props.theme.typography },
-        overrides: { ...theme.overrides, ...props.theme.overrides },
-      });
     }
   }
   static init(props) {
@@ -81,12 +74,12 @@ class ConnectPackage extends Component {
     // if (ConnectPackage.vm && ConnectPackage.vm.dataSource && ConnectPackage.vm.dataSource.isDataReady)
     //   return <TapLoader />;
 
-    console.log('this.combineTheme.direction');
-    console.log(this.combineTheme.direction);
+    console.log('ConnectPackage.vm.combinedTheme.direction');
+    console.log(ConnectPackage.vm.combinedTheme.direction);
 
     return (
       <div className="tap-connect-unique-module" id="tap-connect-unique-module">
-        <ThemeProvider theme={this.combineTheme}>
+        <ThemeProvider theme={ConnectPackage.vm.combinedTheme}>
           <AnimationEngine
             bypass={this.props.dialogMode == DialogMode.FULLPAGE}
             onExited={ConnectPackage.vm.onAnimationExited}

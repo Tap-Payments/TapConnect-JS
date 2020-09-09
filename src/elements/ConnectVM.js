@@ -4,6 +4,8 @@ import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import ConnectDataSource from './ConnectDataSource';
 import ConnectPackage from './ConnectPackage';
 import axios from 'axios';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { theme } from './theme/index';
 
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
@@ -20,6 +22,13 @@ class ConnectVM {
     ConnectDataSource.updateDSDirection(this.direction);
     ConnectDataSource.updateDSLanguage(this.language);
     ConnectDataSource.onFailure = this.onFailure;
+
+    this.combinedTheme = createMuiTheme({
+      direction: this.direction,
+      palette: { ...theme.palette, ...props.theme.palette },
+      typography: { ...theme.typography, ...props.theme.typography },
+      overrides: { ...theme.overrides, ...props.theme.overrides },
+    });
     this.leadId = null;
     this.hideInitialLoader = false;
     this.isLoading = true;
@@ -61,6 +70,12 @@ class ConnectVM {
     ConnectDataSource.updateDSDirection(this.direction);
     ConnectDataSource.updateDSLanguage(this.language);
     ConnectDataSource.onFailure = this.onFailure;
+    this.combinedTheme = createMuiTheme({
+      direction: this.direction,
+      palette: { ...theme.palette, ...props.theme.palette },
+      typography: { ...theme.typography, ...props.theme.typography },
+      overrides: { ...theme.overrides, ...props.theme.overrides },
+    });
     this.leadId = null;
     this.hideInitialLoader = false;
     this.isLoading = true;
@@ -298,6 +313,7 @@ decorate(ConnectVM, {
   onAnimationExited: observable,
   direction: observable,
   language: observable,
+  combinedTheme: observable,
 });
 
 export default ConnectVM;
