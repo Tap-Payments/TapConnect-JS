@@ -5,7 +5,6 @@ import { action, observable, decorate, computed, toJS } from 'mobx';
 class ButtonVM {
   constructor(props) {
     this.props = props;
-    this.direction = props.direction ? props.direction : props.theme.direction;
     this.openPopup = false;
 
     this.onOpen = this.onOpen.bind(this);

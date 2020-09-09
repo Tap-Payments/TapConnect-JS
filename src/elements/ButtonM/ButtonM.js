@@ -21,7 +21,7 @@ class TapAuthButton extends Component {
     }
     this.vm = vm;
     this.combineTheme = createMuiTheme({
-      direction: this.vm.direction,
+      direction: props.direction || props.theme.direction,
       palette: { ...theme.palette, ...props.theme.palette },
       typography: { ...theme.typography, ...props.theme.typography },
       overrides: { ...theme.overrides, ...props.theme.overrides },
@@ -51,7 +51,7 @@ class TapAuthButton extends Component {
           showLogo={this.props.showLogo}
           logo={this.props.logo}
           onClick={this.clickHandler}
-          direction={this.vm.direction}
+          direction={props.direction || props.theme.direction}
         />
         {!this.isDuplicateInstance && (
           <ConnectPackage
