@@ -174,6 +174,8 @@ function ConnectDemo(props) {
             liveMode={vm.isLiveMode == 'sandbox' ? false : true}
             hideInitialLoader={props.hideInitialLoader}
             onSuccess={props.handleSuccess}
+            language={vm.language}
+            direction={vm.direction}
             theme={{
               direction: vm.direction,
             }}

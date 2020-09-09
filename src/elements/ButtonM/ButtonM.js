@@ -73,6 +73,7 @@ TapAuthButton.defaultProps = {
   buttonText: 'login',
   pageMode: PageMode.LOGIN,
   direction: 'ltr',
+  language: 'en',
   variant: 'contained',
   showLogo: true,
 };

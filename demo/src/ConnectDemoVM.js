@@ -41,6 +41,7 @@ class ConnectDemoVM {
 
   onChangeLanguage(event) {
     this.direction = event.target.value;
+    this.language = this.direction == 'rtl' ? 'ar' : 'en';
   }
 
   onChangeAnimationType(event) {
