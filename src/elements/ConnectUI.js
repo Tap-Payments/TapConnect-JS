@@ -10,6 +10,7 @@ import ConnectDataSource from './ConnectDataSource';
 import { observer } from 'mobx-react';
 import AnimationEngine from './Animation/AnimationEngine';
 import ConnectPackage from './ConnectPackage';
+import TapLoader from './Login_Loader/Loader';
 
 import _defaultProps from './defaultProps';
 
@@ -31,7 +32,9 @@ export class ConnectUI extends Component {
             if (vm.openController != null) ConnectPackage.close();
           }}
         >
-          {vm.activePageMode == PageMode.FORGOT ? (
+          {!ConnectDataSource.isDataReady ? (
+            <TapLoader />
+          ) : vm.activePageMode == PageMode.FORGOT ? (
             <ForgotPassword
               {...vm.props}
               initialLeadID={vm.leadId}
@@ -68,19 +71,7 @@ export class ConnectUI extends Component {
               isConnect={vm.isConnect}
             />
           ) : (
-            <Login
-              {...vm.props}
-              onLoginSuccess={vm.onLoginSuccess}
-              moveToSignup={vm.moveToSignup}
-              showSignupSection={vm.isConnect ? true : false}
-              moveToForgot={vm.moveToForgot}
-              initialAuthType={vm.initialAuthType}
-              hideInitialLoader={vm.hideInitialLoader}
-              dataSource={ConnectDataSource}
-              showBackButton={vm.showBackButton}
-              goBack={vm.goBack}
-              isConnect={vm.isConnect}
-            />
+            <TapLoader />
           )}
         </AnimationEngine>
       </ThemeProvider>
