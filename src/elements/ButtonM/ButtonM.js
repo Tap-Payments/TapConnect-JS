@@ -44,6 +44,7 @@ class TapAuthButton extends Component {
           buttonText={this.props.buttonText}
           variant={this.props.variant}
           showLogo={this.props.showLogo}
+          logo={this.props.logo}
           onClick={() => {
             TapAuthButton.open(this.props.pageMode);
           }}

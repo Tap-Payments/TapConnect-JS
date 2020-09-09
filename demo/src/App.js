@@ -4,6 +4,8 @@ import { Button, Tooltip, Fade } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { render } from 'react-dom';
 
+import TapLogo from './assets/logo.svg';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -102,13 +104,14 @@ class App extends Component {
                 buttonText={'ربط'}
                 countryCode={'965'}
                 variant={'outlined'}
+                logo={TapLogo}
                 animationType={AnimationType.SLIDEUP}
                 animationDuration={500}
                 closeOnOutsideClick={false}
                 // defaultEmailOrMobile={vm.initialUsername}
                 hideInitialLoader={this.props.hideInitialLoader}
                 onSuccess={this.handleSuccess}
-                showLogo={false}
+                showLogo={true}
                 theme={{
                   direction: 'rtl',
                 }}
@@ -121,6 +124,7 @@ class App extends Component {
                 buttonText={'تسجيل دخول'}
                 countryCode={'965'}
                 variant={'outlined'}
+                logo={TapLogo}
                 // onCancel={vm.onCancel}
                 animationType={AnimationType.SLIDEUP}
                 animationDuration={500}
@@ -129,7 +133,7 @@ class App extends Component {
                 hideInitialLoader={this.props.hideInitialLoader}
                 // moveToSignup={vm.moveToSignup}
                 onSuccess={this.handleSuccess}
-                showLogo={false}
+                showLogo={true}
                 theme={{
                   direction: 'rtl',
                 }}
@@ -142,6 +146,7 @@ class App extends Component {
                 buttonText={'تسجيل جديد'}
                 countryCode={'965'}
                 variant={'outlined'}
+                logo={TapLogo}
                 // onCancel={vm.onCancel}
                 animationType={AnimationType.SLIDEUP}
                 animationDuration={500}
@@ -150,7 +155,7 @@ class App extends Component {
                 hideInitialLoader={this.props.hideInitialLoader}
                 // moveToLogin={vm.moveToLogin}
                 onSuccess={this.handleSuccess}
-                showLogo={false}
+                showLogo={true}
                 theme={{
                   direction: 'rtl',
                 }}

@@ -22,8 +22,8 @@ export default function LandingTemplate(props) {
 
   return (
     <Button
-      style={{ justifyContent: props.showLogo ? 'space-between' : 'center' }}
-      startIcon={props.showLogo ? <img className={classes.logo} src={tapLogo} /> : null}
+      style={{ justifyContent: props.showLogo ? 'space-between' : 'center', direction: props.direction }}
+      startIcon={props.showLogo ? <img className={classes.logo} src={props.logo ? props.logo : tapLogo} /> : null}
       endIcon={<img src={''} />}
       className={classes.signUpButton}
       variant={props.variant}
