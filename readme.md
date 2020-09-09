@@ -1,6 +1,7 @@
 ## Table of Contents
 
 - [Brief Description](#brief-description)
+- [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Example Login](#example-login)
@@ -22,6 +23,10 @@ Connect is a React component it contains login and sign up component with the fu
 It has two theme dark/light,user can also change the theme by passing theme from outside.
 
 - [Source Code](https://github.com/Tap-Payments/goWebDashboard-React.git).
+
+<a name="demo"></a>
+## Demo
+ Your site is published at https://tap-payments.github.io/TapConnect-JS/
 
 ## Installation
 
