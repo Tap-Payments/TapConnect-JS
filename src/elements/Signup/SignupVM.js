@@ -802,7 +802,14 @@ class SignupVM {
         console.log(error);
         this.setError(error);
 
-        return error ? false : prepareBusinessNameRequest(this.businessName, this.selectedSectorId, this.businessName);
+        return error
+          ? false
+          : prepareBusinessNameRequest(
+              this.businessName,
+              this.selectedSectorId,
+              this.businessName,
+              this.direction === 'rtl' ? 'ar' : 'en',
+            );
 
       case 3: //// ibusiness Type  step
         error =

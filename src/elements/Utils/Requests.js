@@ -1,13 +1,15 @@
 import { isMobile } from './FormUtils/validation';
-export function prepareBusinessNameRequest(businessName, selectedSectorId, brandName) {
+export function prepareBusinessNameRequest(businessName, selectedSectorId, brandName, language) {
   return {
-    business_name: {
-      en: businessName,
-    },
+    business_name: language == 'ar' ? { en: 'business_name', ar: businessName } : { en: businessName },
     brand: {
-      name: {
-        en: brandName,
-      },
+      name:
+        language == 'ar'
+          ? {
+              en: 'business_name',
+              ar: brandName,
+            }
+          : { en: brandName },
       // sector: ['sector_4iF2veqGgvhrW75'],
       sector: [selectedSectorId],
     },
