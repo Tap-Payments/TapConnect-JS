@@ -162,7 +162,7 @@ export default function LoginTemplate(props) {
             }
             className={classes.containedButton}
             onClick={props.onSubmit}
-            style={props.newUser ? { marginBottom: '25px' } : {}}
+            style={props.newUser && props.activeTextFieldName != TextFieldType.EMAIL ? { marginBottom: '25px' } : {}}
           >
             {props.loadingStatus ? (
               <TapLoader
@@ -174,7 +174,7 @@ export default function LoginTemplate(props) {
               />
             ) : (
               t(
-                props.newUser
+                props.newUser && props.activeTextFieldName != TextFieldType.EMAIL
                   ? props.signUpInfo.registerButtonText
                   : props.activeTextFieldName === TextFieldType.EMAIL
                   ? props.emailTextField.buttonText
@@ -184,9 +184,11 @@ export default function LoginTemplate(props) {
               )
             )}
           </Button>
-          <CollapseFadeTemplate in={props.newUser ? false : true}>
+          <CollapseFadeTemplate in={props.newUser && props.activeTextFieldName != TextFieldType.EMAIL ? false : true}>
             <Link onClick={props.moveToForgot} variant={'body1'} color={'primary'} className={classes.link}>
-              {!props.newUser ? t(props.forgotPasswordInfo.text) : ''}
+              {props.newUser && props.activeTextFieldName != TextFieldType.EMAIL
+                ? ''
+                : t(props.forgotPasswordInfo.text)}
             </Link>
           </CollapseFadeTemplate>
         </div>
