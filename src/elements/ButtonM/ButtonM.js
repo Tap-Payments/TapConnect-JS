@@ -32,7 +32,6 @@ class TapAuthButton extends Component {
   clickHandler() {
     TapAuthButton.open({
       ...this.props,
-      ...{ dialogMode: DialogMode.POPUP, hideInitialLoader: true, closeOnOutsideClick: true, onClose: this.vm.onClose },
     });
   }
 
