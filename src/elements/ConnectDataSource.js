@@ -23,6 +23,7 @@ class ConnectDataSource {
     this.direction = 'ltr';
     /// gets updated by  Connect
     this.language = 'en';
+    this.isDataReady = false;
     this.fingerPrintModel = new FingerPrintModel(this.language);
     this.sectors = [];
     this.countryInfos = [];
@@ -45,6 +46,7 @@ class ConnectDataSource {
       console.log('%c INFO FETCHED, GOOD TO GO', 'background:yellow; color:black;');
       this.isDataReady = true;
     };
+
     this.init();
   }
 

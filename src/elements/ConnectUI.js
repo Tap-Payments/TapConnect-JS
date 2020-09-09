@@ -17,7 +17,7 @@ import _defaultProps from './defaultProps';
 export class ConnectUI extends Component {
   render() {
     let vm = ConnectPackage.vm;
-    if (!vm) return null;
+    if (!vm || !ConnectDataSource.isDataReady) return null;
     return (
       <ThemeProvider theme={vm.combinedTheme}>
         <AnimationEngine
@@ -32,7 +32,7 @@ export class ConnectUI extends Component {
             if (vm.openController != null) ConnectPackage.close();
           }}
         >
-          {!ConnectDataSource.isDataReady ? (
+          {!true ? (
             <TapLoader />
           ) : vm.activePageMode == PageMode.FORGOT ? (
             <ForgotPassword
