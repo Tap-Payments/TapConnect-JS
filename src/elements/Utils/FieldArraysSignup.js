@@ -139,6 +139,7 @@ const SIGNUP_INFO = {
   nextButtonVariant: 'contained',
   loginButtonText: 'login',
   submitButtonText: 'signup_submit',
+  doneButtonText: 'done',
 
   /// Footer
   footerTitle: 'signup_already_have_account',

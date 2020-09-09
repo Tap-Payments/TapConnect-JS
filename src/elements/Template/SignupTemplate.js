@@ -238,7 +238,9 @@ export default function SignupTemplate(props) {
               ) : (
                 t(
                   props.page === 8
-                    ? props.loginButtonText
+                    ? props.isConnect
+                      ? props.loginButtonText
+                      : props.doneButtonText
                     : props.page === 7
                     ? props.submitButtonText
                     : props.nextButtonText,
