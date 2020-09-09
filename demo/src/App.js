@@ -4,7 +4,8 @@ import { Button, Tooltip, Fade } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { render } from 'react-dom';
 
-import TapLogo from './assets/logo.svg';
+import ButtonDemo from './ButtonDemo';
+import ConnectDemo from './ConnectDemo';
 
 class App extends Component {
   constructor(props) {
@@ -30,151 +31,8 @@ class App extends Component {
             </Tooltip>
           </Alert>
         )}
-        <div
-          style={{
-            display: 'flex',
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
-            <div style={{ width: '230px', marginBottom: '15px' }}>
-              <TapAuthButton
-                // initialLeadID={vm.initialLeadID}
-                pageMode={PageMode.CONNECT}
-                buttonText={'Connect'}
-                countryCode={'965'}
-                animationType={AnimationType.SLIDEUP}
-                animationDuration={500}
-                closeOnOutsideClick={false}
-                // defaultEmailOrMobile={vm.initialUsername}
-                hideInitialLoader={this.props.hideInitialLoader}
-                onSuccess={this.handleSuccess}
-                direction="ltr"
-                language="en"
-                theme={{
-                  direction: 'ltr',
-                }}
-              />
-            </div>
-            <div style={{ width: '230px', marginBottom: '15px' }}>
-              <TapAuthButton
-                // initialLeadID={vm.initialLeadID}
-                pageMode={PageMode.LOGIN}
-                buttonText={'Login'}
-                countryCode={'965'}
-                // onCancel={vm.onCancel}
-                animationType={AnimationType.SLIDEUP}
-                animationDuration={500}
-                closeOnOutsideClick={false}
-                // defaultEmailOrMobile={vm.initialUsername}
-                hideInitialLoader={this.props.hideInitialLoader}
-                // moveToSignup={vm.moveToSignup}
-                onSuccess={this.handleSuccess}
-                direction="ltr"
-                language="en"
-                theme={{
-                  direction: 'ltr',
-                }}
-              />
-            </div>
-            <div style={{ width: '230px', marginBottom: '15px' }}>
-              <TapAuthButton
-                // initialLeadID={vm.initialLeadID}
-                pageMode={PageMode.SIGNUP}
-                buttonText={'Signup'}
-                countryCode={'965'}
-                // onCancel={vm.onCancel}
-                animationType={AnimationType.SLIDEUP}
-                animationDuration={500}
-                closeOnOutsideClick={false}
-                // defaultEmailOrMobile={vm.initialUsername}
-                hideInitialLoader={this.props.hideInitialLoader}
-                // moveToLogin={vm.moveToLogin}
-                onSuccess={this.handleSuccess}
-                direction="ltr"
-                language="en"
-                theme={{
-                  direction: 'ltr',
-                }}
-              />
-            </div>
-            {/* <Button onClick={() => this.handleSuccess({ ee: 'sss' })} /> */}
-          </div>
-          <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
-            <div style={{ width: '230px', marginBottom: '15px' }}>
-              <TapAuthButton
-                language="ar"
-                direction="rtl"
-                // initialLeadID={vm.initialLeadID}
-                pageMode={PageMode.CONNECT}
-                buttonText={'ربط'}
-                countryCode={'965'}
-                variant={'outlined'}
-                logo={TapLogo}
-                animationType={AnimationType.SLIDEUP}
-                animationDuration={500}
-                closeOnOutsideClick={false}
-                // defaultEmailOrMobile={vm.initialUsername}
-                hideInitialLoader={this.props.hideInitialLoader}
-                onSuccess={this.handleSuccess}
-                showLogo={true}
-                theme={{
-                  direction: 'rtl',
-                }}
-              />
-            </div>
-            <div style={{ width: '230px', marginBottom: '15px' }}>
-              <TapAuthButton
-                language="ar"
-                direction="rtl"
-                // initialLeadID={vm.initialLeadID}
-                pageMode={PageMode.LOGIN}
-                buttonText={'تسجيل دخول'}
-                countryCode={'965'}
-                variant={'outlined'}
-                logo={TapLogo}
-                // onCancel={vm.onCancel}
-                animationType={AnimationType.SLIDEUP}
-                animationDuration={500}
-                closeOnOutsideClick={false}
-                // defaultEmailOrMobile={vm.initialUsername}
-                hideInitialLoader={this.props.hideInitialLoader}
-                // moveToSignup={vm.moveToSignup}
-                onSuccess={this.handleSuccess}
-                showLogo={true}
-                theme={{
-                  direction: 'rtl',
-                }}
-              />
-            </div>
-            <div style={{ width: '230px', marginBottom: '15px' }}>
-              <TapAuthButton
-                language="ar"
-                direction="rtl"
-                // initialLeadID={vm.initialLeadID}
-                pageMode={PageMode.SIGNUP}
-                buttonText={'تسجيل جديد'}
-                countryCode={'965'}
-                variant={'outlined'}
-                logo={TapLogo}
-                // onCancel={vm.onCancel}
-                animationType={AnimationType.SLIDEUP}
-                animationDuration={500}
-                closeOnOutsideClick={false}
-                // defaultEmailOrMobile={vm.initialUsername}
-                hideInitialLoader={this.props.hideInitialLoader}
-                // moveToLogin={vm.moveToLogin}
-                onSuccess={this.handleSuccess}
-                showLogo={true}
-                theme={{
-                  direction: 'rtl',
-                }}
-              />
-            </div>
-          </div>
-        </div>
+        <ButtonDemo handleSuccess={this.handleSuccess} {...this.props} />
+        {/* <ConnectDemo handleSuccess={this.handleSuccess} {...this.props} /> */}
       </Fragment>
     );
   }
