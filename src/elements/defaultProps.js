@@ -13,7 +13,7 @@ export default {
   pageMode: PageMode.LOGIN,
   hideInitialLoader: false,
   dialogMode: DialogMode.FULLPAGE,
-  animationType: AnimationType.SLIDEUP,
+  animationType: null,
   animationDuration: 500,
   closeOnOutsideClick: false,
   theme: {

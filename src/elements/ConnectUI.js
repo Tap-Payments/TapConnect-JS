@@ -26,7 +26,7 @@ export class ConnectUI extends Component {
           open={vm.openController == null ? vm.openPopup : vm.openController}
           animationDuration={vm.props.animationDuration}
           closeOnOutsideClick={vm.props.closeOnOutsideClick}
-          animationType={vm.animationType}
+          animationType={vm.props.animationType || vm.animationType}
           onClose={(e) => {
             if (vm.props.onClose) vm.props.onClose(e);
             if (vm.openController != null) ConnectPackage.close();
