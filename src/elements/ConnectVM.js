@@ -21,7 +21,6 @@ class ConnectVM {
     this.storeLeadID = this.storeLeadID.bind(this);
     this.moveToLogin = this.moveToLogin.bind(this);
     this.moveToForgot = this.moveToForgot.bind(this);
-    this.moveToConnect = this.moveToConnect.bind(this);
     this.hideLoader = this.hideLoader.bind(this);
     this.goBack = this.goBack.bind(this);
     this.initializePageMode = this.initializePageMode.bind(this);
@@ -167,34 +166,6 @@ class ConnectVM {
         ),
       );
     } else if (this.props.moveToSignup) this.props.moveToSignup();
-
-    this.hideLoader(true);
-  }
-  moveToConnect() {
-    this.hideLoader(false);
-
-    this.isConnect = true;
-
-    if (window.location.pathname.search(this.props.landingDirectory) > 0) {
-      this.showBackButton = true;
-    } else {
-      this.showBackButton = false;
-    }
-
-    this.updatePageMode(PageMode.CONNECT, true);
-
-    window.history.pushState(
-      '',
-      '',
-      window.location.pathname.replace(
-        window.location.pathname.search(this.props.signupDirectory) > 0
-          ? this.props.signupDirectory
-          : !(window.location.pathname.search(this.props.forgotDirectory) > 0)
-          ? this.props.landingDirectory
-          : this.props.forgotDirectory,
-        this.props.signinDirectory,
-      ),
-    );
 
     this.hideLoader(true);
   }
