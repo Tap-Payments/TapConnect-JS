@@ -68,7 +68,7 @@ class SignupVM {
     this.confirmedNewPassword = null;
     this.activeTextFieldName = TextFieldType.OTP;
     this.signUpToken = null;
-    this.direction = props.language ? props.language : props.theme.direction;
+    this.direction = props.direction;
     this.itemGetTextPattern = this.direction === 'rtl' ? 'item.name.ar' : 'item.name.en';
     this.searchPattern = this.direction === 'rtl' ? 'item.name.ar' : 'item.name.en';
     this.sectors = props.dataSource.sectors || [];

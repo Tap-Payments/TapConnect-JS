@@ -33,7 +33,7 @@ class ForgotPasswordVM {
 
     this.newResetPassword = null;
     this.activeTextFieldName = TextFieldType.OTP;
-    this.direction = props.language ? props.language : props.theme.direction;
+    this.direction = props.direction;
 
     /// Email / Mobile
     this.selectedCountryIndex = null;

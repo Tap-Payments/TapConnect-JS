@@ -55,7 +55,7 @@ class LoginVM {
     this.otp;
     this.rememberMe = true;
     this.dropdownInfos = props.dataSource.countryInfos || [];
-    this.direction = props.language ? props.language : props.theme.direction;
+    this.direction = props.direction;
 
     /// Email / Mobile
     this.selectedCountryIndex = null;
