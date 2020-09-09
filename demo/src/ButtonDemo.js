@@ -15,13 +15,14 @@ export default function ButtonDemo(props) {
       <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
         <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
+            dialogMode={DialogMode.POPUP}
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.CONNECT}
             buttonText={'Connect'}
             countryCode={'965'}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             onSuccess={props.handleSuccess}
@@ -32,6 +33,7 @@ export default function ButtonDemo(props) {
         </div>
         <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
+            dialogMode={DialogMode.POPUP}
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.LOGIN}
             buttonText={'Login'}
@@ -39,7 +41,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToSignup={vm.moveToSignup}
@@ -51,6 +53,7 @@ export default function ButtonDemo(props) {
         </div>
         <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
+            dialogMode={DialogMode.POPUP}
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.SIGNUP}
             buttonText={'Signup'}
@@ -58,7 +61,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToLogin={vm.moveToLogin}
@@ -73,6 +76,7 @@ export default function ButtonDemo(props) {
       <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
         <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
+            dialogMode={DialogMode.POPUP}
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.CONNECT}
             buttonText={'ربط'}
@@ -81,7 +85,7 @@ export default function ButtonDemo(props) {
             logo={TapLogo}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             onSuccess={props.handleSuccess}
@@ -93,6 +97,7 @@ export default function ButtonDemo(props) {
         </div>
         <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
+            dialogMode={DialogMode.POPUP}
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.LOGIN}
             buttonText={'تسجيل دخول'}
@@ -102,7 +107,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToSignup={vm.moveToSignup}
@@ -115,6 +120,7 @@ export default function ButtonDemo(props) {
         </div>
         <div style={{ width: '230px', marginBottom: '15px' }}>
           <TapAuthButton
+            dialogMode={DialogMode.POPUP}
             // initialLeadID={vm.initialLeadID}
             pageMode={PageMode.SIGNUP}
             buttonText={'تسجيل جديد'}
@@ -124,7 +130,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToLogin={vm.moveToLogin}
