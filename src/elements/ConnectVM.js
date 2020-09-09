@@ -214,7 +214,7 @@ class ConnectVM {
       function () {
         if (response && response.lead_id) {
           this.storeLeadID(response.lead_id);
-          if (this.props.pageMode == PageMode.CONNECT) this.moveToSignup();
+          if (this.isConnect) this.moveToSignup();
         }
 
         if (this.props.onSuccess) this.props.onSuccess(response, browserID);
@@ -253,7 +253,7 @@ decorate(ConnectVM, {
   openController: observable,
   openPopup: observable,
   // animationType: observable,
-  // onAnimationExited: observable,
+  onAnimationExited: observable,
   // direction: observable,
   // language: observable,
   // combinedTheme: observable,
