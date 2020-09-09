@@ -31,8 +31,12 @@ class App extends Component {
             </Tooltip>
           </Alert>
         )}
-        <ButtonDemo handleSuccess={this.handleSuccess} {...this.props} />
-        {/* <ConnectDemo handleSuccess={this.handleSuccess} {...this.props} /> */}
+        {window.location.pathname.search('button') > 0 && (
+          <ButtonDemo handleSuccess={this.handleSuccess} {...this.props} />
+        )}
+        {window.location.pathname.search('button') < 0 && (
+          <ConnectDemo handleSuccess={this.handleSuccess} {...this.props} />
+        )}
       </Fragment>
     );
   }
