@@ -93,6 +93,8 @@ export default function ButtonDemo(props) {
             theme={{
               direction: 'rtl',
             }}
+            direction="rtl"
+            language="ar"
           />
         </div>
         <div style={{ width: '230px', marginBottom: '15px' }}>
@@ -116,6 +118,8 @@ export default function ButtonDemo(props) {
             theme={{
               direction: 'rtl',
             }}
+            direction="rtl"
+            language="ar"
           />
         </div>
         <div style={{ width: '230px', marginBottom: '15px' }}>
@@ -139,6 +143,8 @@ export default function ButtonDemo(props) {
             theme={{
               direction: 'rtl',
             }}
+            direction="rtl"
+            language="ar"
           />
         </div>
       </div>
