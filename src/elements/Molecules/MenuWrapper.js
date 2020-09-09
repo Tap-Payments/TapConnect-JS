@@ -150,7 +150,7 @@ export default class MenuWrapper extends React.Component {
                   props.handleClose(index, item, event);
                 }}
               >
-                {props.renderMenuItem(item)}
+                {props.renderMenuItem && typeof props.renderMenuItem === 'function' && props.renderMenuItem(item)}
               </MenuItem>
             ))}
         </MenuList>
