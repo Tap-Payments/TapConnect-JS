@@ -44,7 +44,7 @@ import { InputTypeEnum } from '../TapInput/TapInput';
 
 class SignupVM {
   constructor(props) {
-    this.FP = props.dataSource && props.dataSource.FP;
+    this.FP = props.dataSource && props.dataSource.fingerPrintModel && props.dataSource.fingerPrintModel.FP;
     this.isConnect = props.isConnect;
     this.ipObject = this.FP && this.FP.ipObject;
     console.log(this.ipObject);

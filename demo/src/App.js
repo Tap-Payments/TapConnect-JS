@@ -51,6 +51,8 @@ class App extends Component {
                 // defaultEmailOrMobile={vm.initialUsername}
                 hideInitialLoader={this.props.hideInitialLoader}
                 onSuccess={this.handleSuccess}
+                direction="ltr"
+                language="en"
                 theme={{
                   direction: 'ltr',
                 }}
@@ -70,6 +72,8 @@ class App extends Component {
                 hideInitialLoader={this.props.hideInitialLoader}
                 // moveToSignup={vm.moveToSignup}
                 onSuccess={this.handleSuccess}
+                direction="ltr"
+                language="en"
                 theme={{
                   direction: 'ltr',
                 }}
@@ -89,6 +93,8 @@ class App extends Component {
                 hideInitialLoader={this.props.hideInitialLoader}
                 // moveToLogin={vm.moveToLogin}
                 onSuccess={this.handleSuccess}
+                direction="ltr"
+                language="en"
                 theme={{
                   direction: 'ltr',
                 }}
@@ -99,6 +105,8 @@ class App extends Component {
           <div style={{ flexDirection: 'column', paddingInlineEnd: '20px' }}>
             <div style={{ width: '230px', marginBottom: '15px' }}>
               <TapAuthButton
+                language="ar"
+                direction="rtl"
                 // initialLeadID={vm.initialLeadID}
                 pageMode={PageMode.CONNECT}
                 buttonText={'ربط'}
@@ -119,6 +127,8 @@ class App extends Component {
             </div>
             <div style={{ width: '230px', marginBottom: '15px' }}>
               <TapAuthButton
+                language="ar"
+                direction="rtl"
                 // initialLeadID={vm.initialLeadID}
                 pageMode={PageMode.LOGIN}
                 buttonText={'تسجيل دخول'}
@@ -141,6 +151,8 @@ class App extends Component {
             </div>
             <div style={{ width: '230px', marginBottom: '15px' }}>
               <TapAuthButton
+                language="ar"
+                direction="rtl"
                 // initialLeadID={vm.initialLeadID}
                 pageMode={PageMode.SIGNUP}
                 buttonText={'تسجيل جديد'}

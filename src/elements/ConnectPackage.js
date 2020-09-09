@@ -4,6 +4,7 @@ import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
+import ConnectDataSource from './ConnectDataSource';
 import { observer } from 'mobx-react';
 import { useVm } from '../hooks';
 import AnimationEngine from './Animation/AnimationEngine';
@@ -24,7 +25,6 @@ class ConnectPackage extends Component {
 
       this.isDuplicateInstance = false;
 
-      // let vm = new ConnectVM(props);
       ConnectPackage.vm = new ConnectVM(props);
       this.combineTheme = createMuiTheme({
         direction: ConnectPackage.vm.direction,
@@ -45,14 +45,18 @@ class ConnectPackage extends Component {
     console.log('close');
     ConnectPackage.vm.openController = false;
   }
-  static open(mode) {
+  static open(props) {
     console.log('open');
     console.log('open');
+    console.log(props);
     console.log('open');
-    if (mode) {
-      ConnectPackage.vm.initializePageMode(mode);
-    }
-    ConnectPackage.vm.openController = true;
+
+    ConnectPackage.vm.reConstruct(props);
+
+    setTimeout(() => {
+      ConnectPackage.vm.openController = true;
+    }, 1000);
+    // ConnectPackage.vm.openController = true;
   }
   static updateMode(mode) {
     console.log('update');
@@ -74,7 +78,8 @@ class ConnectPackage extends Component {
   render() {
     //// ensure only one instance in the DOM
     if (this.isDuplicateInstance) return null;
-    if (ConnectPackage.vm.isLoading) return this.props.hideInitialLoader ? null : <TapLoader />;
+    // if (ConnectPackage.vm && ConnectPackage.vm.dataSource && ConnectPackage.vm.dataSource.isDataReady)
+    //   return <TapLoader />;
 
     console.log('this.combineTheme.direction');
     console.log(this.combineTheme.direction);
@@ -103,7 +108,7 @@ class ConnectPackage extends Component {
                 initialLeadID={ConnectPackage.vm.leadId}
                 moveToLogin={ConnectPackage.vm.moveToLogin}
                 hideInitialLoader={ConnectPackage.vm.hideInitialLoader}
-                dataSource={ConnectPackage.vm.dataSource}
+                dataSource={ConnectDataSource}
                 onForgotPasswordSuccess={ConnectPackage.vm.onForgotPasswordSuccess}
               />
             ) : ConnectPackage.vm.activePageMode == PageMode.LOGIN ||
@@ -116,7 +121,7 @@ class ConnectPackage extends Component {
                 moveToForgot={ConnectPackage.vm.moveToForgot}
                 initialAuthType={ConnectPackage.vm.initialAuthType}
                 hideInitialLoader={ConnectPackage.vm.hideInitialLoader}
-                dataSource={ConnectPackage.vm.dataSource}
+                dataSource={ConnectDataSource}
                 showBackButton={ConnectPackage.vm.showBackButton}
                 goBack={ConnectPackage.vm.goBack}
                 isConnect={ConnectPackage.vm.isConnect}
@@ -129,7 +134,7 @@ class ConnectPackage extends Component {
                 onSignupSuccess={ConnectPackage.vm.onSignupSuccess}
                 hideInitialLoader={ConnectPackage.vm.hideInitialLoader}
                 showSigninSection={ConnectPackage.vm.isConnect ? true : false}
-                dataSource={ConnectPackage.vm.dataSource}
+                dataSource={ConnectDataSource}
                 showBackButton={ConnectPackage.vm.showBackButton}
                 goBack={ConnectPackage.vm.goBack}
                 isConnect={ConnectPackage.vm.isConnect}
@@ -143,7 +148,7 @@ class ConnectPackage extends Component {
                 moveToForgot={ConnectPackage.vm.moveToForgot}
                 initialAuthType={ConnectPackage.vm.initialAuthType}
                 hideInitialLoader={ConnectPackage.vm.hideInitialLoader}
-                dataSource={ConnectPackage.vm.dataSource}
+                dataSource={ConnectDataSource}
                 showBackButton={ConnectPackage.vm.showBackButton}
                 goBack={ConnectPackage.vm.goBack}
                 isConnect={ConnectPackage.vm.isConnect}

@@ -1,14 +1,13 @@
-import { action, observable, decorate, computed } from 'mobx';
-
 import { fetchBrowserFingerPrint } from './FingerPrint2Util';
 import FingerPrintPreparationUtil from './FingerPrintPreparationUtil';
 import IPService from '../../API_Services/AuthServices/IPService';
 // ...
 
 class FingerPrintModel {
-  constructor(props) {
-    console.log(props);
+  constructor(language) {
     this.FP = FingerPrintPreparationUtil.FPEmptyObject;
+    this.language = language;
+    this.updateLanguage = this.updateLanguage.bind(this);
     IPService.getIP((data) => {
       if (data == null) return;
       this.FP.connection.ip = data.ip;
@@ -35,10 +34,16 @@ class FingerPrintModel {
       this.FP.browser.name = browserDetails[0];
       this.FP.browser.version = browserDetails[1];
 
-      this.FP.app.app_locale = props.language;
+      /// it will get updated by the Connect model
+      this.FP.app.app_locale = this.language;
     });
   }
+
+  updateLanguage(language) {
+    if (!language) return;
+    this.language = language;
+    if (this.FP && this.FP.app && this.FP.app.app_locale) this.FP.app.app_locale = language;
+  }
 }
-decorate(FingerPrintModel, {});
 
 export default FingerPrintModel;

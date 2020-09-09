@@ -13,7 +13,7 @@ import ForgotPasswordService from '../API_Services/ForgotPasswordServices/Forgot
 import { preparePasswordRequest, prepareCreateAuthRequest, prepareVerifyAuthRequest } from '../Utils/Requests';
 class ForgotPasswordVM {
   constructor(props) {
-    this.FP = props.dataSource && props.dataSource.FP;
+    this.FP = props.dataSource && props.dataSource.fingerPrintModel && props.dataSource.fingerPrintModel.FP;
 
     this.ipObject = this.FP && this.FP.ipObject;
     console.log(this.ipObject);

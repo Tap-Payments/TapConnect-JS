@@ -1,3 +1,4 @@
+import { action, observable, decorate } from 'mobx';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as baseAR from '../locales/ar/base.json';
@@ -8,19 +9,27 @@ import { getLocaleFromFirebase } from './API_Services/LocaleService/getLocaleFro
 import { filterCountries } from './Utils/filtering';
 import { sortCountries } from './Utils/sorting';
 import FingerPrintModel from './Utils/FingerPrintUtility/FingerPrintModel';
+import axios from 'axios';
+import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
 class ConnectDataSource {
-  constructor(connectVM) {
+  constructor() {
     console.log('%c START FETCHING', 'background:pink; color:black;');
-    this.connectVM = connectVM;
-    this.fingerPrintModel = new FingerPrintModel(connectVM.props);
-    this.FP = this.fingerPrintModel.FP;
-    this.direction = connectVM.direction;
+
+    //// set default URL to live, then it can be updated by Connect
+    if (!axios.defaults.connectMW) axios.defaults.connectMW = LIVE_MW_URL;
+
+    /// gets updated by  Connect
+    this.direction = 'ltr';
+    /// gets updated by  Connect
+    this.language = 'en';
+    this.fingerPrintModel = new FingerPrintModel(this.language);
     this.sectors = [];
     this.countryInfos = [];
     this.businessCountries = [];
     this.businessTypes = [];
     this.connectLocale = { ar: baseAR, en: baseEN };
+
     this.init = this.init.bind(this);
     this.getLocale = this.getLocale.bind(this);
     this.infoUpdated = this.infoUpdated.bind(this);
@@ -29,9 +38,12 @@ class ConnectDataSource {
     this.getBusinessCountryInfos = this.getBusinessCountryInfos.bind(this);
     this.getBusinessTypesInfos = this.getBusinessTypesInfos.bind(this);
     this.updatei18 = this.updatei18.bind(this);
+    this.updateDSLanguage = this.updateDSLanguage.bind(this);
+    this.updateDSDirection = this.updateDSDirection.bind(this);
+    this.onFailure = this.onFailure.bind(this);
     this.onFinishedFetchingData = () => {
       console.log('%c INFO FETCHED, GOOD TO GO', 'background:yellow; color:black;');
-      if (connectVM && connectVM.onFinishedFetchingData) connectVM.onFinishedFetchingData();
+      this.isDataReady = true;
     };
     this.init();
   }
@@ -69,7 +81,7 @@ class ConnectDataSource {
   async getSectorsInfos(page) {
     await GetSectorsService.getSectorsData(page, (data) => {
       if (!data) {
-        this.connectVM.onFailure(data);
+        this.onFailure(data);
         return;
       }
       if (data['sectors']) {
@@ -92,7 +104,7 @@ class ConnectDataSource {
           this.countryInfos = filteredCountries.sort(sortCountries(this.direction));
           this.infoUpdated();
         });
-      } else this.connectVM.onFailure(data);
+      } else this.onFailure(data);
     });
   }
   async getBusinessCountryInfos() {
@@ -102,7 +114,7 @@ class ConnectDataSource {
           this.businessCountries = filteredCountries.sort(sortCountries(this.direction));
           this.infoUpdated();
         });
-      } else this.connectVM.onFailure(data);
+      } else this.onFailure(data);
     });
   }
   async getBusinessTypesInfos() {
@@ -110,7 +122,8 @@ class ConnectDataSource {
       if (data) {
         this.businessTypes = data;
         this.infoUpdated();
-      } else this.connectVM.onFailure(data);
+      } else this.onFailure(data);
+      this.onFailure(data);
     });
   }
 
@@ -141,10 +154,34 @@ class ConnectDataSource {
         },
       });
     }
-    i18n.changeLanguage(this.connectVM.language);
+    i18n.changeLanguage(this.language);
 
     this.infoUpdated();
   }
-}
 
-export default ConnectDataSource;
+  onFailure() {}
+  updateDSLanguage(language) {
+    if (language && language != this.language) {
+      this.language = language;
+      if (i18n.isInitialized) {
+        i18n.changeLanguage(this.language);
+      }
+      this.fingerPrintModel.updateLanguage(language);
+    }
+  }
+  updateDSDirection(direction) {
+    if (direction && direction != this.direction) {
+      this.direction = direction;
+      if (this.countryInfos && this.countryInfos.length > 0)
+        this.countryInfos = this.countryInfos.sort(sortCountries(this.direction));
+      if (this.businessCountries && this.businessCountries.length > 0)
+        this.businessCountries = this.businessCountries.sort(sortCountries(this.direction));
+    }
+  }
+}
+decorate(ConnectDataSource, {
+  isDataReady: observable,
+});
+
+let connectDataSource = new ConnectDataSource();
+export default connectDataSource;

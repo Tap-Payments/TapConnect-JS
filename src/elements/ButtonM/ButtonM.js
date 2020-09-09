@@ -26,6 +26,11 @@ class TapAuthButton extends Component {
       typography: { ...theme.typography, ...props.theme.typography },
       overrides: { ...theme.overrides, ...props.theme.overrides },
     });
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler() {
+    TapAuthButton.open(this.props);
   }
 
   static open(params) {
@@ -45,9 +50,7 @@ class TapAuthButton extends Component {
           variant={this.props.variant}
           showLogo={this.props.showLogo}
           logo={this.props.logo}
-          onClick={() => {
-            TapAuthButton.open(this.props.pageMode);
-          }}
+          onClick={this.clickHandler}
           direction={this.vm.direction}
         />
         {!this.isDuplicateInstance && (

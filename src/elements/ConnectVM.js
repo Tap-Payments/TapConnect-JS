@@ -9,18 +9,23 @@ import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
 class ConnectVM {
   constructor(props) {
+    console.log('ConnectVM');
+    console.log(props);
     this.props = props;
     this.liveMode = props.liveMode;
     this.language = props.language;
+    this.direction = props.direction ? props.direction : props.theme.direction;
+
     axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
-    this.dataSource = new ConnectDataSource(this);
+    ConnectDataSource.updateDSDirection(this.direction);
+    ConnectDataSource.updateDSLanguage(this.language);
+    ConnectDataSource.onFailure = this.onFailure;
     this.leadId = null;
     this.hideInitialLoader = false;
     this.isLoading = true;
     this.showBackButton = false;
     this.openController = null;
     this.openPopup = props.openPopup;
-    this.direction = props.direction ? props.direction : props.theme.direction;
 
     //// check if there is an initial step to jump to
     this.initialAuthType = props.initialAuthType;
@@ -43,7 +48,25 @@ class ConnectVM {
     this.initializePageMode = this.initializePageMode.bind(this);
     this.updatePageMode = this.updatePageMode.bind(this);
     this.updateAnimationType = this.updateAnimationType.bind(this);
+    this.reConstruct = this.reConstruct.bind(this);
 
+    this.initializePageMode(props.pageMode);
+  }
+  reConstruct(props) {
+    this.props = props;
+    this.liveMode = props.liveMode;
+    this.language = props.language;
+    this.direction = props.direction ? props.direction : props.theme.direction;
+    axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
+    ConnectDataSource.updateDSDirection(this.direction);
+    ConnectDataSource.updateDSLanguage(this.language);
+    ConnectDataSource.onFailure = this.onFailure;
+    this.leadId = null;
+    this.hideInitialLoader = false;
+    this.isLoading = true;
+    this.showBackButton = false;
+    this.openController = null;
+    this.openPopup = props.openPopup;
     this.initializePageMode(props.pageMode);
   }
 
@@ -258,7 +281,7 @@ class ConnectVM {
   }
 
   onFailure(response) {
-    if (this.props.onFailure) this.props.onFailure(response);
+    if (this.props && this.props.onFailure) this.props.onFailure(response);
   }
 }
 
@@ -273,6 +296,8 @@ decorate(ConnectVM, {
   openPopup: observable,
   animationType: observable,
   onAnimationExited: observable,
+  direction: observable,
+  language: observable,
 });
 
 export default ConnectVM;
