@@ -51,7 +51,7 @@ class TapAuthButton extends Component {
           showLogo={this.props.showLogo}
           logo={this.props.logo}
           onClick={this.clickHandler}
-          direction={props.direction || props.theme.direction}
+          direction={this.props.direction || this.props.theme.direction}
         />
         {!this.isDuplicateInstance && (
           <ConnectPackage
