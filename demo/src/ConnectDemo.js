@@ -170,7 +170,7 @@ function ConnectDemo(props) {
             buttonText={vm.buttonText}
             animationType={vm.animationType}
             animationDuration={500}
-            closeOnOutsideClick={false}
+            closeOnOutsideClick={true}
             liveMode={vm.isLiveMode == 'sandbox' ? false : true}
             hideInitialLoader={props.hideInitialLoader}
             onSuccess={props.handleSuccess}
