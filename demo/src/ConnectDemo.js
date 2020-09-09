@@ -82,11 +82,13 @@ function ConnectDemo(props) {
         disableTypography={true}
         className={classes.title}
         title="Connect - JS Library Demo"
+        style={{ color: '#00aff0' }}
       />
       <Divider />
       <CardContent className={classes.cardContent}>
         <div className={classes.formGroup}>
-          <span className={classes.head}>Choose a PageMode</span>
+          <span className={classes.head}>Page Mode</span>
+
           <FormControl component="fieldset">
             <RadioGroup
               className={classes.formGroup}
@@ -95,9 +97,9 @@ function ConnectDemo(props) {
               value={vm.pageMode}
               onChange={vm.onChangePageMode}
             >
-              <FormControlLabel value={PageMode.CONNECT} control={<Radio color={'primary'} />} label="CONNECT" />
-              <FormControlLabel value={PageMode.LOGIN} control={<Radio color={'primary'} />} label="LOGIN" />
-              <FormControlLabel value={PageMode.SIGNUP} control={<Radio color={'primary'} />} label="SIGNUP" />
+              <FormControlLabel value={PageMode.CONNECT} control={<Radio color={'primary'} />} label="Connect" />
+              <FormControlLabel value={PageMode.LOGIN} control={<Radio color={'primary'} />} label="Sign in" />
+              <FormControlLabel value={PageMode.SIGNUP} control={<Radio color={'primary'} />} label="Sign up" />
             </RadioGroup>
           </FormControl>
         </div>
@@ -111,8 +113,13 @@ function ConnectDemo(props) {
               value={vm.isLiveMode}
               onChange={vm.onChangeLiveMode}
             >
-              <FormControlLabel value={'live'} control={<Radio color={'primary'} />} label="LIVE" />
-              <FormControlLabel value={'sandbox'} control={<Radio color={'primary'} />} label="SANDBOX" />
+              <FormControlLabel value={'live'} control={<Radio color={'primary'} />} label="Live" />
+              <FormControlLabel
+                value={'sandbox'}
+                control={<Radio color={'primary'} />}
+                label="Sandbox"
+                style={{ color: '#00aff0' }}
+              />
             </RadioGroup>
           </FormControl>
         </div>
@@ -143,21 +150,21 @@ function ConnectDemo(props) {
               onChange={vm.onChangeAnimationType}
             >
               <FormControlLabel value={AnimationType.FADE} control={<Radio color={'primary'} />} label="FADE" />
-              <FormControlLabel value={AnimationType.SLIDEUP} control={<Radio color={'primary'} />} label="SLIDEUP" />
+              <FormControlLabel value={AnimationType.SLIDEUP} control={<Radio color={'primary'} />} label="SLIDE UP" />
               <FormControlLabel
                 value={AnimationType.SLIDEDOWN}
                 control={<Radio color={'primary'} />}
-                label="SLIDEDOWN"
+                label="SLIDE DOWN"
               />
               <FormControlLabel
                 value={AnimationType.SLIDELEFT}
                 control={<Radio color={'primary'} />}
-                label="SLIDELEFT"
+                label="SLIDE LEFT"
               />
               <FormControlLabel
                 value={AnimationType.SLIDERIGHT}
                 control={<Radio color={'primary'} />}
-                label="SLIDERIGHT"
+                label="SLIDE RIGHT"
               />
             </RadioGroup>
           </FormControl>
