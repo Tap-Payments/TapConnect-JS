@@ -123,7 +123,9 @@ export default class MenuWrapper extends React.Component {
                 }
           }
         >
-          {this.state.dropdownInfos !== undefined &&
+          {props.renderMenuItem &&
+            typeof props.renderMenuItem === 'function' &&
+            this.state.dropdownInfos !== undefined &&
             this.state.dropdownInfos &&
             this.state.dropdownInfos.map((item, index) => (
               <MenuItem
@@ -150,7 +152,7 @@ export default class MenuWrapper extends React.Component {
                   props.handleClose(index, item, event);
                 }}
               >
-                {props.renderMenuItem && typeof props.renderMenuItem === 'function' && props.renderMenuItem(item)}
+                {props.renderMenuItem(item)}
               </MenuItem>
             ))}
         </MenuList>
