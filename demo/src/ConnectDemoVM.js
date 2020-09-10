@@ -2,6 +2,20 @@ import React, { useRef } from 'react';
 
 import { action, observable, decorate, computed, toJS } from 'mobx';
 import { AnimationType, PageMode } from '../../src/index';
+const ButtonText = {
+  connect: {
+    ar: 'ربط',
+    en: 'Connect',
+  },
+  login: {
+    ar: 'تسجيل دخول',
+    en: 'Login',
+  },
+  signup: {
+    ar: 'تسجيل جديد',
+    en: 'Signup',
+  },
+};
 
 class ConnectDemoVM {
   constructor(props) {
@@ -35,13 +49,13 @@ class ConnectDemoVM {
 
   onChangePageMode(event) {
     this.pageMode = event.target.value;
-    this.buttonText =
-      event.target.value == PageMode.CONNECT ? 'Connect' : event.target.value == PageMode.LOGIN ? 'Login' : 'Signup';
+    this.buttonText = this.language == 'ar' ? ButtonText[this.pageMode].ar : ButtonText[this.pageMode].en;
   }
 
   onChangeLanguage(event) {
     this.direction = event.target.value;
     this.language = this.direction == 'rtl' ? 'ar' : 'en';
+    this.buttonText = this.language == 'ar' ? ButtonText[this.pageMode].ar : ButtonText[this.pageMode].en;
   }
 
   onChangeAnimationType(event) {
