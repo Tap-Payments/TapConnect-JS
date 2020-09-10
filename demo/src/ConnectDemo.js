@@ -57,6 +57,11 @@ const useStyles = makeStyles((theme1) => ({
     display: 'flex',
     flexDirection: 'row',
   },
+  formLabel: {
+    fontSize: '1rem',
+    fontWeight: '400',
+    letterSpacing: '0.00938em',
+  },
   radio: {},
 }));
 
@@ -68,7 +73,7 @@ function ConnectDemo(props) {
   return (
     <ThemeProvider theme={theme}>
       <Card className={classes.root}>
-        <CardHeader className={classes.title} title="Connect - JS Library Demo" />
+        <div className={classes.title}>Connect - JS Library Demo</div>
         <Divider />
         <CardContent className={classes.cardContent}>
           <div className={classes.formGroup}>
@@ -82,9 +87,27 @@ function ConnectDemo(props) {
                 value={vm.pageMode}
                 onChange={vm.onChangePageMode}
               >
-                <FormControlLabel value={PageMode.CONNECT} control={<Radio color={'primary'} />} label="Connect" />
-                <FormControlLabel value={PageMode.LOGIN} control={<Radio color={'primary'} />} label="Sign in" />
-                <FormControlLabel value={PageMode.SIGNUP} control={<Radio color={'primary'} />} label="Sign up" />
+                <FormControlLabel
+                  classes={{ label: classes.formLabel }}
+                  value={PageMode.CONNECT}
+                  control={<Radio color={'primary'} />}
+                  label="Connect"
+                  style={vm.pageMode == PageMode.CONNECT ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  classes={{ label: classes.formLabel }}
+                  value={PageMode.LOGIN}
+                  control={<Radio color={'primary'} />}
+                  label="Sign in"
+                  style={vm.pageMode == PageMode.LOGIN ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  classes={{ label: classes.formLabel }}
+                  value={PageMode.SIGNUP}
+                  control={<Radio color={'primary'} />}
+                  label="Sign up"
+                  style={vm.pageMode == PageMode.SIGNUP ? { color: '#00aff0' } : {}}
+                />
               </RadioGroup>
             </FormControl>
           </div>
@@ -98,12 +121,19 @@ function ConnectDemo(props) {
                 value={vm.isLiveMode}
                 onChange={vm.onChangeLiveMode}
               >
-                <FormControlLabel value={'live'} control={<Radio color={'primary'} />} label="Live" />
                 <FormControlLabel
+                  classes={{ label: classes.formLabel }}
+                  value={'live'}
+                  control={<Radio color={'primary'} />}
+                  label="Live"
+                  style={vm.isLiveMode == 'live' ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  classes={{ label: classes.formLabel }}
                   value={'sandbox'}
                   control={<Radio color={'primary'} />}
                   label="Sandbox"
-                  style={{ color: '#00aff0' }}
+                  style={vm.isLiveMode == 'sandbox' ? { color: '#00aff0' } : {}}
                 />
               </RadioGroup>
             </FormControl>
@@ -120,13 +150,17 @@ function ConnectDemo(props) {
               >
                 <FormControlLabel
                   value={'rtl'}
+                  classes={{ label: classes.formLabel }}
                   control={<Radio color={'primary'} className={classes.radio} />}
                   label="Ar"
+                  style={vm.direction == 'rtl' ? { color: '#00aff0' } : {}}
                 />
                 <FormControlLabel
                   value={'ltr'}
+                  classes={{ label: classes.formLabel }}
                   control={<Radio color={'primary'} className={classes.radio} />}
                   label="En"
+                  style={vm.direction == 'ltr' ? { color: '#00aff0' } : {}}
                 />
               </RadioGroup>
             </FormControl>
@@ -142,25 +176,39 @@ function ConnectDemo(props) {
                 value={vm.animationType}
                 onChange={vm.onChangeAnimationType}
               >
-                <FormControlLabel value={AnimationType.FADE} control={<Radio color={'primary'} />} label="Fade" />
                 <FormControlLabel
+                  classes={{ label: classes.formLabel }}
+                  value={AnimationType.FADE}
+                  control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.FADE ? { color: '#00aff0' } : {}}
+                  label="Fade"
+                />
+                <FormControlLabel
+                  classes={{ label: classes.formLabel }}
                   value={AnimationType.SLIDEUP}
                   control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDEUP ? { color: '#00aff0' } : {}}
                   label="Slide up"
                 />
                 <FormControlLabel
+                  classes={{ label: classes.formLabel }}
                   value={AnimationType.SLIDEDOWN}
                   control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDEDOWN ? { color: '#00aff0' } : {}}
                   label="Slide down"
                 />
                 <FormControlLabel
+                  classes={{ label: classes.formLabel }}
                   value={AnimationType.SLIDELEFT}
                   control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDELEFT ? { color: '#00aff0' } : {}}
                   label="Slide Left"
                 />
                 <FormControlLabel
+                  classes={{ label: classes.formLabel }}
                   value={AnimationType.SLIDERIGHT}
                   control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDERIGHT ? { color: '#00aff0' } : {}}
                   label="Slide right"
                 />
               </RadioGroup>
