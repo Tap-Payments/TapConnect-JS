@@ -30,7 +30,13 @@ export class ConnectUI extends Component {
           }}
           closeOnOutsideClick={vm.props.closeOnOutsideClick}
         >
-          {ConnectDataSource.isDataReady ? <Fragment /> : <TapLoader />}
+          {ConnectDataSource.isDataReady ? (
+            <Fragment />
+          ) : (
+            <div style={{ position: 'fixed', top: '50%', left: '50%' }}>
+              <TapLoader />
+            </div>
+          )}
         </Modal>
         <AnimationEngine
           bypass={vm.props.dialogMode == DialogMode.FULLPAGE}
