@@ -46,7 +46,7 @@ export class ConnectUI extends Component {
           direction={vm.props.direction}
           animationDuration={vm.props.animationDuration}
           closeOnOutsideClick={vm.props.closeOnOutsideClick}
-          animationType={vm.props.animationType || vm.animationType}
+          animationType={vm.animationType}
           onClose={(e) => {
             vm.openLoaderModal = false;
             if (vm.props.onClose) vm.props.onClose(e);

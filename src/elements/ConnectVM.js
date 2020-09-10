@@ -91,24 +91,27 @@ class ConnectVM {
     };
   }
   updateAnimationType(mode) {
-    switch (mode) {
-      case PageMode.FORGOT:
-        this.animationType = AnimationType.SLIDEUP;
-        break;
-      case PageMode.LOGIN:
-        this.animationType = this.showBackButton ? AnimationType.SLIDEUP : AnimationType.SLIDEDOWN;
+    if (this.props.animationType) {
+      this.animationType = this.props.animationType;
+    } else
+      switch (mode) {
+        case PageMode.FORGOT:
+          this.animationType = AnimationType.SLIDEUP;
+          break;
+        case PageMode.LOGIN:
+          this.animationType = this.showBackButton ? AnimationType.SLIDEUP : AnimationType.SLIDEDOWN;
 
-        break;
-      case PageMode.SIGNUP:
-        this.animationType = AnimationType.SLIDEUP;
-        break;
-      case PageMode.CONNECT:
-        this.animationType = AnimationType.SLIDEDOWN;
-        break;
-      default:
-        this.animationType = AnimationType.SLIDEUP;
-        break;
-    }
+          break;
+        case PageMode.SIGNUP:
+          this.animationType = AnimationType.SLIDEUP;
+          break;
+        case PageMode.CONNECT:
+          this.animationType = AnimationType.SLIDEDOWN;
+          break;
+        default:
+          this.animationType = AnimationType.SLIDEUP;
+          break;
+      }
 
     console.log('new animation type');
     console.log(this.animationType);
@@ -255,6 +258,7 @@ decorate(ConnectVM, {
   openLoaderModal: observable,
   // animationType: observable,
   onAnimationExited: observable,
+  animationType: observable,
   // direction: observable,
   // language: observable,
   // combinedTheme: observable,

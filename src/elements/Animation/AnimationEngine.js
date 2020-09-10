@@ -30,23 +30,18 @@ const TransitionRight = React.forwardRef(function Transition(props, ref) {
 function TapDialog(props) {
   const themeMUI = useTheme();
   const classes = useStyles();
-  const [animation, setAnimation] = useState(props.animation);
 
-  const transitionEndHandler = () => {
-    if (animation != props.animation) setAnimation(props.animation);
-  };
   return (
     <Dialog
       hideBackdrop
       onExited={(e) => {
-        /// wait till animation is done, then update the animation type if there is a new one
+        /// wait till animation is done,
         /// then, callback
         console.log('%c Animation Exited', 'background:pink; color:black;');
-        transitionEndHandler();
         if (props.onExited) props.onExited();
       }}
       dir={themeMUI.direction}
-      TransitionComponent={animation}
+      TransitionComponent={props.animation}
       transitionDuration={props.animationDuration}
       onClose={props.onClose}
       open={props.open}
@@ -104,13 +99,6 @@ class AnimationEngine extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.animationType !== prevProps.animationType) {
-      this.setState({
-        animation: this.getAnimation(this.props.animationType),
-      });
-    }
-
     if (this.props.open !== prevProps.open) {
       this.setState({
         open: this.props.open,
@@ -161,7 +149,7 @@ class AnimationEngine extends React.Component {
         onExited={this.props.onExited}
         direction={this.props.direction}
         animationDuration={this.props.animationDuration}
-        animation={this.state.animation}
+        animation={this.getAnimation(this.props.animationType)}
         onClose={this.handleClose.bind(this)}
         open={this.state.open}
       >
