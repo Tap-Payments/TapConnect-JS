@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Dialog, Slide, Fade } from '@material-ui/core';
+import { Dialog, Slide, Fade, DialogActions, DialogTitle, Button } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import { AnimationType } from '../Constants/constants';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   closeButton: {
@@ -59,10 +60,14 @@ class AnimationEngine extends React.Component {
     super(props);
     this.state = {
       open: props.open,
+      openAlert: false,
+      isConfirmClosePopup: false,
       animation: Fade,
     };
 
     this.getAnimation = this.getAnimation.bind(this);
+    this.handleAlertPressNo = this.handleAlertPressNo.bind(this);
+    this.handleAlertPressYes = this.handleAlertPressYes.bind(this);
   }
 
   componentWillMount() {
@@ -112,14 +117,30 @@ class AnimationEngine extends React.Component {
     }
   }
 
-  handleClose() {
-    if (this.props.closeOnOutsideClick) {
+  handleAlertPressNo() {
+    this.setState({
+      openAlert: false,
+    });
+  }
+
+  handleAlertPressYes() {
+    this.setState({
+      openAlert: false,
+    });
+    setTimeout(() => {
       this.setState({
         open: false,
       });
-
       if (this.props.onClose) this.props.onClose();
       if (this.props.onCancel) this.props.onCancel();
+    }, 200);
+  }
+
+  handleClose() {
+    if (this.props.closeOnOutsideClick) {
+      this.setState({
+        openAlert: true,
+      });
     }
   }
 
@@ -129,15 +150,41 @@ class AnimationEngine extends React.Component {
     return (
       <TapDialog
         onExited={this.props.onExited}
+        direction={this.props.direction}
         animationDuration={this.props.animationDuration}
         animation={this.state.animation}
         onClose={this.handleClose.bind(this)}
         open={this.state.open}
       >
         {this.props.children}
+        <TapAlert
+          direction={this.props.direction}
+          openAlert={this.state.openAlert}
+          handleAlertPressNo={this.handleAlertPressNo}
+          handleAlertPressYes={this.handleAlertPressYes}
+        />
       </TapDialog>
     );
   }
+}
+
+function TapAlert(props) {
+  const { t } = useTranslation();
+  return (
+    <Dialog open={props.openAlert} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+      <DialogTitle dir={props.direction} id="alert-dialog-title">
+        {t('popup_alert')}
+      </DialogTitle>
+      <DialogActions dir={props.direction}>
+        <Button onClick={props.handleAlertPressNo} color="primary">
+          {t('no')}
+        </Button>
+        <Button onClick={props.handleAlertPressYes} color="primary" autoFocus>
+          {t('yes')}
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 }
 
 AnimationEngine.defaultProps = {

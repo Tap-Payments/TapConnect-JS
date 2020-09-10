@@ -23,6 +23,7 @@ export class ConnectUI extends Component {
         <AnimationEngine
           bypass={vm.props.dialogMode == DialogMode.FULLPAGE}
           onExited={vm.onAnimationExited}
+          direction={vm.props.direction}
           open={vm.openController == null ? vm.openPopup : vm.openController}
           animationDuration={vm.props.animationDuration}
           closeOnOutsideClick={vm.props.closeOnOutsideClick}
