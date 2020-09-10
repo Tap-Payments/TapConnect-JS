@@ -170,8 +170,8 @@ function ConnectDemo(props) {
           <div style={{ width: '230px', margin: '0px auto', marginTop: '60px' }}>
             <TapAuthButton
               pageMode={vm.pageMode}
-              dialogMode={vm.dialogMode}
               buttonText={vm.buttonText}
+              dialogMode={DialogMode.POPUP}
               animationType={vm.animationType}
               animationDuration={500}
               closeOnOutsideClick={true}

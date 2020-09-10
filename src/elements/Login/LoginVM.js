@@ -450,7 +450,6 @@ class LoginVM {
   }
 
   handleClose(index, item) {
-    console.log('handleClose');
     this.countryIcon = item.logo;
     this.countryCode = item.idd_prefix.toString();
     this.selectedCountryIndex = index;
