@@ -3,6 +3,7 @@ import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/in
 import { Button, Tooltip, Fade } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { render } from 'react-dom';
+import { Dialog } from '@material-ui/core';
 
 import ButtonDemo from './ButtonDemo';
 import ConnectDemo from './ConnectDemo';
@@ -22,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.message && (
+        <Dialog open={this.state.message != null}>
           <Alert severity="success" style={{ position: 'fixed' }}>
             <AlertTitle>Success</AlertTitle>
             This is a success alert —
@@ -30,7 +31,8 @@ class App extends Component {
               <strong>check the response out!</strong>
             </Tooltip>
           </Alert>
-        )}
+        </Dialog>
+
         {window.location.pathname.search('button') > 0 && (
           <ButtonDemo handleSuccess={this.handleSuccess} {...this.props} />
         )}
