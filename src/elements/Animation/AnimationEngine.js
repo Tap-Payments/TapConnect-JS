@@ -37,6 +37,7 @@ function TapDialog(props) {
   };
   return (
     <Dialog
+      hideBackdrop
       onExited={(e) => {
         /// wait till animation is done, then update the animation type if there is a new one
         /// then, callback

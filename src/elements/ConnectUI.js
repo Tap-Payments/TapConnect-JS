@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Backdrop, Modal } from '@material-ui/core';
+import { Backdrop, Modal, Dialog } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
@@ -21,7 +21,7 @@ export class ConnectUI extends Component {
     if (!vm) return null;
     return (
       <ThemeProvider theme={vm.combinedTheme}>
-        <Modal
+        <Dialog
           open={vm.openLoaderModal || (vm.openController == null ? vm.openPopup : vm.openController)}
           onClose={(e) => {
             vm.openLoaderModal = false;
@@ -37,7 +37,7 @@ export class ConnectUI extends Component {
               <TapLoader />
             </div>
           )}
-        </Modal>
+        </Dialog>
         <AnimationEngine
           bypass={vm.props.dialogMode == DialogMode.FULLPAGE}
           onExited={vm.onAnimationExited}
