@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import './Connect.css';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
@@ -73,12 +74,7 @@ class ConnectPackage extends Component {
     // if (ConnectPackage.vm && ConnectPackage.vm.dataSource && ConnectPackage.vm.dataSource.isDataReady)
     //   return <TapLoader />;
 
-    return (
-      <div className="tap-connect-unique-module" id="tap-connect-unique-module">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Tajawal&display=swap" rel="stylesheet" />
-      </div>
-    );
+    return <div className="tap-connect-unique-module" id="tap-connect-unique-module"></div>;
   }
 }
 ConnectPackage.defaultProps = _defaultProps;

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 
 import { Backdrop, Modal, Dialog } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
