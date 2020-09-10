@@ -461,7 +461,7 @@ class LoginVM {
     }
     this.emailTextField.countryIcon = this.countryIcon;
     this.emailTextField.maxLength = this.maxLength;
-    this.activeStepInfo.isSelected = (item) => item.idd_prefix.toString() === this.countryCode;
+    this.emailTextField.isSelected = (item) => item.idd_prefix.toString() === this.countryCode;
   }
 
   getDropdownInfos() {
