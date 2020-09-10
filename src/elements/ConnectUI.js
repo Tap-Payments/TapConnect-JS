@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
+import { Backdrop, Modal } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
@@ -17,25 +18,35 @@ import _defaultProps from './defaultProps';
 export class ConnectUI extends Component {
   render() {
     let vm = ConnectPackage.vm;
-    if (!vm || !ConnectDataSource.isDataReady) return null;
+    if (!vm) return null;
     return (
       <ThemeProvider theme={vm.combinedTheme}>
+        <Modal
+          open={vm.openLoaderModal || (vm.openController == null ? vm.openPopup : vm.openController)}
+          onClose={(e) => {
+            vm.openLoaderModal = false;
+            if (vm.props.onClose) vm.props.onClose(e);
+            if (vm.openController != null) ConnectPackage.close();
+          }}
+          closeOnOutsideClick={vm.props.closeOnOutsideClick}
+        >
+          {ConnectDataSource.isDataReady ? <Fragment /> : <TapLoader />}
+        </Modal>
         <AnimationEngine
           bypass={vm.props.dialogMode == DialogMode.FULLPAGE}
           onExited={vm.onAnimationExited}
+          open={ConnectDataSource.isDataReady && (vm.openController == null ? vm.openPopup : vm.openController)}
           direction={vm.props.direction}
-          open={vm.openController == null ? vm.openPopup : vm.openController}
           animationDuration={vm.props.animationDuration}
           closeOnOutsideClick={vm.props.closeOnOutsideClick}
           animationType={vm.props.animationType || vm.animationType}
           onClose={(e) => {
+            vm.openLoaderModal = false;
             if (vm.props.onClose) vm.props.onClose(e);
             if (vm.openController != null) ConnectPackage.close();
           }}
         >
-          {!true ? (
-            <TapLoader />
-          ) : vm.activePageMode == PageMode.FORGOT ? (
+          {vm.activePageMode == PageMode.FORGOT ? (
             <ForgotPassword
               {...vm.props}
               initialLeadID={vm.leadId}
@@ -79,4 +90,5 @@ export class ConnectUI extends Component {
     );
   }
 }
+
 export default observer(ConnectUI);

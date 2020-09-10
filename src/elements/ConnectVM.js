@@ -53,6 +53,8 @@ class ConnectVM {
     this.showBackButton = false;
     this.openController = null;
     this.openPopup = this.props.openPopup;
+    this.openLoaderModal = true;
+
     this.initializePageMode(this.props.pageMode);
   }
 
@@ -85,8 +87,6 @@ class ConnectVM {
         this.isConnect = isConnect || mode == PageMode.CONNECT ? true : false;
         this.openPopup = true;
         if (this.openController != null) this.openController = true;
-
-        this.onAnimationExited = null;
       }, 200);
     };
   }
@@ -252,6 +252,7 @@ decorate(ConnectVM, {
   // isConnect: observable,
   openController: observable,
   openPopup: observable,
+  openLoaderModal: observable,
   // animationType: observable,
   onAnimationExited: observable,
   // direction: observable,
