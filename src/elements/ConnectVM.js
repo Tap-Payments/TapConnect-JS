@@ -220,7 +220,7 @@ class ConnectVM {
           if (this.isConnect) this.moveToSignup();
         }
 
-        if (this.props.onSuccess) this.props.onSuccess(response, browserID);
+        if (this.props.onSuccess) this.onAnimationExited = this.props.onSuccess(response, browserID);
       }.bind(this),
       1,
     );
@@ -228,7 +228,7 @@ class ConnectVM {
 
   onForgotPasswordSuccess(response, browserID) {
     this.moveToLogin();
-    if (this.props.onSuccess) this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) this.onAnimationExited = this.props.onSuccess(response, browserID);
   }
 
   onSignupSuccess(response, browserID) {
@@ -238,7 +238,7 @@ class ConnectVM {
       ConnectPackage.close();
     }
 
-    if (this.props.onSuccess) this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) this.onAnimationExited = this.props.onSuccess(response, browserID);
   }
 
   onFailure(response) {
