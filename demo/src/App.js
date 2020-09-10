@@ -20,10 +20,14 @@ class App extends Component {
     this.setState({ message: JSON.stringify(response) });
   }
 
+  handleClose = () => {
+    this.setState({ message: null });
+  };
+
   render() {
     return (
       <Fragment>
-        <Dialog open={this.state.message != null}>
+        <Dialog open={this.state.message != null} onClose={this.handleClose}>
           <Alert severity="success" style={{ position: 'fixed' }}>
             <AlertTitle>Success</AlertTitle>
             This is a success alert —
