@@ -656,9 +656,12 @@ class SignupVM {
         if (data && data.signup_token) {
           this.signUpToken = data.signup_token;
           this.update('User info is updated', 6);
+
           this.changeStep(7);
         } else {
-          if (data && data.errors != null) {
+          if (data && data.status == 'ALREADY_TAKEN') {
+            this.setError('signup_user_exists_error');
+          } else if (data && data.errors != null) {
             this.setError(this.getErrorString(data));
           }
         }
