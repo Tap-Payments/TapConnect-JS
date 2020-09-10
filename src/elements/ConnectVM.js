@@ -80,15 +80,20 @@ class ConnectVM {
     this.openPopup = false;
     if (this.openController != null) this.openController = false;
     this.updateAnimationType(mode);
-
-    this.onAnimationExited = () => {
-      setTimeout(() => {
-        this.activePageMode = mode;
-        this.isConnect = isConnect || mode == PageMode.CONNECT ? true : false;
-        this.openPopup = true;
-        if (this.openController != null) this.openController = true;
-      }, 200);
-    };
+    if (this.props.dialogMode == DialogMode.POPUP) {
+      this.onAnimationExited = () => {
+        setTimeout(() => {
+          this.activePageMode = mode;
+          this.isConnect = isConnect || mode == PageMode.CONNECT ? true : false;
+          this.openPopup = true;
+          if (this.openController != null) this.openController = true;
+        }, 200);
+      };
+    } else {
+      this.activePageMode = mode;
+      this.isConnect = isConnect || mode == PageMode.CONNECT ? true : false;
+      this.openPopup = true;
+    }
   }
   updateAnimationType(mode) {
     if (this.props.animationType) {
@@ -217,12 +222,22 @@ class ConnectVM {
       this.storeLeadID(response.lead_id);
       if (this.isConnect) this.moveToSignup();
     }
-    if (this.props.onSuccess) this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) {
+      if (this.props.dialogMode == DialogMode.POPUP)
+        this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+    } else {
+      this.props.onSuccess(response, browserID);
+    }
   }
 
   onForgotPasswordSuccess(response, browserID) {
     this.moveToLogin();
-    if (this.props.onSuccess) this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) {
+      if (this.props.dialogMode == DialogMode.POPUP)
+        this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+    } else {
+      this.props.onSuccess(response, browserID);
+    }
   }
 
   onSignupSuccess(response, browserID) {
@@ -232,7 +247,12 @@ class ConnectVM {
       ConnectPackage.close();
     }
 
-    if (this.props.onSuccess) this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) {
+      if (this.props.dialogMode == DialogMode.POPUP)
+        this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+    } else {
+      this.props.onSuccess(response, browserID);
+    }
   }
 
   onFailure(response) {
@@ -245,7 +265,7 @@ decorate(ConnectVM, {
   // signUp: observable,
   // hideInitialLoader: observable,
   // isLoading: observable,
-  // activePageMode: observable,
+  activePageMode: observable,
   // isConnect: observable,
   openController: observable,
   openPopup: observable,
