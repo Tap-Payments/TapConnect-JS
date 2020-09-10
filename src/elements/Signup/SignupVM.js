@@ -415,7 +415,7 @@ class SignupVM {
                 <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
                   <img src={item.logo} height={'25px'} width={'25px'} style={{ borderRadius: '50px' }} />
                 </span>
-                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>
+                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right', paddingInlineStart: '10px' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
               </div>

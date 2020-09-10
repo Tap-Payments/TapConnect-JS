@@ -155,7 +155,7 @@ class ForgotPasswordVM {
           if (item)
             return (
               <div>
-                <span style={{ float: this.direction === 'ltr' ? 'left' : 'right' }}>
+                <span style={{ float: this.direction === 'ltr' ? 'left' : 'right', paddingInlineEnd: '10px' }}>
                   {this.direction === 'rtl' ? item.name.arabic : item.name.english}
                 </span>
                 <span style={{ float: this.direction === 'ltr' ? 'right' : 'left' }}>{'+' + item.idd_prefix}</span>
