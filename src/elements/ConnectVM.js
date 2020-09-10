@@ -213,22 +213,16 @@ class ConnectVM {
     /// remove auth type if there is one
     if (this.props.removeAuthType) this.props.removeAuthType();
 
-    setTimeout(
-      function () {
-        if (response && response.lead_id) {
-          this.storeLeadID(response.lead_id);
-          if (this.isConnect) this.moveToSignup();
-        }
-
-        if (this.props.onSuccess) this.onAnimationExited = this.props.onSuccess(response, browserID);
-      }.bind(this),
-      1,
-    );
+    if (response && response.lead_id) {
+      this.storeLeadID(response.lead_id);
+      if (this.isConnect) this.moveToSignup();
+    }
+    if (this.props.onSuccess) this.onAnimationExited = () => this.props.onSuccess(response, browserID);
   }
 
   onForgotPasswordSuccess(response, browserID) {
     this.moveToLogin();
-    if (this.props.onSuccess) this.onAnimationExited = this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) this.onAnimationExited = () => this.props.onSuccess(response, browserID);
   }
 
   onSignupSuccess(response, browserID) {
@@ -238,7 +232,7 @@ class ConnectVM {
       ConnectPackage.close();
     }
 
-    if (this.props.onSuccess) this.onAnimationExited = this.props.onSuccess(response, browserID);
+    if (this.props.onSuccess) this.onAnimationExited = () => this.props.onSuccess(response, browserID);
   }
 
   onFailure(response) {
