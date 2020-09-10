@@ -41,6 +41,7 @@ export class ConnectUI extends Component {
         <AnimationEngine
           bypass={vm.props.dialogMode == DialogMode.FULLPAGE}
           onExited={vm.onAnimationExited}
+          showConfirmationDialog={vm.activePageMode == PageMode.SIGNUP ? true : false}
           open={ConnectDataSource.isDataReady && (vm.openController == null ? vm.openPopup : vm.openController)}
           direction={vm.props.direction}
           animationDuration={vm.props.animationDuration}

@@ -139,9 +139,17 @@ class AnimationEngine extends React.Component {
 
   handleClose() {
     if (this.props.closeOnOutsideClick) {
-      this.setState({
-        openAlert: true,
-      });
+      if (this.props.showConfirmationDialog)
+        this.setState({
+          openAlert: true,
+        });
+      else {
+        this.setState({
+          open: false,
+        });
+        if (this.props.onClose) this.props.onClose();
+        if (this.props.onCancel) this.props.onCancel();
+      }
     }
   }
 
@@ -192,6 +200,7 @@ AnimationEngine.defaultProps = {
   open: true,
   animationType: AnimationType.FADE,
   animationDuration: 500,
+  showConfirmationDialog: false,
   closeOnOutsideClick: false,
 };
 
