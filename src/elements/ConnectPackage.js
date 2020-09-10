@@ -37,6 +37,7 @@ class ConnectPackage extends Component {
     console.log('close');
     console.log('close');
     console.log('close');
+    ConnectPackage.vm.onAnimationExited = null;
     ConnectPackage.vm.openController = false;
     ConnectPackage.vm.openLoaderModal = false;
   }
