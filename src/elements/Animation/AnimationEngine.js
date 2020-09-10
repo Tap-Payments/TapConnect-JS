@@ -173,12 +173,14 @@ function TapAlert(props) {
         {t('popup_alert')}
       </DialogTitle>
       <DialogActions dir={props.direction}>
-        <Button onClick={props.handleAlertPressNo} color="primary">
-          {t('no')}
-        </Button>
-        <Button onClick={props.handleAlertPressYes} color="primary" autoFocus>
-          {t('yes')}
-        </Button>
+        <div style={{ width: '100%', marginLeft: '13%', marginRight: '13%' }}>
+          <Button style={{ width: '50%' }} onClick={props.handleAlertPressYes}>
+            {t('yes')}
+          </Button>
+          <Button style={{ width: '50%' }} onClick={props.handleAlertPressNo} color="primary">
+            {t('no')}
+          </Button>
+        </div>
       </DialogActions>
     </Dialog>
   );
