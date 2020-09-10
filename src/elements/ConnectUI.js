@@ -21,23 +21,25 @@ export class ConnectUI extends Component {
     if (!vm) return null;
     return (
       <ThemeProvider theme={vm.combinedTheme}>
-        <Dialog
-          open={vm.openLoaderModal || (vm.openController == null ? vm.openPopup : vm.openController)}
-          onClose={(e) => {
-            vm.openLoaderModal = false;
-            if (vm.props.onClose) vm.props.onClose(e);
-            if (vm.openController != null) ConnectPackage.close();
-          }}
-          closeOnOutsideClick={vm.props.closeOnOutsideClick}
-        >
-          {ConnectDataSource.isDataReady ? (
-            <Fragment />
-          ) : (
-            <div style={{ position: 'fixed', top: '50%', left: '50%' }}>
-              <TapLoader />
-            </div>
-          )}
-        </Dialog>
+        {vm.props.dialogMode != DialogMode.FULLPAGE && (
+          <Dialog
+            open={vm.openLoaderModal || (vm.openController == null ? vm.openPopup : vm.openController)}
+            onClose={(e) => {
+              vm.openLoaderModal = false;
+              if (vm.props.onClose) vm.props.onClose(e);
+              if (vm.openController != null) ConnectPackage.close();
+            }}
+            closeOnOutsideClick={vm.props.closeOnOutsideClick}
+          >
+            {ConnectDataSource.isDataReady ? (
+              <Fragment />
+            ) : (
+              <div style={{ position: 'fixed', top: '50%', left: '50%' }}>
+                <TapLoader />
+              </div>
+            )}
+          </Dialog>
+        )}
         <AnimationEngine
           bypass={vm.props.dialogMode == DialogMode.FULLPAGE}
           onExited={vm.onAnimationExited}
