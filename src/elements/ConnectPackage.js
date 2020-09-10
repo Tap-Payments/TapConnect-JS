@@ -26,6 +26,8 @@ class ConnectPackage extends Component {
 
       this.isDuplicateInstance = false;
       ConnectPackage.vm = new ConnectVM(props);
+
+      if (this.props.openPopup) ConnectPackage.open(props);
     }
   }
   static init(props) {
