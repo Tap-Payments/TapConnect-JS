@@ -223,9 +223,9 @@ class ConnectVM {
       ConnectPackage.close();
       if (this.props.onSuccess) {
         if (this.props.dialogMode == DialogMode.POPUP)
-          this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+          this.onAnimationExited = () => this.props.onSuccess(response, browserID, this.activePageMode);
       } else {
-        this.props.onSuccess(response, browserID);
+        this.props.onSuccess(response, browserID, this.activePageMode);
       }
     }
   }
@@ -234,9 +234,9 @@ class ConnectVM {
     this.moveToLogin();
     if (this.props.onSuccess) {
       if (this.props.dialogMode == DialogMode.POPUP)
-        this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+        this.onAnimationExited = () => this.props.onSuccess(response, browserID, this.activePageMode);
     } else {
-      this.props.onSuccess(response, browserID);
+      this.props.onSuccess(response, browserID, this.activePageMode);
     }
   }
 
@@ -247,9 +247,9 @@ class ConnectVM {
       ConnectPackage.close();
       if (this.props.onSuccess) {
         if (this.props.dialogMode == DialogMode.POPUP)
-          this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+          this.onAnimationExited = () => this.props.onSuccess(response, browserID, this.activePageMode);
       } else {
-        this.props.onSuccess(response, browserID);
+        this.props.onSuccess(response, browserID, this.activePageMode);
       }
     }
   }
