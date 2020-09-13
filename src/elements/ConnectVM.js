@@ -213,20 +213,20 @@ class ConnectVM {
   onLoginSuccess(response, browserID) {
     console.log(response, browserID);
 
-    ConnectPackage.close();
-
     /// remove auth type if there is one
     if (this.props.removeAuthType) this.props.removeAuthType();
 
     if (response && response.lead_id) {
       this.storeLeadID(response.lead_id);
       if (this.isConnect) this.moveToSignup();
-    }
-    if (this.props.onSuccess) {
-      if (this.props.dialogMode == DialogMode.POPUP)
-        this.onAnimationExited = () => this.props.onSuccess(response, browserID);
     } else {
-      this.props.onSuccess(response, browserID);
+      ConnectPackage.close();
+      if (this.props.onSuccess) {
+        if (this.props.dialogMode == DialogMode.POPUP)
+          this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+      } else {
+        this.props.onSuccess(response, browserID);
+      }
     }
   }
 
@@ -245,13 +245,12 @@ class ConnectVM {
       this.moveToLogin();
     } else {
       ConnectPackage.close();
-    }
-
-    if (this.props.onSuccess) {
-      if (this.props.dialogMode == DialogMode.POPUP)
-        this.onAnimationExited = () => this.props.onSuccess(response, browserID);
-    } else {
-      this.props.onSuccess(response, browserID);
+      if (this.props.onSuccess) {
+        if (this.props.dialogMode == DialogMode.POPUP)
+          this.onAnimationExited = () => this.props.onSuccess(response, browserID);
+      } else {
+        this.props.onSuccess(response, browserID);
+      }
     }
   }
 
