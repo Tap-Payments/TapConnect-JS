@@ -125,7 +125,6 @@ class ConnectDataSource {
         this.businessTypes = data;
         this.infoUpdated();
       } else this.onFailure(data);
-      this.onFailure(data);
     });
   }
 
