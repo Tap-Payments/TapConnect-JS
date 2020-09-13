@@ -4,29 +4,33 @@
 - [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Configuration](#configuration)
 - [Example Login](#example-login)
 - [Example Signup](#example-signup)
 - [Example Connect](#example-connect)
-- [Landing Component](#landing-component)
-- [ConnectPackage Component](#connectPackage-component)
-- [Landing Properties](#landing-properties)
+- [Example TapAuthButton](#example-tapauthbutton)
+- [Connect Demo Page](#connect-demo-page)
+- [TapAuthButton Properties](#tapauthbutton-properties)
 - [ConnectPackage Properties](#connectPackage-properties)
 - [Theme](#theme)
 - [Pallete](#pallete)
 - [Typography](#typography)
 - [Default Theme](#default-theme)
+- [Author](#author)
 
 ## Brief Description
 
-Connect is a React component it contains login and sign up component with the functionalities and the flows.User can use the login or sign up directly and also they can use connect.Connect will manage the switch between login and signup itself.
+Connect is a React component it contains connect, login and sign up component with the functionalities and the flows.User can use the login or sign up directly and also they can use connect.Connect will manage the switch between login and signup itself.
 
 It has two theme dark/light,user can also change the theme by passing theme from outside.
 
 - [Source Code](https://github.com/Tap-Payments/goWebDashboard-React.git).
 
 <a name="demo"></a>
+
 ## Demo
- Your site is published at https://tap-payments.github.io/TapConnect-JS/
+
+Your site is published at https://tap-payments.github.io/TapConnect-JS/
 
 ## Installation
 
@@ -36,29 +40,26 @@ npm i @tap-payments/react_auth
 
 ## Usage
 
-After installing the package by cmd/terminal, add the following line to your project to import the required files. The package includes ConnectPackage, LoginPackage, SignupPackage, DialogMode,AnimationType, Languages. (you can import one or all components based on your target).
+After installing the package by cmd/terminal, add the following line to your project to import the required files. The package includes ConnectPackage, TapAuthButton, DialogMode, AnimationType, PageMode. (you can import one or all components based on your target).
 
 DialogMode used to change the dialog mode (POPUP, FULLPAGE).
 AnimationType used to change the dialog animation (FADE, SLIDEUP, SLIDEDOWN, SLIDELEFT, SLIDERIGHT).
+PageMode used to changes the page
 Languages used to the change the direction of the dialog (EN, AR).
 
-If you want to use connect need to import below one.
+If you want to use connect or login or signup need to import below one.
 
 ```
-import { ConnectPackage, DialogMode, AnimationType, Languages } from '@tap-payments/react_auth';
+import { ConnectPackage, DialogMode, AnimationType } from '@tap-payments/react_auth';
 ```
 
-If you want to use login need to import below one.
+If you want to use TapAuthButton need to import below one.
 
 ```
-import { LoginPackage, DialogMode, AnimationType, Languages } from '@tap-payments/react_auth';
+import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/index';
 ```
 
-If you want to use signup need to import below one.
-
-```
-import { SignupPackage, DialogMode, AnimationType, Languages } from '@tap-payments/react_auth';
-```
+## Configuration
 
 ## Example Login
 
@@ -67,20 +68,19 @@ iimport React, { Fragment } from 'react';
 import { useVm, useAppCtx } from '../../hooks';
 import LoginVM from './LoginVM';
 import { observer } from 'mobx-react-lite';
-import {  LandingPage as LoginPackage,
-  DialogMode,
-  AnimationType,
-  Languages } from '@tap-payments/react_auth';
+import { ConnectPackage, DialogMode, AnimationType } from '@tap-payments/react_auth';
+
 
 function Login(props) {
   if (props.isAuthorized) return <Fragment />;
   const vm = useVm(LoginVM, [useAppCtx(), props]);
   return (
-    <LoginPackage
+    <ConnectPackage
       onSuccess={vm.onSuccess}
       initialAuthType={vm.initialAuthType}
       dialogMode={DialogMode.POPUP}
       countryCode={'965'}
+      pageMode={PageMode.LOGIN}
       animationType={AnimationType.SLIDEDOWN}
       animationDuration={500}
       closeOnOutsideClick={false}
@@ -105,26 +105,26 @@ import React, { Fragment } from 'react';
 import { useVm, useAppCtx } from '../../hooks';
 import SignupVM from './SignupVM';
 import { observer } from 'mobx-react-lite';
-import { LandingPage as SignupPackage,
+import { ConnectPackage,
   DialogMode,
   AnimationType,
-  PageMode,
-  Languages, } from '@tap-payments/react_auth';
+  PageMode } from '@tap-payments/react_auth';
 
 function Signup(props) {
   const vm = useVm(SignupVM, [useAppCtx(), props]);
   return (
-    <SignupPackage
-      initialLeadID={vm.initialLeadID}
+     <ConnectPackage
+      onSuccess={vm.onSuccess}
       pageMode={PageMode.SIGNUP}
+      initialAuthType={vm.initialAuthType}
       dialogMode={DialogMode.POPUP}
       countryCode={'965'}
+      removeAuthType={removeAuthType}
       animationType={AnimationType.SLIDEDOWN}
       animationDuration={500}
       closeOnOutsideClick={false}
-      defaultEmailOrMobile={vm.initialUsername}
+      defaultEmailOrMobile={null}
       hideInitialLoader={props.hideInitialLoader}
-      moveToLogin={vm.moveToLogin}
       theme={{
         direction: vm.appDirection,
       }}
@@ -144,7 +144,7 @@ import { useVm, useAppCtx } from '../../hooks';
 import ConnectVM from './ConnectVM';
 import { observer } from 'mobx-react-lite';
 import { removeAuthType } from '../../utils/LocalStorage/authType';
-import { ConnectPackage, DialogMode, AnimationType, Languages } from '@tap-payments/react_auth';
+import { ConnectPackage, DialogMode, AnimationType } from '@tap-payments/react_auth';
 
 function Connect(props) {
   if (props.isAuthorized) return <Fragment />;
@@ -152,15 +152,14 @@ function Connect(props) {
   return (
     <ConnectPackage
       onSuccess={vm.onSuccess}
+      pageMode={PageMode.CONNECT}
       initialAuthType={vm.initialAuthType}
       dialogMode={DialogMode.POPUP}
       countryCode={'965'}
       removeAuthType={removeAuthType}
-      // language={Languages.AR}
       animationType={AnimationType.SLIDEDOWN}
       animationDuration={500}
       closeOnOutsideClick={false}
-      // defaultEmailOrMobile={vm.initialUsername}
       defaultEmailOrMobile={null}
       hideInitialLoader={props.hideInitialLoader}
       theme={{
@@ -174,119 +173,353 @@ export default Connect;
 
 ```
 
-## Landing Component
+## Example TapAuthButton
 
-This is the common staring point for login and signup. This will do the confiqure theme object. Than detect page based on PageMode.
+import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/react_auth';
 
 ```
-function LandingPage(props) {
-  const combineTheme = createMuiTheme({
-    direction: props.direction ? props.direction : props.theme.direction,
-    palette: { ...theme.palette, ...props.theme.palette },
-    typography: { ...theme.typography, ...props.theme.typography },
-    overrides: { ...theme.overrides, ...props.theme.overrides },
-  });
+<TapAuthButton
+  dialogMode={DialogMode.POPUP}
+  pageMode={PageMode.CONNECT}
+  buttonText={'Connect'}
+  countryCode={'965'}
+  animationType={AnimationType.SLIDEUP}
+  animationDuration={500}
+  closeOnOutsideClick={true}
+  hideInitialLoader={props.hideInitialLoader}
+  onSuccess={props.handleSuccess}
+  theme={{
+    direction: 'ltr',
+  }}
+/>
+
+```
+
+## Connect Demo Page
+
+```
+import React, { Fragment, useState, Component } from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/index';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  Divider,
+  Button,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Typography,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import ConnectDemoVM from './ConnectDemoVM';
+import { useVm } from './hooks';
+import { observer } from 'mobx-react-lite';
+import { theme } from './theme';
+
+const useStyles = makeStyles((theme1) => ({
+  root: {
+    margin: '40px auto',
+    minWidth: 275,
+    maxWidth: 900,
+    padding: '20px',
+    display: 'flow-root',
+    fontFamily: '"Nunito", sans-serif, "Tajawal"',
+    backgroundColor: '#fafafa',
+  },
+  title: {
+    color: theme.palette.primary.main,
+    fontSize: '2em',
+    fontWeight: '400',
+    paddingBottom: '30px',
+  },
+  headerAction: {
+    paddingTop: '20px',
+  },
+  button: {
+    paddingTop: '10px',
+  },
+  head: {
+    fontSize: '1.25em',
+    width: '50%',
+    color: '#000',
+    fontWeight: '300',
+    paddingTop: '10px',
+  },
+  cardContent: {
+    paddingTop: '30px',
+    paddingBottom: '30px',
+  },
+  formGroup: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  formControl: {
+    width: '50%',
+  },
+  formRoot: {
+    width: 'auto',
+    marginInlineEnd: '16px',
+    marginInlineStart: '0px',
+  },
+  formLabel: {
+    fontSize: '1rem',
+    fontWeight: '400',
+    letterSpacing: '0.00938em',
+  },
+
+  radio: {},
+}));
+
+function ConnectDemo(props) {
+  const vm = useVm(ConnectDemoVM, props);
+
+  const classes = useStyles();
 
   return (
-    <div>
-      <ThemeProvider theme={combineTheme}>
-        {props.pageMode === PageMode.LOGIN ? <Login {...props} /> : <Signup {...props} />}
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Card className={classes.root}>
+        <div className={classes.title}>Connect - JS Library Demo</div>
+        <Divider />
+        <CardContent className={classes.cardContent}>
+          <div className={classes.formGroup}>
+            <span className={classes.head}>Page Mode</span>
+
+            <FormControl component="fieldset" className={classes.formControl}>
+              <RadioGroup
+                className={classes.formGroup}
+                aria-label="pagemode"
+                name="pagemode1"
+                value={vm.pageMode}
+                onChange={vm.onChangePageMode}
+              >
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={PageMode.CONNECT}
+                  control={<Radio color={'primary'} />}
+                  label="Connect"
+                  style={vm.pageMode == PageMode.CONNECT ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={PageMode.LOGIN}
+                  control={<Radio color={'primary'} />}
+                  label="Sign in"
+                  style={vm.pageMode == PageMode.LOGIN ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={PageMode.SIGNUP}
+                  control={<Radio color={'primary'} />}
+                  label="Sign up"
+                  style={vm.pageMode == PageMode.SIGNUP ? { color: '#00aff0' } : {}}
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.formGroup} style={{ paddingTop: '20px' }}>
+            <span className={classes.head}>Live/Sandbox</span>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <RadioGroup
+                className={classes.formGroup}
+                aria-label="live"
+                name="live1"
+                value={vm.isLiveMode}
+                onChange={vm.onChangeLiveMode}
+              >
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={'live'}
+                  control={<Radio color={'primary'} />}
+                  label="Live"
+                  style={vm.isLiveMode == 'live' ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={'sandbox'}
+                  control={<Radio color={'primary'} />}
+                  label="Sandbox"
+                  style={vm.isLiveMode == 'sandbox' ? { color: '#00aff0' } : {}}
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.formGroup} style={{ paddingTop: '20px' }}>
+            <span className={classes.head}>Language</span>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <RadioGroup
+                className={classes.formGroup}
+                aria-label="language"
+                name="language1"
+                value={vm.direction}
+                onChange={vm.onChangeLanguage}
+              >
+                <FormControlLabel
+                  value={'rtl'}
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  control={<Radio color={'primary'} className={classes.radio} />}
+                  label="Ar"
+                  style={vm.direction == 'rtl' ? { color: '#00aff0' } : {}}
+                />
+                <FormControlLabel
+                  value={'ltr'}
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  control={<Radio color={'primary'} className={classes.radio} />}
+                  label="En"
+                  style={vm.direction == 'ltr' ? { color: '#00aff0' } : {}}
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className={classes.formGroup} style={{ paddingTop: '20px' }}>
+            <span className={classes.head}>AnimationType</span>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <RadioGroup
+                className={classes.formGroup}
+                style={{ flexDirection: 'column' }}
+                aria-label="animationtype"
+                name="animationtype1"
+                value={vm.animationType}
+                onChange={vm.onChangeAnimationType}
+              >
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={AnimationType.FADE}
+                  control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.FADE ? { color: '#00aff0' } : {}}
+                  label="Fade"
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={AnimationType.SLIDEUP}
+                  control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDEUP ? { color: '#00aff0' } : {}}
+                  label="Slide up"
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={AnimationType.SLIDEDOWN}
+                  control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDEDOWN ? { color: '#00aff0' } : {}}
+                  label="Slide down"
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={AnimationType.SLIDELEFT}
+                  control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDELEFT ? { color: '#00aff0' } : {}}
+                  label="Slide Left"
+                />
+                <FormControlLabel
+                  classes={{ root: classes.formRoot, label: classes.formLabel }}
+                  value={AnimationType.SLIDERIGHT}
+                  control={<Radio color={'primary'} />}
+                  style={vm.animationType == AnimationType.SLIDERIGHT ? { color: '#00aff0' } : {}}
+                  label="Slide right"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+
+          <div style={{ width: '230px', margin: '0px auto', marginTop: '60px' }}>
+            <TapAuthButton
+              pageMode={vm.pageMode}
+              buttonText={vm.buttonText}
+              dialogMode={DialogMode.POPUP}
+              animationType={vm.animationType}
+              animationDuration={500}
+              closeOnOutsideClick={true}
+              liveMode={vm.isLiveMode == 'sandbox' ? false : true}
+              hideInitialLoader={props.hideInitialLoader}
+              onSuccess={props.handleSuccess}
+              language={vm.language}
+              direction={vm.direction}
+              theme={{
+                direction: vm.direction,
+              }}
+            />
+          </div>
+        </CardContent>
+      </Card>
+    </ThemeProvider>
   );
 }
 
-LandingPage.defaultProps = _defaultProps;
-
-export default LandingPage;
+export default observer(ConnectDemo);
 
 ```
 
-## ConnectPackage Component
+## TapAuthButton Properties
 
-```
-function ConnectPackage(props) {
-  const vm = useVm(ConnectVM, props);
-
-  const combineTheme = createMuiTheme({
-    direction: vm.direction,
-    palette: { ...theme.palette, ...props.theme.palette },
-    typography: { ...theme.typography, ...props.theme.typography },
-    overrides: { ...theme.overrides, ...props.theme.overrides },
-  });
-
-  return (
-    <div>
-      <ThemeProvider theme={combineTheme}>
-        {!vm.signUp ? (
-          <Login
-            {...props}
-            onSuccess={vm.onSuccess}
-            moveToSignup={vm.moveToSignup}
-            initialAuthType={vm.initialAuthType}
-            hideInitialLoader={vm.hideInitialLoader}
-          />
-        ) : (
-          <Signup
-            {...props}
-            initialLeadID={vm.leadId}
-            moveToLogin={vm.moveToLogin}
-            hideInitialLoader={vm.hideInitialLoader}
-          />
-        )}
-      </ThemeProvider>
-    </div>
-  );
-}
-
-ConnectPackage.defaultProps = _defaultProps;
-
-export default observer(ConnectPackage);
-
-
-```
-
-## Landing Properties
-
-| property name        | Type          | Status | Default value               | Description                                                                            |
-| -------------------- | ------------- | ------ | --------------------------- | -------------------------------------------------------------------------------------- |
-| direction            | string        |        | ltr                         | direction of the dialog.                                                               |
-| pageMode             | PageMode      |        | PageMode.LOGIN              | dialog page mode.                                                                      |
-| hideInitialLoader    | bool          |        | false                       | to open dailog drirectly instead of show loader.                                       |
-| dialogMode           | DialogMode    |        | DialogMode.FULLPAGE         | how to show the dialog popup or fullpage.                                              |
-| animationType        | AnimationType |        | AnimationType.SLIDEUP       | to change the animation behaviour .                                                    |
-| animationDuration    | int           |        | 500                         | animation duaration.                                                                   |
-| closeOnOutsideClick  | bool          |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
-| theme                | object        |        | `theme: {direction: 'ltr'}` | theme of the package.                                                                  |
-| openPopup            | bool          | true   |                             | show or hide the popup .                                                               |
-| onSuccess            | Function      |        |                             | on successfull login will call that function (only for login).                         |
-| initialAuthType      | any           |        |                             | to know the initial auth type for login.                                               |
-| countryCode          | string        |        | '965'                       | initial country code.                                                                  |
-| defaultEmailOrMobile | string        |        |                             | to know the initial username.                                                          |
-| moveToSignup         | Function      |        |                             | to move to signup from login.                                                          |
-| initialLeadID        | string        |        |                             | to know the initial lead id.                                                           |
-| moveToLogin          | Function      |        |                             | to move to login from signup.                                                          |
-| showSignupSection    | bool          |        | true                        |                                                                                        | to show or hide the signup section. |
+| property name                       | Type          | Status | Default value               | Description                                                                            |
+| ----------------------------------- | ------------- | ------ | --------------------------- | -------------------------------------------------------------------------------------- |
+| buttonText                          | string        |        | login                       | button text.                                                                           |
+| pageMode                            | PageMode      |        | PageMode.LOGIN              | button text.                                                                           |
+| language                            | string        |        | en                          | language ar or en.                                                                     |
+| variant                             | string        |        | contained                   | button variant.                                                                        |
+| showLogo                            | bool          |        | true                        | to show the button logo.                                                               |
+| liveMode                            | bool          |        | false                       | it will decide live/sandbox mode.                                                      |
+| signinDirectory                     | string        |        | login                       | to set directory for login incase of show connect through url.                         |
+| signupDirectory                     | string        |        | signup                      | to set directory for signup incase of show connect through url.                        |
+| forgotDirectory                     | string        |        | forgot                      | to set directory for forgot incase of show connect through url.                        |
+| footer                              | string        |        | signup_powered_by           | footer text by default its key it will take the text through key from firebase.        |
+| companyName                         | string        |        | signup_tap_payments         | company name.                                                                          |
+| showHeaderLogo                      | string        |        | true                        | to show/hide header logo.                                                              |
+| direction                           | string        |        | ltr                         | direction of the dialog.                                                               |
+| pageMode                            | PageMode      |        | PageMode.LOGIN              | dialog page mode.                                                                      |
+| hideInitialLoader                   | bool          |        | false                       | to open dailog drirectly instead of show loader.                                       |
+| dialogMode                          | DialogMode    |        | DialogMode.FULLPAGE         | how to show the dialog popup or fullpage.                                              |
+| animationType                       | AnimationType |        | AnimationType.SLIDEUP       | to change the animation behaviour .                                                    |
+| animationDuration                   | int           |        | 500                         | animation duaration.                                                                   |
+| closeOnOutsideClick                 | bool          |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
+| theme                               | object        |        | `theme: {direction: 'ltr'}` | theme of the package.                                                                  |
+| openPopup                           | bool          |        | true                        | show or hide the popup .                                                               |
+| onSuccess                           | Function      |        |                             | on successfull case will trigger that function.                                        |
+| onFailure                           | Function      |        |                             | on any failure case will trigger that function.                                        |
+| onCancel                            | Function      |        |                             | if we cancel the process will trigger this function.                                   |
+| onUpdate                            | Function      |        |                             | every on update will trigger this function.                                            |
+| moveToLogin                         | Function      |        |                             | to move to login will trigger it.                                                      |
+| moveToSignup                        | Function      |        |                             | to move to signup will trigger it.                                                     |
+| initialAuthType                     | any           |        |                             | to know the initial auth type.                                                         |
+| removeAuthType                      | Function      |        |                             | to remove authtype.                                                                    |
+| countryCode                         | string        |        | '965'                       | initial country code.                                                                  |
+| defaultEmailOrMobile                | string        |        |                             | to know the initial username.                                                          |
+| to show or hide the signup section. |
 
 ## ConnectPackage Properties
 
-| property name        | Type          | Status | Default value               | Description                                                                            |
-| -------------------- | ------------- | ------ | --------------------------- | -------------------------------------------------------------------------------------- |
-| direction            | string        |        | ltr                         | direction of the dialog.                                                               |
-| pageMode             | PageMode      |        | PageMode.LOGIN              | dialog page mode.                                                                      |
-| hideInitialLoader    | bool          |        | false                       | to open dailog drirectly instead of show loader.                                       |
-| dialogMode           | DialogMode    |        | DialogMode.FULLPAGE         | how to show the dialog popup or fullpage.                                              |
-| animationType        | AnimationType |        | AnimationType.SLIDEUP       | to change the animation behaviour .                                                    |
-| animationDuration    | int           |        | 500                         | animation duaration.                                                                   |
-| closeOnOutsideClick  | bool          |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
-| theme                | object        |        | `theme: {direction: 'ltr'}` | theme of the package.                                                                  |
-| openPopup            | bool          | true   |                             | show or hide the popup .                                                               |
-| onSuccess            | Function      |        |                             | on successfull login will call that function.                                          |
-| initialAuthType      | any           |        |                             | to know the initial auth type.                                                         |
-| removeAuthType       | Function      |        |                             | to remove authtype.                                                                    |
-| countryCode          | string        |        | '965'                       | initial country code.                                                                  |
-| defaultEmailOrMobile | string        |        |                             | to know the initial username.                                                          |
-| showSignupSection    | bool          |        | true                        |                                                                                        | to show or hide the signup section. |
+| property name                       | Type          | Status | Default value               | Description                                                                            |
+| ----------------------------------- | ------------- | ------ | --------------------------- | -------------------------------------------------------------------------------------- |
+| liveMode                            | bool          |        | false                       | it will decide live/sandbox mode.                                                      |
+| signinDirectory                     | string        |        | login                       | to set directory for login incase of show connect through url.                         |
+| signupDirectory                     | string        |        | signup                      | to set directory for signup incase of show connect through url.                        |
+| forgotDirectory                     | string        |        | forgot                      | to set directory for forgot incase of show connect through url.                        |
+| footer                              | string        |        | signup_powered_by           | footer text by default its key it will take the text through key from firebase.        |
+| companyName                         | string        |        | signup_tap_payments         | company name.                                                                          |
+| showHeaderLogo                      | string        |        | true                        | to show/hide header logo.                                                              |
+| direction                           | string        |        | ltr                         | direction of the dialog.                                                               |
+| pageMode                            | PageMode      |        | PageMode.LOGIN              | dialog page mode.                                                                      |
+| hideInitialLoader                   | bool          |        | false                       | to open dailog drirectly instead of show loader.                                       |
+| dialogMode                          | DialogMode    |        | DialogMode.FULLPAGE         | how to show the dialog popup or fullpage.                                              |
+| animationType                       | AnimationType |        | AnimationType.SLIDEUP       | to change the animation behaviour .                                                    |
+| animationDuration                   | int           |        | 500                         | animation duaration.                                                                   |
+| closeOnOutsideClick                 | bool          |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
+| theme                               | object        |        | `theme: {direction: 'ltr'}` | theme of the package.                                                                  |
+| openPopup                           | bool          |        | true                        | show or hide the popup .                                                               |
+| onSuccess                           | Function      |        |                             | on successfull case will trigger that function.                                        |
+| onFailure                           | Function      |        |                             | on any failure case will trigger that function.                                        |
+| onCancel                            | Function      |        |                             | if we cancel the process will trigger this function.                                   |
+| onUpdate                            | Function      |        |                             | every on update will trigger this function.                                            |
+| moveToLogin                         | Function      |        |                             | to move to login will trigger it.                                                      |
+| moveToSignup                        | Function      |        |                             | to move to signup will trigger it.                                                     |
+| initialAuthType                     | any           |        |                             | to know the initial auth type.                                                         |
+| removeAuthType                      | Function      |        |                             | to remove authtype.                                                                    |
+| countryCode                         | string        |        | '965'                       | initial country code.                                                                  |
+| defaultEmailOrMobile                | string        |        |                             | to know the initial username.                                                          |
+| to show or hide the signup section. |
 
 ## Theme
 
@@ -296,9 +529,11 @@ export default observer(ConnectPackage);
 export const palette = {
   background: {
     main: 'rgba(60,95,204,0.04)',
+    secondary: '#16a0f4',
   },
   primary: {
     main: '#2cbcff',
+    secondary: '#ebebed',
   },
   error: {
     main: '#ff6f71',
@@ -314,6 +549,7 @@ export const palette = {
     voiletHover: '#5757c5',
   },
 };
+
 ```
 
 ### Typography
@@ -452,6 +688,12 @@ export const theme = createMuiTheme({
         maxWidth: '100%',
       },
     },
+    MuiMenu: {
+      root: {},
+      paper: {
+        maxHeight: 'calc(100% - 30px)',
+      },
+    },
     MuiPaper: {
       root: {
         backgroundColor: 'white',
@@ -585,7 +827,7 @@ export const theme = createMuiTheme({
       root: {},
       paper: {
         '& *': {
-          touchAction: 'auto !important',
+          touchAction: 'auto !important', // used to override material adding touch-action to none on the popover
         },
         maxWidth: 'fit-content',
         position: 'relative',
