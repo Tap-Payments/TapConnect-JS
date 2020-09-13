@@ -1,5 +1,4 @@
 import React, { Fragment, useState, Component } from 'react';
-import TapLogo from './assets/logo.svg';
 import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/index';
 
 export default function ButtonDemo(props) {
@@ -82,7 +81,7 @@ export default function ButtonDemo(props) {
             buttonText={'ربط'}
             countryCode={'965'}
             variant={'outlined'}
-            logo={TapLogo}
+            logo={'https://tap-connecet.b-cdn.net/imgs/whiteLogo.svg'}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
             closeOnOutsideClick={true}

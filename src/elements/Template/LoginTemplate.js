@@ -8,7 +8,7 @@ import TapCard from '../Atoms/TapCard';
 import PasswordOTPTemplate from '../Molecules/PasswordOTPTemplate';
 import EmailTemplate from '../Atoms/EmailTemplate';
 import CollapseFadeTemplate from './CollapseFadeTemplate';
-import TapLogo from '../../assets/logo.svg';
+import { LOGO as TapLogo } from '../Constants/constants';
 
 const useStyles = makeStyles((theme) => ({
   title: {

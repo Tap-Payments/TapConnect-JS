@@ -6,6 +6,21 @@ const AnimationType = {
   SLIDERIGHT: 'right',
 };
 
+const LOGO_URL = 'https://tap-connecet.b-cdn.net/imgs/';
+
+const ARROW = LOGO_URL + 'arrow.svg';
+const ARROW_REVERSE = LOGO_URL + 'arrowReverse.svg';
+const CHAR = LOGO_URL + 'char.svg';
+const CHAR0 = LOGO_URL + 'char0.svg';
+const DIGIT = LOGO_URL + 'digit.svg';
+const DIGIT0 = LOGO_URL + 'digit0.svg';
+const LOGO = LOGO_URL + 'logo.svg';
+const SIX = LOGO_URL + 'six.svg';
+const SIX0 = LOGO_URL + 'six0.svg';
+const SYMBOL = LOGO_URL + 'symbol.svg';
+const SYMBOL0 = LOGO_URL + 'symbol0.svg';
+const WHITELOGO = LOGO_URL + 'whiteLogo.svg';
+
 const TextFieldType = {
   EMAIL: 'email',
   PASSWORD: 'password',
@@ -54,4 +69,17 @@ module.exports = {
   LOGIN_STEPS,
   PageMode,
   SIGNUP_STEPS_ARRAY,
+
+  ARROW,
+  ARROW_REVERSE,
+  CHAR,
+  CHAR0,
+  DIGIT,
+  DIGIT0,
+  LOGO,
+  SIX,
+  SIX0,
+  SYMBOL,
+  SYMBOL0,
+  WHITELOGO,
 };

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './naviStyles.css';
 
-import arrow from './arrow.svg';
-import arrowReverse from './arrowReverse.svg';
+import { ARROW, ARROW_REVERSE } from '../../Constants/constants';
 class NavigationButtons extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +42,7 @@ class NavigationButtons extends Component {
         >
           <img
             className={typeSwitch ? 'TAP-modal-navi-img-next' : 'TAP-modal-navi-img-back'}
-            src={typeSwitch ? arrowReverse : arrow}
+            src={typeSwitch ? ARROW_REVERSE : ARROW}
           ></img>
         </div>
         <button

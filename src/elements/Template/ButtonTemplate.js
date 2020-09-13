@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import tapLogo from '../../assets/whiteLogo.svg';
+import { WHITELOGO as tapLogo } from '../Constants/constants';
 
 const useStyles = makeStyles((theme) => ({
   signUpButton: {

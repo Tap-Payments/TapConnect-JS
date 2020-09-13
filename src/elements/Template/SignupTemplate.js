@@ -12,7 +12,7 @@ import CreatePasswordTemplate from '../Molecules/CreatePasswordTemplate/CreatePa
 import EmailTemplate from '../Atoms/EmailTemplate';
 import PasswordOTPWrapper from '../Molecules/PasswordOTPWrapper';
 import CollapseFadeTemplate from './CollapseFadeTemplate';
-import TapLogo from '../../assets/logo.svg';
+import { LOGO as TapLogo } from '../Constants/constants';
 
 import ReactCodeInput from '../ReactCodeInput/ReactCodeInput.js';
 

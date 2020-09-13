@@ -10,7 +10,7 @@ import EmailTemplate from '../Atoms/EmailTemplate';
 import OTPField from '../Atoms/OTPField';
 import PasswordOTPWrapper from '../Molecules/PasswordOTPWrapper';
 import CollapseFadeTemplate from './CollapseFadeTemplate';
-import TapLogo from '../../assets/logo.svg';
+import { LOGO as TapLogo } from '../Constants/constants';
 
 const useStyles = makeStyles((theme) => ({
   title: {

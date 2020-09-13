@@ -5,15 +5,15 @@ import { useTranslation } from 'react-i18next';
 
 import React from 'react';
 
-import CharIcon from './assets/images/char.svg';
-import DigitIcon from './assets/images/digit.svg';
-import SixIcon from './assets/images/six.svg';
-import SymbolIcon from './assets/images/symbol.svg';
+import { CHAR as CharIcon } from '../../Constants/constants';
+import { DIGIT as DigitIcon } from '../../Constants/constants';
+import { SIX as SixIcon } from '../../Constants/constants';
+import { SYMBOL as SymbolIcon } from '../../Constants/constants';
 
-import CharIconFilled from './assets/images/char0.svg';
-import DigitIconFilled from './assets/images/digit0.svg';
-import SixIconFilled from './assets/images/six0.svg';
-import SymbolIconFilled from './assets/images/symbol0.svg';
+import { CHAR0 as CharIconFilled } from '../../Constants/constants';
+import { DIGIT0 as DigitIconFilled } from '../../Constants/constants';
+import { SIX0 as SixIconFilled } from '../../Constants/constants';
+import { SYMBOL as SymbolIconFilled } from '../../Constants/constants';
 
 export default function PasswordWatcher(props) {
   const buttonWidth = props.buttonWidth || '23px';
