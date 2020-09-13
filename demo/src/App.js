@@ -14,9 +14,11 @@ class App extends Component {
     this.state = { message: null };
     this.handleSuccess = this.handleSuccess.bind(this);
   }
-  handleSuccess(response) {
+  handleSuccess(response, pageMode) {
     console.log('response');
     console.log(response);
+    console.log(response.browserID);
+    console.log(pageMode);
     this.setState({ message: JSON.stringify(response) });
   }
 

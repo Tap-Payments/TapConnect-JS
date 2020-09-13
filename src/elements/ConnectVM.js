@@ -223,9 +223,10 @@ class ConnectVM {
       ConnectPackage.close();
       if (this.props.onSuccess) {
         if (this.props.dialogMode == DialogMode.POPUP)
-          this.onAnimationExited = () => this.props.onSuccess(response, browserID, this.activePageMode);
+          this.onAnimationExited = () =>
+            this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
       } else {
-        this.props.onSuccess(response, browserID, this.activePageMode);
+        this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
       }
     }
   }
@@ -234,9 +235,9 @@ class ConnectVM {
     this.moveToLogin();
     if (this.props.onSuccess) {
       if (this.props.dialogMode == DialogMode.POPUP)
-        this.onAnimationExited = () => this.props.onSuccess(response, browserID, this.activePageMode);
+        this.onAnimationExited = () => this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
     } else {
-      this.props.onSuccess(response, browserID, this.activePageMode);
+      this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
     }
   }
 
@@ -247,9 +248,10 @@ class ConnectVM {
       ConnectPackage.close();
       if (this.props.onSuccess) {
         if (this.props.dialogMode == DialogMode.POPUP)
-          this.onAnimationExited = () => this.props.onSuccess(response, browserID, this.activePageMode);
+          this.onAnimationExited = () =>
+            this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
       } else {
-        this.props.onSuccess(response, browserID, this.activePageMode);
+        this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
       }
     }
   }
