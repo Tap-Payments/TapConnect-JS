@@ -27,21 +27,23 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Dialog open={this.state.message != null} onClose={this.handleClose}>
-          <Alert severity="success" style={{ position: 'fixed' }}>
-            <AlertTitle>Success</AlertTitle>
-            This is a success alert —
-            <Tooltip title={this.state.message} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
-              <strong>check the response out!</strong>
-            </Tooltip>
-          </Alert>
-        </Dialog>
-
         {window.location.pathname.search('button') > 0 && (
           <ButtonDemo handleSuccess={this.handleSuccess} {...this.props} />
         )}
         {window.location.pathname.search('button') < 0 && (
           <ConnectDemo handleSuccess={this.handleSuccess} {...this.props} />
+        )}
+
+        {this.state.message != null && (
+          <Dialog open={this.state.message != null} onClose={this.handleClose}>
+            <Alert severity="success" style={{ position: 'fixed' }}>
+              <AlertTitle>Success</AlertTitle>
+              This is a success alert —
+              <Tooltip title={this.state.message} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
+                <strong>check the response out!</strong>
+              </Tooltip>
+            </Alert>
+          </Dialog>
         )}
       </Fragment>
     );
