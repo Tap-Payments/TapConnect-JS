@@ -22,7 +22,6 @@ class ConnectVM {
     this.moveToLogin = this.moveToLogin.bind(this);
     this.moveToForgot = this.moveToForgot.bind(this);
     this.hideLoader = this.hideLoader.bind(this);
-    this.goBack = this.goBack.bind(this);
     this.initializePageMode = this.initializePageMode.bind(this);
     this.updatePageMode = this.updatePageMode.bind(this);
     this.updateAnimationType = this.updateAnimationType.bind(this);
@@ -133,23 +132,6 @@ class ConnectVM {
       '',
       '',
       window.location.pathname.replace(this.props.signinDirectory, this.props.forgotDirectory),
-    );
-    this.hideLoader(true);
-  }
-
-  goBack() {
-    this.hideLoader(false);
-    this.updatePageMode(PageMode.CONNECT, this.isConnect);
-
-    window.history.pushState(
-      '',
-      '',
-      window.location.pathname.replace(
-        window.location.pathname.search(this.props.signinDirectory) > 0
-          ? this.props.signinDirectory
-          : this.props.signupDirectory,
-        this.props.landingDirectory,
-      ),
     );
     this.hideLoader(true);
   }

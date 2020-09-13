@@ -74,7 +74,6 @@ export class ConnectUI extends Component {
               hideInitialLoader={vm.hideInitialLoader}
               dataSource={ConnectDataSource}
               showBackButton={vm.showBackButton}
-              goBack={vm.goBack}
               isConnect={vm.isConnect}
             />
           ) : vm.activePageMode == PageMode.SIGNUP ? (
@@ -87,7 +86,6 @@ export class ConnectUI extends Component {
               showSigninSection={vm.isConnect ? true : false}
               dataSource={ConnectDataSource}
               showBackButton={vm.showBackButton}
-              goBack={vm.goBack}
               isConnect={vm.isConnect}
             />
           ) : (
