@@ -26,4 +26,11 @@ module.exports = {
       document.getElementById(object ? object.containerID || 'TapConnect' : 'TapConnect'),
     );
   },
+  renderButtonElement: function (object) {
+    ReactDOM.render(
+      <TapAuthButton {...object} />,
+      document.getElementById(object ? object.containerID || 'TapConnect' : 'TapConnect'),
+    );
+  },
+
 };

@@ -16,8 +16,4 @@ module.exports = {
   cssFolder: 'css',
   jsFolder: 'js',
 
-  imgsFolder: 'imgs',
-  fontsFolder: 'fonts',
-  cssFolder: 'css',
-  jsFolder: 'js',
 };
