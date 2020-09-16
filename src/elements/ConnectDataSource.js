@@ -158,7 +158,7 @@ class ConnectDataSource {
       { ...this.fingerPrintModel.operatorObject, ...{ connect_pkey: this.publicKey } },
       (data) => {
         console.log('valid');
-        if (data && data.toLowerCase() == 'valid') {
+        if (data == 'valid') {
           this.isOperatorValid = true;
           this.init();
         } else this.onFailure(data);
