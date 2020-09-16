@@ -5,6 +5,7 @@ import * as baseAR from '../locales/ar/base.json';
 import * as baseEN from '../locales/en/base.json';
 import GetSectorsService from './API_Services/AuthServices/GetSectorsService';
 import GetCountriesService from './API_Services/AuthServices/GetCountriesService';
+import OperatorService from './API_Services/AuthServices/OperatorService';
 import { getLocaleFromFirebase } from './API_Services/LocaleService/getLocaleFromFirebase';
 import { filterCountries } from './Utils/filtering';
 import { sortCountries } from './Utils/sorting';
@@ -24,12 +25,15 @@ class ConnectDataSource {
     /// gets updated by  Connect
     this.language = 'en';
     this.isDataReady = false;
-    this.fingerPrintModel = new FingerPrintModel(this.language);
+
+    this.onFingerPrintReady = this.onFingerPrintReady.bind(this);
+    this.fingerPrintModel = new FingerPrintModel(this.language, this.onFingerPrintReady);
     this.sectors = [];
     this.countryInfos = [];
     this.businessCountries = [];
     this.businessTypes = [];
     this.connectLocale = { ar: baseAR, en: baseEN };
+    this.isOperatorValid = false;
 
     this.init = this.init.bind(this);
     this.getLocale = this.getLocale.bind(this);
@@ -38,16 +42,22 @@ class ConnectDataSource {
     this.getCountryInfos = this.getCountryInfos.bind(this);
     this.getBusinessCountryInfos = this.getBusinessCountryInfos.bind(this);
     this.getBusinessTypesInfos = this.getBusinessTypesInfos.bind(this);
+    this.validateOperator = this.validateOperator.bind(this);
+
     this.updatei18 = this.updatei18.bind(this);
     this.updateDSLanguage = this.updateDSLanguage.bind(this);
     this.updateDSDirection = this.updateDSDirection.bind(this);
     this.onFailure = this.onFailure.bind(this);
+
     this.onFinishedFetchingData = () => {
       console.log('%c INFO FETCHED, GOOD TO GO', 'background:yellow; color:black;');
       this.isDataReady = true;
     };
+  }
 
-    this.init();
+  onFingerPrintReady() {
+    axios.defaults.headers['browser_identifier'] = this.fingerPrintModel.FP.browser.browser_id;
+    this.validateOperator();
   }
 
   async init() {
@@ -67,6 +77,7 @@ class ConnectDataSource {
       );
 
       if (
+        this.isOperatorValid &&
         i18n.isInitialized &&
         this.sectors.length &&
         this.countryInfos.length &&
@@ -134,6 +145,16 @@ class ConnectDataSource {
         this.connectLocale = data;
       }
       this.updatei18();
+    });
+  }
+
+  async validateOperator() {
+    await OperatorService.validateOperator(this.fingerPrintModel && this.fingerPrintModel.operatorObject, (data) => {
+      // if (data && data.status && data.status.toLowerCase() == 'valid') {
+      if (data) {
+        this.isOperatorValid = true;
+        this.init();
+      } else this.onFailure(data);
     });
   }
   updatei18() {

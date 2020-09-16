@@ -4,8 +4,9 @@ import IPService from '../../API_Services/AuthServices/IPService';
 // ...
 
 class FingerPrintModel {
-  constructor(language) {
+  constructor(language, onReady) {
     this.FP = FingerPrintPreparationUtil.FPEmptyObject;
+    this.operatorObject = null;
     this.language = language;
     this.updateLanguage = this.updateLanguage.bind(this);
     IPService.getIP((data) => {
@@ -36,6 +37,16 @@ class FingerPrintModel {
 
       /// it will get updated by the Connect model
       this.FP.app.app_locale = this.language;
+
+      this.operatorObject = {
+        type: 'website',
+        app_client_version: 'connect_JS_VERSION',
+        requirer_browser: `${this.FP.browser.name} , ${this.FP.browser.version}`,
+        os: `${this.FP.device.os.name} , ${this.FP.device.os.version}`,
+        locale: this.language,
+      };
+
+      if (onReady) onReady();
     });
   }
 
@@ -43,7 +54,7 @@ class FingerPrintModel {
     if (!language) return;
     this.language = language;
     if (this.FP && this.FP.app && this.FP.app.app_locale) this.FP.app.app_locale = language;
+    if (this.operatorObject && this.operatorObject.locale) this.operatorObject.locale = language;
   }
 }
-
 export default FingerPrintModel;
