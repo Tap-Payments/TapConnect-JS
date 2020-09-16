@@ -34,6 +34,9 @@ class ConnectVM {
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
     this.liveMode = this.props.liveMode;
+    if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = props.publicKey;
+    if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != props.publicKey)
+      ConnectDataSource.updatePublicKey(props.publicKey);
     this.language = this.props.language;
     this.direction = this.props.direction ? this.props.direction : this.props.theme.direction;
     axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;

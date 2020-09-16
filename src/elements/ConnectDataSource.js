@@ -49,6 +49,7 @@ class ConnectDataSource {
     this.updateDSLanguage = this.updateDSLanguage.bind(this);
     this.updateDSDirection = this.updateDSDirection.bind(this);
     this.onFailure = this.onFailure.bind(this);
+    this.updatePublicKey = this.updatePublicKey.bind(this);
 
     this.onFinishedFetchingData = () => {
       console.log('%c INFO FETCHED, GOOD TO GO', 'background:yellow; color:black;');
@@ -68,7 +69,10 @@ class ConnectDataSource {
     await this.getBusinessCountryInfos();
     await this.getBusinessTypesInfos();
   }
-
+  updatePublicKey(publicKey) {
+    this.publicKey = publicKey;
+    this.validateOperator();
+  }
   infoUpdated() {
     console.log('%c INFO UPDATED', 'background:pink; color:black;');
 

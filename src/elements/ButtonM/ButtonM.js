@@ -34,7 +34,9 @@ class TapAuthButton extends Component {
       ...this.props,
     });
   }
-
+  static init(params) {
+    ConnectPackage.init(params);
+  }
   static open(params) {
     ConnectPackage.open(params);
   }

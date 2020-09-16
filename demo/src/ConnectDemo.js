@@ -13,7 +13,12 @@ import {
   FormControlLabel,
   Radio,
   Typography,
+  Input,
+  IconButton,
+  InputAdornment,
 } from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check';
+
 import { makeStyles } from '@material-ui/core/styles';
 import ConnectDemoVM from './ConnectDemoVM';
 import { useVm } from './hooks';
@@ -118,6 +123,27 @@ function ConnectDemo(props) {
                   style={vm.pageMode == PageMode.SIGNUP ? { color: '#00aff0' } : {}}
                 />
               </RadioGroup>
+            </FormControl>
+          </div>
+
+          <div className={classes.formGroup}>
+            <span className={classes.head}>Public Key</span>
+
+            <FormControl component="fieldset" className={classes.formControl}>
+              <Input
+                style={{ fontSize: '14px' }}
+                value={vm.publicKeyFieldValue}
+                onChange={vm.onPublicKeyFieldChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    {vm.publicKeyFieldValue != vm.publicKey && (
+                      <IconButton onClick={vm.onPublicKeyClick}>
+                        <CheckIcon />
+                      </IconButton>
+                    )}
+                  </InputAdornment>
+                }
+              ></Input>
             </FormControl>
           </div>
           <div className={classes.formGroup} style={{ paddingTop: '20px' }}>

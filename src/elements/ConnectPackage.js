@@ -19,7 +19,6 @@ class ConnectPackage extends Component {
   constructor(props) {
     super(props);
 
-    ConnectDataSource.publicKey = props.publicKey;
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute('tap-connect-unique')) {
       this.isDuplicateInstance = true;

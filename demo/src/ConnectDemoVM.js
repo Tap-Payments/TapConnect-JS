@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 import { action, observable, decorate, computed, toJS } from 'mobx';
-import { AnimationType, PageMode } from '../../src/index';
+import { TapAuthButton, AnimationType, PageMode } from '../../src/index';
 const ButtonText = {
   connect: {
     ar: 'ربط',
@@ -25,14 +25,24 @@ class ConnectDemoVM {
     this.pageMode = PageMode.CONNECT;
     this.animationType = AnimationType.SLIDEUP;
     this.buttonText = 'Connect';
-
+    this.publicKey = 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon';
+    this.publicKeyFieldValue = this.publicKey;
     this.onClickAR = this.onClickAR.bind(this);
     this.onClickEN = this.onClickEN.bind(this);
-
     this.onChangePageMode = this.onChangePageMode.bind(this);
     this.onChangeLiveMode = this.onChangeLiveMode.bind(this);
     this.onChangeLanguage = this.onChangeLanguage.bind(this);
+    this.onPublicKeyClick = this.onPublicKeyClick.bind(this);
+    this.onPublicKeyFieldChange = this.onPublicKeyFieldChange.bind(this);
     this.onChangeAnimationType = this.onChangeAnimationType.bind(this);
+  }
+
+  onPublicKeyClick() {
+    this.publicKey = this.publicKeyFieldValue;
+  }
+  onPublicKeyFieldChange(e) {
+    console.log(e);
+    this.publicKeyFieldValue = e.target.value;
   }
 
   onClickAR() {
@@ -68,6 +78,8 @@ decorate(ConnectDemoVM, {
   isLiveMode: observable,
   buttonText: observable,
   animationType: observable,
+  publicKeyFieldValue: observable,
+  publicKey: observable,
 });
 
 export default ConnectDemoVM;
