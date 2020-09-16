@@ -274,7 +274,7 @@ class LoginVM {
         });
         break;
       case LOGIN_STEPS.VERIFY_OTP:
-        let otpBody = { data: this.getOTP(), ...this.authPrevResponse };
+        let otpBody = { data: this.getOTP(), ...this.authPrevResponse, scopes: this.props.scopes };
         VerifyAuthService.verifyAuth(otpBody, (data) => {
           if (data != null)
             if (data != null && data.errors != null) this.setError(data.errors[0].description);
@@ -287,7 +287,12 @@ class LoginVM {
         });
         break;
       case LOGIN_STEPS.VERIFY_PASS:
-        let passBody = { data: this.getPassword(), remember_me: this.rememberMe, ...this.authPrevResponse };
+        let passBody = {
+          data: this.getPassword(),
+          remember_me: this.rememberMe,
+          ...this.authPrevResponse,
+          scopes: this.props.scopes,
+        };
 
         console.log('passBody');
         console.log(passBody);

@@ -10,7 +10,7 @@ import { SIGNUP_STEPS_ARRAY, TextFieldType } from '../Constants/constants';
 import CreateAuthService from '../API_Services/AuthServices/CreateAuthService';
 import VerifyAuthService from '../API_Services/AuthServices/VerifyAuthService';
 import ForgotPasswordService from '../API_Services/ForgotPasswordServices/ForgotPasswordService';
-import { preparePasswordRequest, prepareCreateAuthRequest, prepareVerifyAuthRequest } from '../Utils/Requests';
+import { prepareCreateAuthRequest } from '../Utils/Requests';
 class ForgotPasswordVM {
   constructor(props) {
     this.FP = props.dataSource && props.dataSource.fingerPrintModel && props.dataSource.fingerPrintModel.FP;

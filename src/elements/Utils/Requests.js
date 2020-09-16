@@ -38,10 +38,11 @@ export function prepareUserNameRequest(firstName, lastName, socialMediaMeta) {
     meta: socialMediaMeta,
   };
 }
-export function preparePasswordRequest(password, signupToken) {
+export function preparePasswordRequest(password, signupToken, scopes) {
   return {
     signup_token: signupToken,
     password: password,
+    scopes: scopes,
   };
 }
 export function prepareCreateAccountRequest(username, countryCode, mobile) {
