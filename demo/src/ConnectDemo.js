@@ -252,7 +252,7 @@ function ConnectDemo(props) {
 
           <div style={{ width: '230px', margin: '0px auto', marginTop: '60px' }}>
             <TapAuthButton
-              publicKey="pk_test_OxCj0DhX9EyTLpGqsu2wHMon"
+              publicKey={vm.publicKey}
               pageMode={vm.pageMode}
               buttonText={vm.buttonText}
               dialogMode={DialogMode.POPUP}

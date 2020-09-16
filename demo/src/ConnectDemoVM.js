@@ -41,7 +41,6 @@ class ConnectDemoVM {
     this.publicKey = this.publicKeyFieldValue;
   }
   onPublicKeyFieldChange(e) {
-    console.log(e);
     this.publicKeyFieldValue = e.target.value;
   }
 
