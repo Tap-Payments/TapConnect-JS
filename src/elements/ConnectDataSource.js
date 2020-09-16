@@ -59,7 +59,7 @@ class ConnectDataSource {
 
   onFingerPrintReady() {
     axios.defaults.headers['browser_identifier'] = this.fingerPrintModel.FP.browser.browser_id;
-    this.validateOperator();
+    this.validateOperator(this.init);
   }
 
   async init() {
@@ -153,7 +153,7 @@ class ConnectDataSource {
     });
   }
 
-  async validateOperator() {
+  async validateOperator(cb) {
     if (!this.fingerPrintModel) {
       this.onFailure(data);
       return;
@@ -164,7 +164,7 @@ class ConnectDataSource {
         console.log('valid');
         if (data == 'valid') {
           this.isOperatorValid = true;
-          this.init();
+          if (cb) cb();
         } else this.onFailure(data);
       },
     );
