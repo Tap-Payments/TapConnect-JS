@@ -157,7 +157,8 @@ class ConnectDataSource {
     await OperatorService.validateOperator(
       { ...this.fingerPrintModel.operatorObject, ...{ connect_pkey: this.publicKey } },
       (data) => {
-        if (data && data.status && data.status.toLowerCase() == 'valid') {
+        console.log('valid');
+        if (data && data.toLowerCase() == 'valid') {
           this.isOperatorValid = true;
           this.init();
         } else this.onFailure(data);
