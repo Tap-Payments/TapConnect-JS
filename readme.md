@@ -224,6 +224,9 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/react_au
     <script>
       console.log(Connect);
       Connect.renderConnectElement({
+        publicKey: 'public key',
+        scopes: ['API_ACCESS_KEY'],
+        liveMode: false,
         containerID: 'TapConnect',
         dialogMode: Connect.DialogMode.POPUP,
         animationType: Connect.AnimationType.SLIDEDOWN,
