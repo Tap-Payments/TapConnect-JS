@@ -2,7 +2,7 @@ import { DialogMode, TextFieldType, AnimationType, PageMode } from './Constants/
 
 export default {
   publicKey: 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon',
-  scopes: ['BASIC_PROFILE', 'FULL_PROFILE', 'API_ACCESS_KEY'],
+  scopes: ['API_ACCESS_KEY'],
   liveMode: false,
   signinDirectory: 'login',
   signupDirectory: 'signup',
