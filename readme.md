@@ -9,6 +9,7 @@
 - [Example Signup](#example-signup)
 - [Example Connect](#example-connect)
 - [Example TapAuthButton](#example-tapauthbutton)
+- [JS Demo Page](#js-demo-page)
 - [Connect Demo Page](#connect-demo-page)
 - [TapAuthButton Properties](#tapauthbutton-properties)
 - [ConnectPackage Properties](#connectPackage-properties)
@@ -36,6 +37,14 @@ Your site is published at https://tap-payments.github.io/TapConnect-JS/
 
 ```
 npm i @tap-payments/react_auth
+```
+
+For js library
+
+```
+<link rel="stylesheet" href="https://tap-connecet.b-cdn.net/build/css/Connect.css" />
+<script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js.map"></script>
+<script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js"></script>
 ```
 
 ## Usage
@@ -192,6 +201,44 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/react_au
     direction: 'ltr',
   }}
 />
+
+```
+
+## JS Demo Page
+
+```
+<html>
+  <head>
+    <title>Tap Connect Demo JS Element</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="TapConnect"></div>
+    <link rel="stylesheet" href="https://tap-connecet.b-cdn.net/build/css/Connect.css" />
+    <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js.map"></script>
+    <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js"></script>
+    <script>
+      console.log(Connect);
+      Connect.renderConnectElement({
+        containerID: 'TapConnect',
+        dialogMode: Connect.DialogMode.POPUP,
+        animationType: Connect.AnimationType.SLIDEDOWN,
+        animationDuration: 500,
+        closeOnOutsideClick: false,
+        theme: {
+          direction: 'ltr',
+        },
+        onAuthSucceed: (data) => {
+          alert(JSON.stringify(data));
+        },
+      });
+    </script>
+  </body>
+</html>
 
 ```
 
