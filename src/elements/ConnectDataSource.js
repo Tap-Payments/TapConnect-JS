@@ -80,7 +80,7 @@ class ConnectDataSource {
       if (
         this.isOperatorValid &&
         i18n.isInitialized &&
-        this.sectors.length &&
+        // this.sectors.length &&
         this.countryInfos.length &&
         this.businessCountries.length &&
         this.businessTypes.length
@@ -150,8 +150,12 @@ class ConnectDataSource {
   }
 
   async validateOperator() {
+    if (!this.fingerPrintModel) {
+      this.onFailure(data);
+      return;
+    }
     await OperatorService.validateOperator(
-      { data: this.fingerPrintModel && this.fingerPrintModel.operatorObject, connect_pkey: this.publicKey },
+      { ...this.fingerPrintModel.operatorObject, ...{ connect_pkey: this.publicKey } },
       (data) => {
         // if (data && data.status && data.status.toLowerCase() == 'valid') {
         if (data) {
