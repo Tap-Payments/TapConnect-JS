@@ -126,7 +126,7 @@ function ConnectDemo(props) {
             </FormControl>
           </div>
 
-          <div className={classes.formGroup}>
+          <div className={classes.formGroup} style={{ paddingTop: '20px' }}>
             <span className={classes.head}>Public Key</span>
 
             <FormControl component="fieldset" className={classes.formControl}>
