@@ -25,6 +25,7 @@ class ConnectDataSource {
     /// gets updated by  Connect
     this.language = 'en';
     this.isDataReady = false;
+    this.publicKey = null;
 
     this.onFingerPrintReady = this.onFingerPrintReady.bind(this);
     this.fingerPrintModel = new FingerPrintModel(this.language, this.onFingerPrintReady);
@@ -149,13 +150,16 @@ class ConnectDataSource {
   }
 
   async validateOperator() {
-    await OperatorService.validateOperator(this.fingerPrintModel && this.fingerPrintModel.operatorObject, (data) => {
-      // if (data && data.status && data.status.toLowerCase() == 'valid') {
-      if (data) {
-        this.isOperatorValid = true;
-        this.init();
-      } else this.onFailure(data);
-    });
+    await OperatorService.validateOperator(
+      { data: this.fingerPrintModel && this.fingerPrintModel.operatorObject, connect_pkey: this.publicKey },
+      (data) => {
+        // if (data && data.status && data.status.toLowerCase() == 'valid') {
+        if (data) {
+          this.isOperatorValid = true;
+          this.init();
+        } else this.onFailure(data);
+      },
+    );
   }
   updatei18() {
     ///// if host has i18n instance, override the field needed
