@@ -8,6 +8,7 @@ const envs = {
 
 const env = envs[process.env.NODE_ENV || 'development'];
 
+process.env.BABEL_ENV = process.env.NODE_ENV || 'development';
 /* eslint-disable global-require,import/no-dynamic-require */
 const envConfig = require(`./webpack/webpack.${env}.js`);
 
