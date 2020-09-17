@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontSize: 13,
     padding: 10,
+    fontWeight: 300,
     borderRadius: 3,
   },
 }));
