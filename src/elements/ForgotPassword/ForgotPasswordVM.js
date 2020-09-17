@@ -26,6 +26,7 @@ class ForgotPasswordVM {
 
     this.forgotPasswordService = new ForgotPasswordService(this);
 
+    this.forgotPasswordService.browserID = 'TEMP_BROWSER_ID';
     this.forgotPasswordService.leadID = props.initialLeadID;
 
     this.openForgotPasswordPopup = props.openPopup || true;
