@@ -43,9 +43,7 @@ class TapAuthButton extends Component {
   static close(params) {
     ConnectPackage.close(params);
   }
-  static updateMode(params) {
-    ConnectPackage.updateMode(params);
-  }
+
   render() {
     return (
       <ThemeProvider theme={this.combineTheme}>

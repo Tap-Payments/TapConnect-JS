@@ -239,13 +239,9 @@ We have another option user can control open/close popup outside also,
 
 import { ConnectPackage } from '@tap-payments/react_auth';
 
-To initiate popup => ConnectPackage.init(params);
-
-To update the popup mode => ConnectPackage.updateMode(params);
-
 To open popup => ConnectPackage.open(params);
 
-To close popup => ConnectPackage.close(params);
+To close popup => ConnectPackage.close();
 
 import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/react_auth';
 
