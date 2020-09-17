@@ -189,7 +189,11 @@ TAP-modal-back.TAP-modal-navi-placeholder {
   right: 18px;
 }
 
-@media (max-width: 440px) {
+@media (max-width: 400px) {
+  /*    hide everything on mobile [temp] */
+  .TAP-modal-navi-placeholder {
+    display: none;
+  }
   #TAP-modal-back-button-background {
     width: 40px;
     left: 10px;
