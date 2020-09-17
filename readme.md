@@ -69,15 +69,11 @@ Languages used to the change the direction of the dialog (EN, AR).
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
     <div id="TapConnect"></div>
     <link rel="stylesheet" href="https://tap-connecet.b-cdn.net/build/css/Connect.css" />
     <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js.map"></script>
     <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js"></script>
     <script>
-      console.log(Connect);
       Connect.renderConnectElement({
         publicKey: 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon',
         scopes: ['API_ACCESS_KEY'],
@@ -236,6 +232,20 @@ import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/in
 ```
 
 ## Example TapAuthButton
+
+TapAuthButton will automatically control open and close functionality inside.
+
+We have another option user can control open/close popup outside also,
+
+import { ConnectPackage } from '@tap-payments/react_auth';
+
+To initiate popup => ConnectPackage.init(params);
+
+To update the popup mode => ConnectPackage.updateMode(params);
+
+To open popup => ConnectPackage.open(params);
+
+To close popup => ConnectPackage.close(params);
 
 import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/react_auth';
 
