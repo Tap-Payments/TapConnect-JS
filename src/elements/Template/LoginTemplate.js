@@ -3,7 +3,7 @@ import { Button, Link, Collapse, Typography, makeStyles, Divider } from '@materi
 import TapLoader from '../Login_Loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { TextFieldType } from '../Constants/constants';
-import { Alert } from '@material-ui/lab';
+import TapAlert from '../Atoms/TapAlert';
 import TapCard from '../Atoms/TapCard';
 import PasswordOTPTemplate from '../Molecules/PasswordOTPTemplate';
 import EmailTemplate from '../Atoms/EmailTemplate';
@@ -117,9 +117,7 @@ export default function LoginTemplate(props) {
           <CollapseFadeTemplate
             in={props.errorInfo != null && props.errorInfo.error != null && props.errorInfo.error != '' ? true : false}
           >
-            <Alert icon={false} variant="filled" severity="error">
-              {t(props.errorInfo != null && props.errorInfo.error)}
-            </Alert>
+            <TapAlert>{t(props.errorInfo != null && props.errorInfo.error)}</TapAlert>
           </CollapseFadeTemplate>
 
           <CollapseFadeTemplate

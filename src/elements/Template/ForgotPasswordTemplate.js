@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Button, Typography, makeStyles } from '@material-ui/core';
 import TapLoader from '../Login_Loader/Loader';
 import { useTranslation, composeInitialProps } from 'react-i18next';
-import { Alert } from '@material-ui/lab';
+import { TapAlert } from '../Atoms/TapAlert';
 import TapCard from '../Atoms/TapCard';
 
 import CreatePasswordWrapper from '../Molecules/CreatePasswordWrapper';
@@ -99,9 +99,7 @@ export default function ForgotPasswordTemplate(props) {
           <CollapseFadeTemplate
             in={props.errorInfo != null && props.errorInfo.error != null && props.errorInfo.error != '' ? true : false}
           >
-            <Alert icon={false} variant="filled" severity="error">
-              {t(props.errorInfo != null && props.errorInfo.error)}
-            </Alert>
+            <TapAlert>{t(props.errorInfo != null && props.errorInfo.error)}</TapAlert>
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page === 0 && !props.showLoader}>
             <EmailTemplate
