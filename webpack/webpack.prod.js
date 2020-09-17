@@ -3,6 +3,7 @@ const commonPaths = require('./paths');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: 'production',
@@ -30,6 +31,8 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
+
     new CleanWebpackPlugin([commonPaths.outputPath.split('/').pop()], {
       root: commonPaths.root,
     }),
