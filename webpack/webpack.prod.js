@@ -1,9 +1,12 @@
+var webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const commonPaths = require('./paths');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserPlugin = require('terser-webpack-plugin-legacy');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -30,8 +33,28 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        cache: true,
+        parallel: 4,
+        sourceMap: true,
+      }),
+      new OptimizeCssAssetsPlugin(),
+    ],
+    usedExports: true,
+    splitChunks: {
+      minChunks: 1,
+      chunks: 'async',
+    },
+  },
   plugins: [
     new BundleAnalyzerPlugin(),
+
+    new webpack.optimize.ModuleConcatenationPlugin(),
 
     new CleanWebpackPlugin([commonPaths.outputPath.split('/').pop()], {
       root: commonPaths.root,
