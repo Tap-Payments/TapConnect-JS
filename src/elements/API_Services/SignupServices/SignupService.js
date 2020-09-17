@@ -13,7 +13,6 @@ class SignupService {
   getHeaders() {
     return {
       headers: {
-        browser_identifier: this.browserID,
         device_identifier: '',
         lead_id: this.leadID,
       },

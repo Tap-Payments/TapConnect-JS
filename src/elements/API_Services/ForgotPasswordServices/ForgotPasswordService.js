@@ -11,7 +11,6 @@ class ForgotPasswordService {
   getHeaders() {
     return {
       headers: {
-        browser_identifier: this.browserID,
         device_identifier: '',
       },
     };
