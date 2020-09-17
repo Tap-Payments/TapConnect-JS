@@ -356,7 +356,7 @@ class LoginVM {
 
     if (status == 'fail') {
       this.changeLoader(false);
-      alert('failed!  ' + data.type);
+      if (this.props.onFailure) this.props.onFailure('failed!  ' + data.type);
     }
 
     this.updateLoginInfo();
