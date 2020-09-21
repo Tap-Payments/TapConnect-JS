@@ -30,7 +30,7 @@ function getOSVersion(os, userAgent) {
   let osVersion;
   var nVer = navigator.appVersion;
   if (/Windows/.test(os)) {
-    osVersion = /Windows (.*)/.exec(os)[1];
+    if (/Windows (.*)/.exec(os).length > 0) osVersion = /Windows (.*)/.exec(os)[1];
     os = 'Windows';
   }
 
