@@ -11,12 +11,12 @@
     <div id="TapConnect"></div>
 
     <link rel="stylesheet" href="https://tap-connecet.b-cdn.net/build/css/Connect.css" />
-    <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js.map"></script>
     <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js"></script>
     <script>
       console.log(Connect);
       Connect.renderButtonElement({
         containerID: 'TapConnect',
+        pageMode: Connect.PageMode.LOGIN,
         dialogMode: Connect.DialogMode.POPUP,
         animationType: Connect.AnimationType.SLIDEDOWN,
         animationDuration: 500,

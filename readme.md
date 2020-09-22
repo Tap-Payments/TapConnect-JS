@@ -71,7 +71,6 @@ Languages used to the change the direction of the dialog (EN, AR).
   <body>
     <div id="TapConnect"></div>
     <link rel="stylesheet" href="https://tap-connecet.b-cdn.net/build/css/Connect.css" />
-    <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js.map"></script>
     <script type="text/javascript" src="https://tap-connecet.b-cdn.net/build/js/Connect.js"></script>
     <script>
       Connect.renderConnectElement({
@@ -79,7 +78,7 @@ Languages used to the change the direction of the dialog (EN, AR).
         scopes: ['API_ACCESS_KEY'],
         liveMode: false,
         buttonText:"Login",
-        pageMode:PageMode.LOGIN,
+        pageMode:Connect.PageMode.LOGIN,
         language:"en",
         containerID: 'TapConnect',
         dialogMode: Connect.DialogMode.POPUP,
