@@ -22,7 +22,7 @@ module.exports = {
 
   renderConnectElement: function (object) {
     ReactDOM.render(
-      <LandingPage {...object} />,
+      <ConnectPackage {...object} />,
       document.getElementById(object ? object.containerID || 'TapConnect' : 'TapConnect'),
     );
   },
@@ -32,5 +32,4 @@ module.exports = {
       document.getElementById(object ? object.containerID || 'TapConnect' : 'TapConnect'),
     );
   },
-
 };
