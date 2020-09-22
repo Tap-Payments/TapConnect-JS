@@ -33,13 +33,19 @@ class ConnectVM {
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
-    this.liveMode = this.props.liveMode;
+    axios.defaults.connectMW = this.props.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
+
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
+
+    if (ConnectDataSource.liveMode == null) ConnectDataSource.liveMode = this.props.liveMode;
+    if (ConnectDataSource.liveMode != null && ConnectDataSource.liveMode != this.props.liveMode)
+      /// this is to call the operator again
+      ConnectDataSource.updatePublicKey(props.publicKey);
+
     this.language = this.props.language;
     this.direction = this.props.direction ? this.props.direction : this.props.theme.direction;
-    axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
     ConnectDataSource.updateDSDirection(this.direction);
     ConnectDataSource.updateDSLanguage(this.language);
     ConnectDataSource.onFailure = this.onFailure;
