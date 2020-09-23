@@ -88,7 +88,7 @@ Languages used to the change the direction of the dialog (EN, AR).
         theme: {
           direction: 'ltr',
         },
-        onAuthSucceed: (data) => {
+        onSuccess: (data) => {
           alert(JSON.stringify(data));
         },
       });
