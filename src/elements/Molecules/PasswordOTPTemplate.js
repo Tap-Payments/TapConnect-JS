@@ -54,7 +54,9 @@ export default function PasswordOTPTemplate(props) {
       ) : (
         <React.Fragment />
       )}
-      {props.checkBoxInfo && props.activeTextFieldName === TextFieldType.PASSWORD ? (
+      {location.href.search('tap.company') > 0 &&
+      props.checkBoxInfo &&
+      props.activeTextFieldName === TextFieldType.PASSWORD ? (
         <div className={classes.checkboxLabel}>
           <FormControlLabel
             control={
