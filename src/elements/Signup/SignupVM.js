@@ -140,10 +140,10 @@ class SignupVM {
   async init() {
     this.showInitialLoader = true;
 
-    this.countryCode = this.ipObject.location.calling_code || this.countryCode;
-    this.countryIcon = this.ipObject.location.country_flag || this.countryIcon;
-    this.businessCountryIcon = this.ipObject.location.country_flag;
-    this.businessCountryCode = this.ipObject.location.calling_code;
+    this.countryCode = (this.ipObject.location && this.ipObject.location.calling_code) || this.countryCode;
+    this.countryIcon = (this.ipObject.location && this.ipObject.location.country_flag) || this.countryIcon;
+    this.businessCountryIcon = this.ipObject.location && this.ipObject.location.country_flag;
+    this.businessCountryCode = this.ipObject.location && this.ipObject.location.calling_code;
 
     //////// [Temp code to navigate steps]
     this.changeStep(
