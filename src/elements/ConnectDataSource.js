@@ -18,7 +18,7 @@ class ConnectDataSource {
     console.log('%c START FETCHING', 'background:pink; color:black;');
 
     //// set default URL to live, then it can be updated by Connect
-    if (!axios.defaults.connectMW) axios.defaults.connectMW = LIVE_MW_URL;
+    // if (!axios.defaults.connectMW) axios.defaults.connectMW = this.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
 
     /// gets updated by  Connect
     this.direction = 'ltr';

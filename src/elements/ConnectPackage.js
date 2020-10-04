@@ -7,7 +7,6 @@ import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
-import ConnectDataSource from './ConnectDataSource';
 import { observer } from 'mobx-react';
 import AnimationEngine from './Animation/AnimationEngine';
 import { ConnectUI } from './ConnectUI';

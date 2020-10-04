@@ -9,13 +9,7 @@ class FingerPrintModel {
     this.operatorObject = null;
     this.language = language;
     this.updateLanguage = this.updateLanguage.bind(this);
-    IPService.getIP((data) => {
-      if (data == null) return;
-      this.FP.connection.ip = data.ip;
-      this.FP.ipObject = data;
-      console.log('ip object');
-      console.log(data);
-    });
+
     fetchBrowserFingerPrint((result, components) => {
       /// result (browser id)
       if (result != null) this.FP.browser.browser_id = result;
@@ -45,8 +39,14 @@ class FingerPrintModel {
         os: `${this.FP.device.os.name} , ${this.FP.device.os.version}`,
         locale: this.language,
       };
-
-      if (onReady) onReady();
+      IPService.getIP((data) => {
+        if (data == null) return;
+        this.FP.connection.ip = data.ip;
+        this.FP.ipObject = data;
+        console.log('ip object');
+        console.log(data);
+        if (onReady) onReady();
+      });
     });
   }
 
