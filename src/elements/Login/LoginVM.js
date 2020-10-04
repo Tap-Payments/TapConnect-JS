@@ -89,8 +89,10 @@ class LoginVM {
   }
 
   async prepareLoginData() {
-    this.countryIcon = (this.ipObject && this.ipObject.location.country_flag) || this.countryIcon;
-    this.countryCode = (this.ipObject && this.ipObject.location.calling_code) || this.countryCode;
+    this.countryIcon =
+      (this.ipObject && this.ipObject.location && this.ipObject.location.country_flag) || this.countryIcon;
+    this.countryCode =
+      (this.ipObject && this.ipObject.location && this.ipObject.location.calling_code) || this.countryCode;
 
     // this.changeLoader(true);
     this.showInitialLoader = true;

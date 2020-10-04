@@ -70,8 +70,10 @@ class ForgotPasswordVM {
   async init() {
     // this.showInitialLoader = true;
 
-    this.countryCode = (this.ipObject.location && this.ipObject.location.calling_code) || this.countryCode;
-    this.countryIcon = (this.ipObject.location && this.ipObject.location.country_flag) || this.countryIcon;
+    this.countryCode =
+      (this.ipObject && this.ipObject.location && this.ipObject.location.calling_code) || this.countryCode;
+    this.countryIcon =
+      (this.ipObject && this.ipObject.location && this.ipObject.location.country_flag) || this.countryIcon;
 
     //////// [Temp code to navigate steps]
     this.changeStep(
