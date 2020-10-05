@@ -24,7 +24,7 @@ class CreatePasswordTemplateVM {
     this.updateCallback(null);
   }
   handleConfirmationPasswordChange(event) {
-    console.log(this.checkMatch(event.target.value));
+    this.checkMatch(event.target.value);
   }
 
   handleClickShowPassword() {
