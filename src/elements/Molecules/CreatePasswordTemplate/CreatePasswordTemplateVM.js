@@ -20,8 +20,7 @@ class CreatePasswordTemplateVM {
   }
 
   handleFirstPasswordChange(event) {
-    console.log(this.checkValid(event.target.value));
-
+    this.checkValid(event.target.value);
     this.updateCallback(null);
   }
   handleConfirmationPasswordChange(event) {
