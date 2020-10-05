@@ -40,7 +40,10 @@ class FingerPrintModel {
         locale: this.language,
       };
       IPService.getIP((data) => {
-        if (data == null) return;
+        if (data == null) {
+          if (onReady) onReady();
+          return;
+        }
         this.FP.connection.ip = data.ip;
         this.FP.ipObject = data;
         console.log('ip object');
