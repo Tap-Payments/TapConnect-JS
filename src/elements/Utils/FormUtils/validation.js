@@ -71,7 +71,11 @@ export function isMobile(text) {
 
 export function validateBusinessName(name) {
   const errors = {};
-  if (!name || name === '') errors.name = 'signup_business_name_error';
+  if (!name || name === '') {
+    errors.name = 'signup_business_name_error';
+    return errors;
+  }
+  if (name.length < 3) errors.name = 'signup_business_name_length_error';
   return errors;
 }
 
@@ -100,9 +104,18 @@ export function validateUserName(firstName, lastName) {
     errors.name = 'signup_user_first_name_error';
     return errors;
   }
+  if (firstName.length < 3) {
+    errors.name = 'signup_user_first_name_length_error';
+    return errors;
+  }
 
   if (!lastName || lastName === '') {
     errors.name = 'signup_user_last_name_error';
+    return errors;
+  }
+
+  if (lastName.length < 3) {
+    errors.name = 'signup_user_last_name_length_error';
     return errors;
   }
   return errors;
