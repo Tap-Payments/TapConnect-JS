@@ -672,7 +672,7 @@ class SignupVM {
     );
   }
   getErrorString(data) {
-    if (data && data.errors && data.errors[0]) return data.errors[0].description;
+    if (data && data.errors && data.errors[0]) return data.errors[0].description || data.errors[0].message;
     return 'signup_generic_error'; // 'User unpredicted behavior please contact our support'
   }
   onSubmit() {
