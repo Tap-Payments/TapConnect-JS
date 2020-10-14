@@ -28,7 +28,6 @@ export class ConnectUI extends Component {
               if (vm.props.onClose) vm.props.onClose(e);
               if (vm.openController != null) ConnectPackage.close();
             }}
-            closeOnOutsideClick={vm.props.closeOnOutsideClick}
           >
             {ConnectDataSource.isDataReady ? (
               <Fragment />

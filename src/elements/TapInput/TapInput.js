@@ -56,7 +56,7 @@ class TapInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.initialValue,
+      value: this.props.initialValue || '',
       focused: this.props.inputProps.autoFocus ? this.props.inputProps.autoFocus : false,
       inputLength: 30,
       inputCssClass: '',
@@ -69,7 +69,7 @@ class TapInput extends React.Component {
       height: '302px',
       width: '330px',
     };
-    this.nameInput = null;
+
     this.tempMaxLength = this.props.maxLength;
     this.inputClass = '';
     this.inputClassCode = '';
@@ -351,10 +351,8 @@ class TapInput extends React.Component {
         inputClassCode={this.inputClassCode}
         inputCssClass={this.state.inputCssClass}
         inputCssClassCode={this.state.inputCssClassCode}
-        ref={(input) => (this.nameInput = input)}
         handleIconClick={this.handleIconClick}
         countryIcon={this.state.countryIcon}
-        className={props.style}
         id={'tap-input-field-2520'}
         type={props.inputType === InputTypeEnum.MOBILE ? 'tel' : props.type || 'text'}
         value={this.state.value}
@@ -441,12 +439,13 @@ function RenderTapInput(props) {
               }
             }}
           />
-          <div id="tester-div-width" class="tester-div"></div>
+          <div id="tester-div-width" className="tester-div"></div>
         </div>
       </div>
 
       <MenuWrapper
         {...props}
+        reference={props.reference}
         t={t}
         dropDownOpen={props.dropDownOpen}
         maxTextLength={maxTextLength}

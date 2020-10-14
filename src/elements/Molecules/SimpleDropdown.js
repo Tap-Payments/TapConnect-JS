@@ -126,6 +126,7 @@ export default function SimpleDropdown(props) {
       <Divider />
       <MenuWrapper
         {...props}
+        reference={props.reference}
         t={t}
         dropDownOpen={values.dropDownOpen}
         maxTextLength={maxTextLength}

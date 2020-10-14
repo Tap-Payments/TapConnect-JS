@@ -28,7 +28,6 @@ const EMAIL_INFO = {
   label: null,
   initialValue: '',
   dropdownInfos: [],
-  margin: 'normal',
   name: 'email',
   type: 'text',
   variant: 'standard',
