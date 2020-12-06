@@ -5,8 +5,8 @@ class IPService {
   static async getIP(callback) {
     var res;
     await axios
-      .get(axios.defaults.connectMW + URL)
-      .then(async function (response) {
+      .get((axios.defaults.connectMW ? axios.defaults.connectMW : LIVE_MW_URL) + URL)
+      .then(async function(response) {
         res = response.data;
       })
       .catch(function (error) {
