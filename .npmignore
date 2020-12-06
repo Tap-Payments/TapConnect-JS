@@ -1,9 +1,11 @@
 src
 demo
+js-demo
 webpack
 readme.md
 package.json
 dist
+build
 .babelrc
 .gitignore
 webpack.config.js
