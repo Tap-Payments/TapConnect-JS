@@ -14,7 +14,8 @@ class TapAuthButton extends Component {
     let vm = new ButtonVM(props);
 
     if (document.body.hasAttribute('tap-connect-button-unique')) {
-      this.isDuplicateInstance = true;
+      ///TODO: fix duplication
+      this.isDuplicateInstance = false;
     } else {
       document.body.setAttribute('tap-connect-button-unique', true);
       this.isDuplicateInstance = false;

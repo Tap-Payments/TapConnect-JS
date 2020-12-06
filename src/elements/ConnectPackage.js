@@ -13,7 +13,8 @@ class ConnectPackage extends Component {
 
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute('tap-connect-unique')) {
-      this.isDuplicateInstance = true;
+      ///TODO: fix duplication
+      this.isDuplicateInstance = false;
     } else {
       document.body.setAttribute('tap-connect-unique', true);
 
