@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './Connect.css';
 
-import { ThemeProvider } from '@material-ui/core/styles';
-import { PageMode, AnimationType, DialogMode } from './Constants/constants';
-import Login from './Login/Login';
-import Signup from './Signup/Signup';
-import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { observer } from 'mobx-react';
-import AnimationEngine from './Animation/AnimationEngine';
 import { ConnectUI } from './ConnectUI';
 import _defaultProps from './defaultProps';
 import ConnectVM from './ConnectVM';
-import TapLoader from './Login_Loader/Loader';
 
 class ConnectPackage extends Component {
   constructor(props) {
