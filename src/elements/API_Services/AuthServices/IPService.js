@@ -1,6 +1,9 @@
 import axios from 'axios';
 const URL = '/ip';
 const TAP_COMPANY_URL = 'https://www.tap.company/iplocation?ip=';
+
+import { SANDBOX_MW_URL, LIVE_MW_URL } from '../index';
+
 class IPService {
   static async getIP(callback) {
     var res;
