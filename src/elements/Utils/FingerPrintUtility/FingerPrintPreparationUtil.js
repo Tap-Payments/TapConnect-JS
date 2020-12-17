@@ -52,6 +52,7 @@ function getOSVersion(os, userAgent) {
     }
   } catch (error) {
     console.log(error);
+    return null;
   }
 
   return osVersion;
