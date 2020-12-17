@@ -57,15 +57,20 @@ function getOSVersion(os, userAgent) {
   return osVersion;
 }
 function getBrowserDetails(userAgent) {
-  var N = navigator.appName,
-    ua = userAgent,
-    tem;
-  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*(\.?\d+(\.\d+)*)/i);
-  if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) {
-    M[2] = tem[1];
+  try {
+    var N = navigator.appName,
+      ua = userAgent,
+      tem;
+    var M = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*(\.?\d+(\.\d+)*)/i);
+    if (M && (tem = ua.match(/version\/([\.\d]+)/i)) != null) {
+      M[2] = tem[1];
+    }
+    M = M ? [M[1], M[2]] : [N, navigator.appVersion, '-?'];
+    return M;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
-  M = M ? [M[1], M[2]] : [N, navigator.appVersion, '-?'];
-  return M;
 }
 function updateFingerPrints(navigator1) {
   let userAgent = navigator1.filter((value, index) => value.key === 'user_agent');
