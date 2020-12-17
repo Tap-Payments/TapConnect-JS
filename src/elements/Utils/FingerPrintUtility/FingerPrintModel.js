@@ -14,10 +14,10 @@ class FingerPrintModel {
       /// result (browser id)
       if (result != null) this.FP.browser.browser_id = result;
 
-      var userAgent = components.filter((value) => value.key === 'userAgent');
+      var userAgent = components.filter(value => value.key === 'userAgent');
       if (userAgent.length != 1) return;
       userAgent = userAgent[0].value;
-      var platform = components.filter((value) => value.key === 'platform');
+      var platform = components.filter(value => value.key === 'platform');
       if (platform.length != 1) return;
       platform = platform[0].value;
       this.FP.device.type = FingerPrintPreparationUtil.getDeviceType(userAgent);
@@ -26,8 +26,8 @@ class FingerPrintModel {
       this.FP.browser.user_agent = userAgent;
 
       let browserDetails = FingerPrintPreparationUtil.getBrowserDetails(userAgent);
-      this.FP.browser.name = browserDetails[0];
-      this.FP.browser.version = browserDetails[1];
+      this.FP.browser.name = browserDetails.length && browserDetails[0];
+      this.FP.browser.version = browserDetails.length && browserDetails[1];
 
       /// it will get updated by the Connect model
       this.FP.app.app_locale = this.language;
@@ -39,7 +39,7 @@ class FingerPrintModel {
         os: `${this.FP.device.os.name} , ${this.FP.device.os.version}`,
         locale: this.language,
       };
-      IPService.getIP((data) => {
+      IPService.getIP(data => {
         if (data == null) {
           if (onReady) onReady();
           return;
