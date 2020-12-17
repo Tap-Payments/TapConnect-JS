@@ -29,7 +29,6 @@ function getOSName(userAgent, platform) {
 function getOSVersion(os, userAgent) {
   let osVersion;
 
-  t;
   try {
     var nVer = navigator.appVersion;
     if (/Windows/.test(os)) {
