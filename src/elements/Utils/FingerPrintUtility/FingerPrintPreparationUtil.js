@@ -78,15 +78,16 @@ function updateFingerPrints(navigator1) {
   let platform = navigator1.filter((value, index) => value.key === 'navigator_platform');
 
   let fingerPrint = this.fingerPrint;
+  if (userAgent && userAgent[0]) {
+    fingerPrint.device.type = this.isMobileDevice(userAgent[0].value) ? 'Mobile' : 'PC';
+    fingerPrint.device.os.name = this.getOSName(userAgent[0].value, platform && platform[0] && platform[0].value);
+    fingerPrint.device.os.version = this.getOSVersion(fingerPrint.device.os.name, userAgent[0].value);
+    fingerPrint.browser.user_agent = userAgent[0].value;
 
-  fingerPrint.device.type = this.isMobileDevice(userAgent[0].value) ? 'Mobile' : 'PC';
-  fingerPrint.device.os.name = this.getOSName(userAgent[0].value, platform[0].value);
-  fingerPrint.device.os.version = this.getOSVersion(fingerPrint.device.os.name, userAgent[0].value);
-  fingerPrint.browser.user_agent = userAgent[0].value;
-
-  let browserDetails = this.getBrowserDetails(userAgent[0].value);
-  fingerPrint.browser.name = browserDetails[0];
-  fingerPrint.browser.version = browserDetails[1];
+    let browserDetails = this.getBrowserDetails(userAgent[0].value);
+    fingerPrint.browser.name = browserDetails[0];
+    fingerPrint.browser.version = browserDetails[1];
+  }
   fingerPrint.browser.referrer = document.referrer;
 
   fingerPrint.app.name = this.defaults.service + '_Web';
