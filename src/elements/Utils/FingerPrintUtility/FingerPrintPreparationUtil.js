@@ -29,25 +29,31 @@ function getOSName(userAgent, platform) {
 function getOSVersion(os, userAgent) {
   let osVersion;
 
+  t;
   try {
     var nVer = navigator.appVersion;
     if (/Windows/.test(os)) {
-      if (/Windows (.*)/.exec(os) && /Windows (.*)/.exec(os).length > 0) osVersion = /Windows (.*)/.exec(os)[1];
+      if (/Windows (.*)/.exec(os) && /Windows (.*)/.exec(os).length > 0) osVersion = /Windows (.*)/.exec(os);
+      if (osVersion) osVersion = osVersion[1];
+
       os = 'Windows';
     }
 
     switch (os) {
       case 'Mac OS':
-        osVersion = /Mac OS X (10[\.\_\d]+)/.exec(userAgent)[1];
+        osVersion = /Mac OS X (10[\.\_\d]+)/.exec(userAgent);
+        if (osVersion) osVersion = osVersion[1];
+
         break;
 
       case 'Android':
-        osVersion = /Android ([\.\_\d]+)/.exec(userAgent)[1];
+        osVersion = /Android ([\.\_\d]+)/.exec(userAgent);
+        if (osVersion) osVersion = osVersion[1];
         break;
 
       case 'iOS':
         osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-        osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+        if (osVersion) osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
         break;
     }
   } catch (error) {
