@@ -179,7 +179,7 @@ class ConnectDataSource {
         initImmediate: false,
         preload: ['ar', 'en'],
 
-        debug: true,
+        debug: false,
         interpolation: {
           escapeValue: false, // react already safes from xss
         },
