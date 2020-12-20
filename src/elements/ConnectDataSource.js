@@ -11,7 +11,6 @@ import { filterCountries } from './Utils/filtering';
 import { sortCountries } from './Utils/sorting';
 import FingerPrintModel from './Utils/FingerPrintUtility/FingerPrintModel';
 import axios from 'axios';
-import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
 class ConnectDataSource {
   constructor() {

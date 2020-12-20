@@ -8,8 +8,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { theme } from './theme/index';
 import _defaultProps from './defaultProps';
 
-import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
-
 class ConnectVM {
   constructor(props) {
     this.onFinishedFetchingData = this.onFinishedFetchingData.bind(this);
@@ -33,17 +31,16 @@ class ConnectVM {
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
-    axios.defaults.connectMW = this.props.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
-
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
 
     if (ConnectDataSource.liveMode == null) ConnectDataSource.liveMode = this.props.liveMode;
-    if (ConnectDataSource.liveMode != null && ConnectDataSource.liveMode != this.props.liveMode)
+    if (ConnectDataSource.liveMode != null && ConnectDataSource.liveMode != this.props.liveMode) {
       /// this is to call the operator again
+      ConnectDataSource.liveMode = this.props.liveMode;
       ConnectDataSource.updatePublicKey(props.publicKey);
-
+    }
     this.language = this.props.language;
     this.direction = this.props.direction ? this.props.direction : this.props.theme.direction;
     ConnectDataSource.updateDSDirection(this.direction);

@@ -6,10 +6,13 @@ import { observer } from 'mobx-react';
 import { ConnectUI } from './ConnectUI';
 import _defaultProps from './defaultProps';
 import ConnectVM from './ConnectVM';
+import axios from 'axios';
+import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
 class ConnectPackage extends Component {
   constructor(props) {
     super(props);
+    axios.defaults.connectMW = props.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
 
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute('tap-connect-unique')) {
@@ -22,6 +25,12 @@ class ConnectPackage extends Component {
       ConnectPackage.vm = new ConnectVM(props);
 
       if (this.props.openPopup) ConnectPackage.open(props);
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.liveMode != prevProps.liveMode) {
+      console.log('update mode');
+      axios.defaults.connectMW = this.props.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
     }
   }
   static init(props) {
@@ -57,7 +66,7 @@ class ConnectPackage extends Component {
     // if (ConnectPackage.vm && ConnectPackage.vm.dataSource && ConnectPackage.vm.dataSource.isDataReady)
     //   return <TapLoader />;
 
-    return <div className="tap-connect-unique-module" id="tap-connect-unique-module"></div>;
+    return <div className="tap-connect-unique-module" id="tap-connect-unique-module" />;
   }
 }
 ConnectPackage.defaultProps = _defaultProps;
