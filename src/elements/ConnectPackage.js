@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import './Connect.css';
 
 import { observer } from 'mobx-react';
-import { ConnectUI } from './ConnectUI';
 import _defaultProps from './defaultProps';
-import ConnectVM from './ConnectVM';
 import axios from 'axios';
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 
@@ -22,9 +20,14 @@ class ConnectPackage extends Component {
       document.body.setAttribute('tap-connect-unique', true);
 
       this.isDuplicateInstance = false;
-      ConnectPackage.vm = new ConnectVM(props);
-
+      const ConnectVM = require('./ConnectVM');
+      if (!ConnectPackage.vm) ConnectPackage.vm = new ConnectVM.default(props);
       if (this.props.openPopup) ConnectPackage.open(props);
+    }
+  }
+  componentWillUnmount() {
+    if (document.body.hasAttribute('tap-connect-unique')) {
+      document.body.removeAttribute('tap-connect-unique');
     }
   }
   componentDidUpdate(prevProps) {
@@ -56,6 +59,7 @@ class ConnectPackage extends Component {
     ConnectPackage.vm.openController = true;
 
     setTimeout(() => {
+      const ConnectUI = require('./ConnectUI').default;
       ReactDOM.render(<ConnectUI />, document.getElementById('tap-connect-unique-module'));
     }, 500);
   }
