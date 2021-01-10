@@ -31,16 +31,12 @@ class ConnectVM {
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
+    axios.defaults.headers['live_mode'] = this.props.liveMode;
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
 
-    if (ConnectDataSource.liveMode == null) ConnectDataSource.liveMode = this.props.liveMode;
-    if (ConnectDataSource.liveMode != null && ConnectDataSource.liveMode != this.props.liveMode) {
-      /// this is to call the operator again
-      ConnectDataSource.liveMode = this.props.liveMode;
-      ConnectDataSource.updatePublicKey(props.publicKey);
-    }
+    this.liveMode = this.props.liveMode;
     this.language = this.props.language;
     this.direction = this.props.direction ? this.props.direction : this.props.theme.direction;
     ConnectDataSource.updateDSDirection(this.direction);
