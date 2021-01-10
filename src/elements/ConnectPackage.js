@@ -9,6 +9,7 @@ import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 axios.defaults.connectMW = LIVE_MW_URL;
 class ConnectPackage extends Component {
   constructor(props) {
+    super();
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute('tap-connect-unique')) {
       ///TODO: fix duplication
