@@ -6,10 +6,11 @@ import { observer } from 'mobx-react';
 import _defaultProps from './defaultProps';
 import axios from 'axios';
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
-axios.defaults.connectMW = 'http://localhost:8000/middleware';
+axios.defaults.connectMW = LIVE_MW_URL;
 class ConnectPackage extends Component {
   constructor(props) {
     super(props);
+    if (props.sandbox) axios.defaults.connectMW = SANDBOX_MW_URL;
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute('tap-connect-unique')) {
       ///TODO: fix duplication
