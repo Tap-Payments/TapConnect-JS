@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import _defaultProps from './defaultProps';
 import axios from 'axios';
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
-axios.defaults.connectMW = LIVE_MW_URL;
+axios.defaults.connectMW = 'http://localhost:8000/middleware';
 class ConnectPackage extends Component {
   constructor(props) {
     super(props);
