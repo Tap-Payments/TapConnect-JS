@@ -31,7 +31,7 @@ class ConnectVM {
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
-    axios.defaults.headers['live_mode'] = this.props.liveMode;
+    axios.defaults.headers['connect_live_mode'] = this.props.liveMode;
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
