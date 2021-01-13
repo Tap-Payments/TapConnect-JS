@@ -1,3 +1,4 @@
+import '@babel/polyfill/noConflict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './elements/Login/Login';
