@@ -7,17 +7,18 @@ import _defaultProps from './defaultProps';
 import axios from 'axios';
 import { SANDBOX_MW_URL, LIVE_MW_URL } from './API_Services';
 axios.defaults.connectMW = LIVE_MW_URL;
+//// this attribute is assigned to the body to ensure one instances
+const CONNECT_UNIQUE_ATTRIBUTE = 'tap-connect-unique';
+const CONNECT_ELEMENT_ID = 'tap-connect-module-id';
 class ConnectPackage extends Component {
   constructor(props) {
     super(props);
     if (props.development) axios.defaults.connectMW = SANDBOX_MW_URL;
     //// ensure only one instance in the DOM
-    if (document.body.hasAttribute('tap-connect-unique')) {
-      ///TODO: fix duplication
-      this.isDuplicateInstance = false;
+    if (document.body.hasAttribute(CONNECT_UNIQUE_ATTRIBUTE)) {
+      this.isDuplicateInstance = true;
     } else {
-      document.body.setAttribute('tap-connect-unique', true);
-
+      document.body.setAttribute(CONNECT_UNIQUE_ATTRIBUTE, true);
       this.isDuplicateInstance = false;
       const ConnectVM = require('./ConnectVM');
       if (!ConnectPackage.vm) ConnectPackage.vm = new ConnectVM.default(props);
@@ -25,8 +26,9 @@ class ConnectPackage extends Component {
     }
   }
   componentWillUnmount() {
-    if (document.body.hasAttribute('tap-connect-unique')) {
-      document.body.removeAttribute('tap-connect-unique');
+    if (document.body.hasAttribute(CONNECT_UNIQUE_ATTRIBUTE)) {
+      document.body.removeAttribute(CONNECT_UNIQUE_ATTRIBUTE);
+      ReactDOM.unmountComponentAtNode(document.getElementById(CONNECT_ELEMENT_ID));
     }
   }
   static init(props) {
@@ -53,7 +55,7 @@ class ConnectPackage extends Component {
 
     setTimeout(() => {
       const ConnectUI = require('./ConnectUI').default;
-      ReactDOM.render(<ConnectUI />, document.getElementById('tap-connect-unique-module'));
+      ReactDOM.render(<ConnectUI />, document.getElementById(CONNECT_ELEMENT_ID));
     }, 500);
   }
 
@@ -63,7 +65,7 @@ class ConnectPackage extends Component {
     // if (ConnectPackage.vm && ConnectPackage.vm.dataSource && ConnectPackage.vm.dataSource.isDataReady)
     //   return <TapLoader />;
 
-    return <div className="tap-connect-unique-module" id="tap-connect-unique-module" />;
+    return <div className={CONNECT_ELEMENT_ID} id={CONNECT_ELEMENT_ID} />;
   }
 }
 ConnectPackage.defaultProps = _defaultProps;
