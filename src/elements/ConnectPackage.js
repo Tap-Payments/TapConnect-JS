@@ -10,7 +10,7 @@ axios.defaults.connectMW = LIVE_MW_URL;
 class ConnectPackage extends Component {
   constructor(props) {
     super(props);
-    if (props.sandbox) axios.defaults.connectMW = SANDBOX_MW_URL;
+    if (props.development) axios.defaults.connectMW = SANDBOX_MW_URL;
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute('tap-connect-unique')) {
       ///TODO: fix duplication
