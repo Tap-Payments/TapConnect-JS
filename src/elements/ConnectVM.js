@@ -36,7 +36,7 @@ class ConnectVM {
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
 
-    this.liveMode = this.props.liveMode;
+    if (ConnectDataSource.liveMode != this.props.liveMode) ConnectDataSource.updateLiveMode(props.liveMode);
     this.language = this.props.language;
     this.direction = this.props.direction ? this.props.direction : this.props.theme.direction;
     ConnectDataSource.updateDSDirection(this.direction);

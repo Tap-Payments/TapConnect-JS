@@ -22,6 +22,7 @@ class ConnectDataSource {
     this.language = 'en';
     this.isDataReady = false;
     this.publicKey = null;
+    this.liveMode = true;
 
     this.onFingerPrintReady = this.onFingerPrintReady.bind(this);
     this.fingerPrintModel = new FingerPrintModel(this.language, this.onFingerPrintReady);
@@ -46,6 +47,7 @@ class ConnectDataSource {
     this.updateDSDirection = this.updateDSDirection.bind(this);
     this.onFailure = this.onFailure.bind(this);
     this.updatePublicKey = this.updatePublicKey.bind(this);
+    this.updateLiveMode = this.updateLiveMode.bind(this);
 
     this.onFinishedFetchingData = () => {
       console.log('%c INFO FETCHED, GOOD TO GO', 'background:yellow; color:black;');
@@ -69,12 +71,18 @@ class ConnectDataSource {
     this.publicKey = publicKey;
     this.validateOperator();
   }
+  updateLiveMode(mode) {
+    this.liveMode = mode;
+    this.validateOperator();
+  }
   infoUpdated() {
     console.log('%c INFO UPDATED', 'background:pink; color:black;');
 
     try {
       console.log(
-        `this.sectors ${this.sectors.length}\nthis.countryInfos ${this.countryInfos.length}\nthis.businessCountries ${this.businessCountries.length}\nthis.businessTypes ${this.businessTypes.length}`,
+        `this.sectors ${this.sectors.length}\nthis.countryInfos ${this.countryInfos.length}\nthis.businessCountries ${
+          this.businessCountries.length
+        }\nthis.businessTypes ${this.businessTypes.length}`,
       );
 
       if (
