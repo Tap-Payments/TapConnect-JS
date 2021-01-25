@@ -125,7 +125,13 @@ export function validateNewPassword(pass) {
   const errors = {};
   console.log(pass);
   console.log('validation');
-  if (!pass || pass === '') {
+  //// if pass === false,  passwords are not matched
+  if (pass == false) {
+    errors.name = 'signup_unmatched_password_form_error';
+    return errors;
+  }
+  //// if pass === null, the first password is still not valid
+  if (pass === null) {
     errors.name = 'signup_incorrect_password_form_error';
     return errors;
   }

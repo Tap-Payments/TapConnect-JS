@@ -148,8 +148,15 @@ class ForgotPasswordVM {
         this.activeStepInfo.filter = (value) => {
           return this.activeStepInfo.dropdownInfos.filter(
             (item) =>
-              eval(this.countrySearchPattern).toLowerCase().includes(value.toLowerCase()) ||
-              ('+' + eval('item.idd_prefix').toString().toLowerCase()).includes(value.toLowerCase()),
+              eval(this.countrySearchPattern)
+                .toLowerCase()
+                .includes(value.toLowerCase()) ||
+              (
+                '+' +
+                eval('item.idd_prefix')
+                  .toString()
+                  .toLowerCase()
+              ).includes(value.toLowerCase()),
           );
         };
 
@@ -239,7 +246,6 @@ class ForgotPasswordVM {
   }
 
   storeResetPassword(pass) {
-    console.log('password');
     this.setError(null);
     this.newResetPassword = pass;
   }

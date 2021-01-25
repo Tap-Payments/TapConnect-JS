@@ -44,15 +44,25 @@ class CreatePasswordTemplateVM {
     this.passwordApproved = hasChar && hasDigit && hasSymbol && hasSix;
 
     this.firstPassword = pass;
+    /// if valid, but still not matched
+    this.updateCallback(pass);
   }
   checkMatch(pass) {
     this.passwordMatched = pass == this.firstPassword;
-    this.updateCallback(this.passwordMatched ? pass : null);
+    this.updateCallback(pass);
   }
 
   /// triggered on each change
   updateCallback(pass) {
-    if (this.props.onPasswordUpdated) this.props.onPasswordUpdated(pass);
+    if (this.props.onPasswordUpdated) {
+      if (this.passwordApproved && this.passwordMatched) {
+        this.props.onPasswordUpdated(pass);
+      } else {
+        /// if password approved but not matched => false
+        /// if password is not approved => null
+        this.props.onPasswordUpdated(this.passwordApproved ? false : null);
+      }
+    }
   }
 }
 
