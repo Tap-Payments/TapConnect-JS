@@ -224,6 +224,9 @@ class SignupVM {
     switch (this.page) {
       case 0:
         this.activeStepInfo = EMAIL_INFO;
+        this.activeStepInfo.inputType = InputTypeEnum.MOBILE;
+        this.activeStepInfo.placeholder = 'signup_enter_mobile';
+
         this.activeStepInfo.initialValue = this.leadUsername;
         this.activeStepInfo.dropdownInfos = this.countryInfos;
         this.activeStepInfo.getTextPattern = this.getCountryTextPattern;
@@ -300,266 +303,15 @@ class SignupVM {
           this.onSubmit();
         };
         break;
+
       case 2:
-        this.activeStepInfo = BUSINESS_NAME_SECTOR_INFO;
-
-        this.activeStepInfo[1].dropdownInfos = this.sectors;
-        this.activeStepInfo[1].getTextPattern = this.itemGetTextPattern;
-        this.activeStepInfo[1].isSelected = (item) => item.id === this.selectedSectorId;
-
-        this.activeStepInfo[1].getSelectedItem = (item) => {
-          if (item) return this.direction === 'rtl' ? item.name.ar : item.name.en;
-        };
-
-        this.activeStepInfo[1].filter = (value) => {
-          return this.activeStepInfo[1].dropdownInfos.filter((item) =>
-            eval(this.searchPattern).toLowerCase().includes(value.toLowerCase()),
-          );
-        };
-
-        this.activeStepInfo[1].renderMenuItem = (item) => {
-          if (item) return this.direction === 'rtl' ? item.name.ar : item.name.en;
-        };
-
-        this.sectors.map((item, index) => {
-          if (item.id === this.selectedSectorId) {
-            this.selectedSectorIndex = index;
-            this.activeStepInfo[1].selectedIndex = index;
-            this.activeStepInfo[1].selectetConditionPattern = eval;
-            this.activeStepInfo[1].initialValue = eval(this.itemGetTextPattern);
-          }
-        });
-
-        this.activeStepInfo[1].onClose = (index, item) => {
-          if (item && item.id) {
-            this.selectedSectorIndex = index || this.selectedSectorIndex;
-            this.selectedSectorId = item.id || this.selectedSectorId;
-            this.activeStepInfo[1].selectedId = item.id;
-            this.activeStepInfo[1].selectedIndex = index || this.selectedSectorIndex;
-            this.setError(null);
-          }
-        };
-
-        this.activeStepInfo[0].onChange = (event) => {
-          console.log('onChange');
-          this.setError(null);
-          this.storeBusinessName(event.target.value);
-        };
-        this.activeStepInfo[0].onEnterPressed = () => {
-          this.onSubmit();
-        };
-        this.activeStepInfo[0].clear = () => {
-          this.storeBusinessName(null);
-          this.storeBrandName(null);
-        };
-        break;
-
-      case 3:
-        this.activeStepInfo = BUSINESS_TYPE_LICENSED;
-
-        this.activeStepInfo[0].dropdownInfos = this.businessTypes;
-        this.activeStepInfo[0].getTextPattern = this.businessTypeGetTextPattern;
-        this.activeStepInfo[0].isSelected = (item) => item.value === this.selectedBusinessType;
-
-        this.activeStepInfo[0].getSelectedItem = (item) => {
-          if (item) return this.direction === 'rtl' ? item.type_name_ar : item.type_name_en;
-        };
-
-        this.activeStepInfo[0].filter = (value) => {
-          return this.activeStepInfo[0].dropdownInfos.filter((item) =>
-            eval(this.businessTypeSearchPattern).toLowerCase().includes(value.toLowerCase()),
-          );
-        };
-
-        this.activeStepInfo[0].renderMenuItem = (item) => {
-          if (item) return this.direction === 'rtl' ? item.type_name_ar : item.type_name_en;
-        };
-
-        this.businessTypes.map((item, index) => {
-          if (item.value === this.selectedBusinessType) {
-            this.selectedBusinessTypeIndex = index;
-            this.activeStepInfo[0].selectedIndex = index;
-            this.activeStepInfo[0].initialValue = eval(this.businessTypeGetTextPattern);
-          }
-        });
-
-        this.activeStepInfo[0].onClose = (index, item) => {
-          if (item && item.value) {
-            this.selectedBusinessTypeIndex = index || this.selectedBusinessTypeIndex;
-            this.selectedBusinessType = item.value || this.selectedBusinessType;
-            this.activeStepInfo[0].selectedIndex = index || this.selectedBusinessTypeIndex;
-            this.setError(null);
-          }
-        };
-
-        this.activeStepInfo[1].dropdownInfos = this.businessCountries;
-        this.activeStepInfo[1].getTextPattern = this.businessCountryGetTextPattern;
-        this.activeStepInfo[1].searchPattern = this.businessCountrySearchPattern;
-        this.activeStepInfo[1].isSelected = (item) => item.idd_prefix.toString() === this.businessCountryCode;
-        this.activeStepInfo[1].getDropdownIcon = (item) => {
-          return item.logo;
-        };
-
-        this.activeStepInfo[1].getSelectedItem = (item) => {
-          if (item) return this.direction === 'rtl' ? item.name.arabic : item.name.english;
-        };
-
-        this.activeStepInfo[1].filter = (value) => {
-          return this.activeStepInfo[1].dropdownInfos.filter((item) =>
-            eval(this.businessCountrySearchPattern).toLowerCase().includes(value.toLowerCase()),
-          );
-        };
-
-        this.activeStepInfo[1].renderMenuItem = (item) => {
-          if (item)
-            return (
-              <div>
-                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left' }}>
-                  <img src={item.logo} height={'25px'} width={'25px'} style={{ borderRadius: '50px' }} />
-                </span>
-                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right', paddingInlineStart: '10px' }}>
-                  {this.direction === 'rtl' ? item.name.arabic : item.name.english}
-                </span>
-              </div>
-            );
-        };
-
-        this.businessCountries.map((item, index) => {
-          if (item.idd_prefix.toString() === this.businessCountryCode) {
-            this.selectedBusinessCountryIndex = index;
-            this.businessCountryId = item.countryId;
-            this.activeStepInfo[1].selectedIndex = index;
-            this.activeStepInfo[1].initialValue = eval(this.businessCountryGetTextPattern);
-            this.activeStepInfo[1].dropDownIcon = item.logo;
-          }
-        });
-
-        this.activeStepInfo[1].onClose = (index, item) => {
-          if (item && item.countryId) {
-            this.businessCountryId = item.countryId;
-            this.selectedCountryIndex = index;
-            this.businessCountryCode = item.idd_prefix.toString();
-            this.businessCountryIcon = item.logo || this.businessCountryIcon;
-            this.activeStepInfo[1].dropDownIcon = this.businessCountryIcon;
-            this.selectedBusinessCountryIndex = index || this.selectedBusinessCountryIndex;
-            this.activeStepInfo[1].selectedIndex = index || this.selectedBusinessCountryIndex;
-
-            this.setError(null);
-          }
-        };
-
-        break;
-      case 4:
-        this.activeStepInfo = BUSINESS_LICENSED;
-
-        this.activeStepInfo.onClickNo = () => {
-          this.isLicensed = false;
-          this.onSubmit();
-        };
-
-        this.activeStepInfo.onClickYes = () => {
-          this.isLicensed = true;
-          this.onSubmit();
-        };
-
-        break;
-      case 5:
-        this.activeStepInfo = USER_NAME_INFO;
-        this.activeStepInfo[0].onSocialMediaFetch = this.storeSocialMediaMetaData;
-        this.activeStepInfo[0].onChange = (event, firstNameFromSocial) => {
-          console.log('onChange');
-          this.setError(null);
-          this.storeFirstName(firstNameFromSocial ? firstNameFromSocial : event.target.value);
-        };
-        this.activeStepInfo[0].clear = () => {
-          this.storeFirstName(null);
-        };
-        this.activeStepInfo[0].value = this.firstName;
-        this.activeStepInfo[0].onEnterPressed = () => {
-          this.onSubmit();
-        };
-
-        this.activeStepInfo[1].onChange = (event, lastNameFromSocial) => {
-          console.log('onChange');
-          this.setError(null);
-          this.storeLastName(lastNameFromSocial ? lastNameFromSocial : event.target.value);
-        };
-        this.activeStepInfo[1].clear = () => {
-          this.storeLastName(null);
-        };
-        this.activeStepInfo[1].value = this.lastName;
-        this.activeStepInfo[1].onEnterPressed = () => {
-          this.onSubmit();
-        };
-        break;
-
-      case 6:
+        this.activeStepInfo = null;
         this.activeStepInfo = EMAIL_INFO;
-        if (this.updatedContactLeadObject) {
-          if (this.updatedContactLeadObject.email && this.updatedContactLeadObject.email != '') {
-            this.activeStepInfo.inputType = InputTypeEnum.MOBILE;
-            this.userProvidedEmail = true;
-            this.activeStepInfo.placeholder = 'signup_enter_mobile';
-          } else if (
-            this.updatedContactLeadObject.phone &&
-            this.updatedContactLeadObject.phone.number &&
-            this.updatedContactLeadObject.phone.number != ''
-          ) {
-            this.activeStepInfo.inputType = InputTypeEnum.EMAIL;
-            this.userProvidedEmail = false;
-            this.activeStepInfo.placeholder = 'signup_enter_email';
-          }
-        } else {
-          this.activeStepInfo.inputType = InputTypeEnum.ANY;
-        }
+        this.activeStepInfo.inputType = InputTypeEnum.EMAIL;
+        this.userProvidedEmail = false;
+        this.activeStepInfo.placeholder = 'signup_enter_email';
 
-        this.activeStepInfo.dropdownInfos = this.countryInfos;
-        this.activeStepInfo.searchPattern = this.countrySearchPattern;
         this.activeStepInfo.initialValue = this.username;
-
-        this.activeStepInfo.getTextPattern = this.getCountryTextPattern;
-        this.activeStepInfo.isSelected = (item) => item.idd_prefix.toString() === this.countryCode;
-
-        this.activeStepInfo.getDropdownIcon = (item) => {
-          return item.logo;
-        };
-
-        this.activeStepInfo.getSelectedItem = (item) => {
-          if (item) return this.direction === 'rtl' ? item.name.arabic : item.name.english;
-        };
-
-        this.activeStepInfo.filter = (value) => {
-          return this.activeStepInfo.dropdownInfos.filter(
-            (item) =>
-              eval(this.countrySearchPattern).toLowerCase().includes(value.toLowerCase()) ||
-              ('+' + eval('item.idd_prefix').toString().toLowerCase()).includes(value.toLowerCase()),
-          );
-        };
-        this.activeStepInfo.renderMenuItem = (item) => {
-          if (item)
-            return (
-              <div>
-                <span style={{ float: this.direction === 'rtl' ? 'right' : 'left', paddingInlineEnd: '10px' }}>
-                  {this.direction === 'rtl' ? item.name.arabic : item.name.english}
-                </span>
-                <span style={{ float: this.direction === 'rtl' ? 'left' : 'right' }}>{'+' + item.idd_prefix}</span>
-              </div>
-            );
-        };
-
-        this.countryInfos.map((country, index) => {
-          if (country.idd_prefix.toString() === this.countryCode) {
-            this.countryCode = country.idd_prefix.toString();
-            this.maxLength = country.digits ? country.digits : 11;
-            this.countryIcon = country.logo;
-            this.selectedCountryIndex = index;
-            this.activeStepInfo.countryIcon = this.countryIcon;
-            this.activeStepInfo.maxLength = this.maxLength;
-            this.activeStepInfo.getMaxLength = this.getMaxLength;
-            this.activeStepInfo.getCountryIcon = this.getCountryIcon;
-          }
-        });
-        this.activeStepInfo.onClose = this.handleCountryClose;
 
         this.activeStepInfo.onChange = (event) => {
           this.setError(null);
@@ -575,7 +327,7 @@ class SignupVM {
 
         break;
 
-      case 7:
+      case 3:
         this.activeStepInfo = NEW_PASSWORD_INFO;
 
         this.activeStepInfo[0].onEnterPressed = () => {
@@ -659,7 +411,7 @@ class SignupVM {
           this.signUpToken = data.signup_token;
           this.update('User info is updated', 6);
 
-          this.changeStep(7);
+          this.changeStep(3);
         } else {
           if (data && data.status == 'ALREADY_TAKEN') {
             this.setError('signup_user_exists_error');
@@ -722,7 +474,7 @@ class SignupVM {
           });
           break;
 
-        case 6:
+        case 2:
           //// step before password screen
           this.signupService.updateLead({ ...this.getStepData(), ...stepData }, (data) => {
             if (!data) {
@@ -738,22 +490,7 @@ class SignupVM {
           });
           break;
 
-        case 7: ////password step
-          this.signupService.signUp({ ...this.getStepData(), ...stepData }, (data) => {
-            if (!data) {
-              this.setError('signup_invalid_api_response_error');
-            } else {
-              if (data.errors != null) this.setError(this.getErrorString(data));
-              if (data.status == 'success') {
-                this.update('Password is updated', 7);
-                this.changeStep(8);
-              }
-            }
-
-            this.changeLoader(false);
-          });
-          break;
-        case 8:
+        case 3:
           this.changeLoader(false);
 
           break;
@@ -800,38 +537,7 @@ class SignupVM {
         this.setError(error);
         return error ? false : { data: this.leadOtp, ...this.authPrevResponse };
 
-      case 2:
-        console.log(this.businessName);
-        error = validateBusinessName(this.businessName).name || validateBusinessSector(this.selectedSectorId).name;
-        console.log('error');
-        console.log(error);
-        this.setError(error);
-
-        return error
-          ? false
-          : prepareBusinessNameRequest(
-              this.businessName,
-              this.selectedSectorId,
-              this.businessName,
-              this.direction === 'rtl' ? 'ar' : 'en',
-            );
-
-      case 3: //// ibusiness Type  step
-        error =
-          validateBusinessType(this.selectedBusinessType).name || validateBusinessCountry(this.businessCountryId).name;
-        this.setError(error);
-        return error ? false : prepareBusinessTypeRequest(this.selectedBusinessType, this.businessCountryId);
-      case 4: //// isLicensed  step
-        return prepareBusinessLicensedRequest(this.isLicensed);
-
-      case 5: //// user name step
-        error = validateUserName(this.firstName, this.lastName).name;
-        console.log('error');
-        console.log(error);
-        this.setError(error);
-        return error ? false : prepareUserNameRequest(this.firstName, this.lastName, this.socialMediaMetaData);
-
-      case 6: //// email/mobile OTP step
+      case 2: //// email/mobile OTP step
         error = null;
         error = validateEmailMobile(this.username).email;
         console.log('error');
@@ -839,13 +545,7 @@ class SignupVM {
         this.setError(error);
         return error ? false : prepareCreateAccountRequest(this.username, this.countryCode, this.username);
 
-      case 7: ////password step
-        error = validateNewPassword(this.confirmedNewPassword).name;
-        console.log(error);
-        this.setError(error);
-        return error ? false : preparePasswordRequest(this.confirmedNewPassword, this.signUpToken, this.props.scopes);
-
-      case 8: //// final step, don't proceed
+      case 3: //// final step, don't proceed
         this.props.onSignupSuccess('success', this.FP.browser.browser_id);
       default:
         return {};

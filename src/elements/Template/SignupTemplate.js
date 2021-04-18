@@ -164,12 +164,12 @@ export default function SignupTemplate(props) {
             <PasswordOTPWrapper infos={props.activeStepInfo} in={props.page === 1} />
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page === 2}>
-            <BusinessNameSector
-              onMouseDown={handleMouseDown}
-              infos={props.activeStepInfo}
-              reference={reference}
+            <EmailTemplate
+              dropDownID={'tap_signup_country'}
               tapCardId={props.id}
+              infos={props.activeStepInfo}
               direction={props.direction}
+              reference={reference}
             />
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page === 3}>
@@ -186,15 +186,6 @@ export default function SignupTemplate(props) {
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page === 5}>
             <UserTemplate textField={props.activeStepInfo} />
-          </CollapseFadeTemplate>
-          <CollapseFadeTemplate in={props.page === 6}>
-            <EmailTemplate
-              dropDownID={'tap_signup_country'}
-              tapCardId={props.id}
-              infos={props.activeStepInfo}
-              direction={props.direction}
-              reference={reference}
-            />
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page === 7}>
             <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
@@ -246,28 +237,12 @@ export default function SignupTemplate(props) {
               )}
             </Button>
           </CollapseFadeTemplate>
-          {/* <Collapse in={props.page !== 1}>
-            <Button variant={props.backButtonVariant} onClick={props.onGoBack} variant={'text'}>
-              {t(props.backButtonText)}
-            </Button>
-          </Collapse> */}
           <div className={classes.link} style={props.page !== 0 ? { paddingBottom: '0px' } : {}}>
             <Collapse in={props.page === 0 && props.showSigninSection} timeout={{ enter: 1000, exit: 800 }}>
               <span>{t(props.footerTitle) + ' '}</span>
               <Link onClick={props.moveToLogin} color={'primary'} className={classes.subLink}>
                 {t(props.footerLogin)}
               </Link>
-              {/* <div className={classes.subLink}>
-              {props.footerSubTitle}
-              <Link href={'https://www.tap.company/kw/en/terms-conditions'} color={'primary'}>
-                {props.footerTermsTitle}
-              </Link>
-              ,{' '}
-              <Link href={'https://www.tap.company/kw/en/privacy-policy'} color={'primary'}>
-                {props.footerPolicyTitle}
-              </Link>
-              .
-            </div> */}
             </Collapse>
             <div className={classes.footer}>
               {t(props.footer)} {t(props.companyName)}.
