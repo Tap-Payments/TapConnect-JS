@@ -51,6 +51,28 @@ const PageMode = {
   FORGOT: 'reset',
   CONNECT: 'connect',
 };
+const SegmentType = {
+  Facilitator: 'fct',
+  PaymentGateway: 'pgw',
+  Scheme: 'sch',
+  Processor: 'prc',
+  Bank: 'bnk',
+  Platform: 'plt',
+  AlternativePaymentMethod: 'apm',
+  Issuer: 'isu',
+  Accounting: 'acn',
+  Legal: 'lgl',
+  Developer: 'dev',
+  Aggregator: 'agg',
+  Regulator: 'reg',
+  Marketing: 'mrk',
+  Switch: 'swc',
+  Acquirer: 'acq',
+  CrowdFunding: 'cwf',
+  FulfilmentProvider: 'fulfilment_provider',
+  MarketPlace: 'mkt',
+  PaymentServiceProvider: 'psp',
+};
 
 const SIGNUP_STEPS_ARRAY = [
   'CREATE_AUTH_SIGNUP',
@@ -65,6 +87,7 @@ module.exports = {
   AnimationType,
   TextFieldType,
   DialogMode,
+  SegmentType,
   Languages,
   LOGIN_STEPS,
   PageMode,
