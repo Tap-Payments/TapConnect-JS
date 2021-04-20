@@ -53,7 +53,7 @@ class ConnectDataSource {
     this.updateLiveMode = this.updateLiveMode.bind(this);
 
     this.onFinishedFetchingData = () => {
-      console.log('%c INFO FETCHED, GOOD TO GO', 'background:yellow; color:black;');
+      console.log('%c REQUIRED INFO FETCHED! ', 'background:yellow; color:black;');
       this.isDataReady = true;
     };
   }
@@ -65,7 +65,7 @@ class ConnectDataSource {
 
   async init() {
     await this.getLocale();
-    await this.getSectorsInfos();
+    // await this.getSectorsInfos();
     await this.getCountryInfos();
     await this.getBusinessCountryInfos();
     await this.getBusinessTypesInfos();
@@ -134,11 +134,9 @@ class ConnectDataSource {
   }
   async getBusinessCountryInfos() {
     await GetCountriesService.getStaticBusinessCountryData((data) => {
-      if (data && data.list) {
-        filterCountries(data.list).then((filteredCountries) => {
-          this.businessCountries = filteredCountries.sort(sortCountries(this.direction));
-          this.infoUpdated();
-        });
+      if (data && data.countries) {
+        this.businessCountries = data.countries;
+        this.infoUpdated();
       } else this.onFailure(data);
     });
   }

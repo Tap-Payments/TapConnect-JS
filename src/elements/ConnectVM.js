@@ -132,7 +132,7 @@ class ConnectVM {
     if (
       !(
         this.props.country &&
-        _.findIndex(ConnectDataSource.businessCountries, (item) => item.iso2 === this.props.country) >= 0
+        _.findIndex(ConnectDataSource.businessCountries, (item) => item.code === this.props.country) >= 0
       )
     ) {
       this.onFailure({ error: 'A valid supported business country is required.' });
@@ -148,6 +148,7 @@ class ConnectVM {
     }
 
     this.isLoading = false;
+    console.log('%cSETUP IS FINE! GOOD TO GO! ', 'background:green; color:white;');
 
     return;
   }
