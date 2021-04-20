@@ -93,7 +93,7 @@ class SignupVM {
 
     /// Email / Mobile Lead
     this.leadMaxLength = 11;
-    this.leadUsername = '';
+    this.leadUsername = this.props.defaultEmailOrMobile || '';
     this.leadOtp = '';
 
     /// Email / Mobile
