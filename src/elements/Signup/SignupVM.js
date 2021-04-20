@@ -396,6 +396,7 @@ class SignupVM {
     //// call API to fetch signup_token
     this.signupService.createAccount(
       {
+        ...leadStepData,
         ...this.getStepData(),
         ...{
           lead_id: this.signupService.leadID,
