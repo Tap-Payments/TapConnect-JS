@@ -1,4 +1,4 @@
-import { action, observable, decorate } from 'mobx';
+import { action, observable, decorate, autorun } from 'mobx';
 
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import ConnectDataSource from './ConnectDataSource';
@@ -7,7 +7,7 @@ import axios from 'axios';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { theme } from './theme/index';
 import _defaultProps from './defaultProps';
-
+import _ from 'lodash';
 class ConnectVM {
   constructor(props) {
     this.onFinishedFetchingData = this.onFinishedFetchingData.bind(this);
@@ -28,6 +28,9 @@ class ConnectVM {
     console.log('ConnectVM');
     console.log(props);
     this.reConstruct(props);
+    this.autorunDisposer = autorun(() => {
+      if (ConnectDataSource.isDataReady) this.onFinishedFetchingData();
+    });
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
@@ -124,7 +127,29 @@ class ConnectVM {
   }
 
   onFinishedFetchingData() {
+    if (!ConnectDataSource.isDataReady) return;
+
+    if (
+      !(
+        this.props.country &&
+        _.findIndex(ConnectDataSource.businessCountries, (item) => item.iso2 === this.props.country) >= 0
+      )
+    ) {
+      this.onFailure({ error: 'A valid supported business country is required.' });
+    }
+
+    if (
+      !(
+        this.props.businessSegment &&
+        _.findIndex(ConnectDataSource.businessSegments, (item) => item.code === this.props.businessSegment) >= 0
+      )
+    ) {
+      this.onFailure({ error: 'A valid business segment is required.' });
+    }
+
     this.isLoading = false;
+
+    return;
   }
 
   moveToForgot() {

@@ -30,7 +30,10 @@ export default {
   businessSegment: null,
   openPopup: true,
   onSuccess: () => {},
-  onFailure: () => {},
+  onFailure: (data) => {
+    console.log('%c FAILED TO LAUNCH', 'background:red; color:white;');
+    console.log(data);
+  },
   onCancel: () => {},
   onUpdate: () => {},
   moveToLogin: () => {},

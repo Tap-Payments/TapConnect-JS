@@ -7,7 +7,7 @@ import TapAuthButton from './elements/ButtonM/ButtonM';
 import ForgotPassword from './elements/ForgotPassword/ForgotPassword';
 import ConnectPackage from './elements/ConnectPackage';
 
-import { DialogMode, AnimationType, Languages, PageMode } from './elements/Constants/constants';
+import { DialogMode, AnimationType, Languages, PageMode, SegmentType } from './elements/Constants/constants';
 
 module.exports = {
   Login: Login,
@@ -19,6 +19,7 @@ module.exports = {
   AnimationType: AnimationType,
   Languages: Languages,
   ConnectPackage: ConnectPackage,
+  SegmentType: SegmentType,
 
   renderConnectElement: function (object) {
     ReactDOM.render(

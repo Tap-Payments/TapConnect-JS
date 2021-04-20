@@ -1,6 +1,6 @@
 import React, { Fragment, useState, Component } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { TapAuthButton, DialogMode, AnimationType, PageMode } from '../../src/index';
+import { TapAuthButton, DialogMode, AnimationType, PageMode, SegmentType } from '../../src/index';
 import {
   Card,
   CardHeader,
@@ -267,6 +267,8 @@ function ConnectDemo(props) {
               theme={{
                 direction: vm.direction,
               }}
+              country="KW"
+              businessSegment={SegmentType.Ecommerce}
             />
           </div>
         </CardContent>
