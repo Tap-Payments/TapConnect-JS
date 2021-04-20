@@ -136,6 +136,7 @@ class ConnectVM {
       )
     ) {
       this.onFailure({ error: 'A valid supported business country is required.' });
+      return;
     }
 
     if (
@@ -145,6 +146,7 @@ class ConnectVM {
       )
     ) {
       this.onFailure({ error: 'A valid business segment is required.' });
+      return;
     }
 
     this.isLoading = false;
