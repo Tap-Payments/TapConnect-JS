@@ -104,7 +104,6 @@ export default function ButtonDemo(props) {
             buttonText={'تسجيل دخول'}
             countryCode={'965'}
             variant={'outlined'}
-            logo={TapLogo}
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
@@ -129,7 +128,6 @@ export default function ButtonDemo(props) {
             buttonText={'تسجيل جديد'}
             countryCode={'965'}
             variant={'outlined'}
-            logo={TapLogo}
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
