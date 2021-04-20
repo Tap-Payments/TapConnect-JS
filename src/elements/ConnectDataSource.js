@@ -5,6 +5,7 @@ import * as baseAR from '../locales/ar/base.json';
 import * as baseEN from '../locales/en/base.json';
 import GetSectorsService from './API_Services/AuthServices/GetSectorsService';
 import GetCountriesService from './API_Services/AuthServices/GetCountriesService';
+import GetSegmentsService from './API_Services/AuthServices/GetSegmentsService';
 import OperatorService from './API_Services/AuthServices/OperatorService';
 import { getLocaleFromFirebase } from './API_Services/LocaleService/getLocaleFromFirebase';
 import { filterCountries } from './Utils/filtering';
@@ -30,6 +31,7 @@ class ConnectDataSource {
     this.countryInfos = [];
     this.businessCountries = [];
     this.businessTypes = [];
+    this.businessSegments = [];
     this.connectLocale = { ar: baseAR, en: baseEN };
     this.isOperatorValid = false;
 
@@ -40,6 +42,7 @@ class ConnectDataSource {
     this.getCountryInfos = this.getCountryInfos.bind(this);
     this.getBusinessCountryInfos = this.getBusinessCountryInfos.bind(this);
     this.getBusinessTypesInfos = this.getBusinessTypesInfos.bind(this);
+    this.getBusinessSegmentsInfos = this.getBusinessSegmentsInfos.bind(this);
     this.validateOperator = this.validateOperator.bind(this);
 
     this.updatei18 = this.updatei18.bind(this);
@@ -66,6 +69,7 @@ class ConnectDataSource {
     await this.getCountryInfos();
     await this.getBusinessCountryInfos();
     await this.getBusinessTypesInfos();
+    await this.getBusinessSegmentsInfos();
   }
   updatePublicKey(publicKey) {
     this.publicKey = publicKey;
@@ -80,9 +84,7 @@ class ConnectDataSource {
 
     try {
       console.log(
-        `this.sectors ${this.sectors.length}\nthis.countryInfos ${this.countryInfos.length}\nthis.businessCountries ${
-          this.businessCountries.length
-        }\nthis.businessTypes ${this.businessTypes.length}`,
+        `this.sectors ${this.sectors.length}\nthis.countryInfos ${this.countryInfos.length}\nthis.businessCountries ${this.businessCountries.length}\nthis.businessTypes ${this.businessTypes.length} \nthis.businessSegments ${this.businessSegments.length}`,
       );
 
       if (
@@ -91,7 +93,8 @@ class ConnectDataSource {
         // this.sectors.length &&
         this.countryInfos.length &&
         this.businessCountries.length &&
-        this.businessTypes.length
+        this.businessTypes.length &&
+        this.businessSegments.length
       ) {
         this.onFinishedFetchingData();
       }
@@ -143,6 +146,14 @@ class ConnectDataSource {
     await GetSectorsService.getStaticBusinessTypesData((data) => {
       if (data) {
         this.businessTypes = data;
+        this.infoUpdated();
+      } else this.onFailure(data);
+    });
+  }
+  async getBusinessSegmentsInfos() {
+    await GetSegmentsService.getSegmentsData((data) => {
+      if (data && data.segment_types) {
+        this.businessSegments = data.segment_types;
         this.infoUpdated();
       } else this.onFailure(data);
     });
