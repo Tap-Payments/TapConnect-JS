@@ -397,13 +397,13 @@ class SignupVM {
     this.signupService.createAccount(
       {
         ...this.getStepData(),
-        ...leadStepData,
         ...{
           lead_id: this.signupService.leadID,
           notify: {
-            email: !this.userProvidedEmail,
-            phone: this.userProvidedEmail,
+            email: true,
+            phone: true,
           },
+          skip_legacy: true,
         },
       },
       (data) => {
