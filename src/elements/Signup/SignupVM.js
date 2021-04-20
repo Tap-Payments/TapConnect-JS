@@ -543,7 +543,15 @@ class SignupVM {
         console.log('error');
         console.log(error);
         this.setError(error);
-        return error ? false : prepareCreateAccountRequest(this.username, this.countryCode, this.username);
+        return error
+          ? false
+          : prepareCreateAccountRequest(
+              this.username,
+              this.countryCode,
+              this.username,
+              this.props.country,
+              this.props.businessSegment,
+            );
 
       case 3: //// final step, don't proceed
         this.props.onSignupSuccess('success', this.FP.browser.browser_id);

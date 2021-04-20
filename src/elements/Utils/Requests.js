@@ -45,8 +45,10 @@ export function preparePasswordRequest(password, signupToken, scopes) {
     scopes: scopes,
   };
 }
-export function prepareCreateAccountRequest(username, countryCode, mobile) {
+export function prepareCreateAccountRequest(username, countryCode, mobile, businessCountry, businessSegment) {
   return {
+    country: businessCountry,
+    segment_type: businessSegment,
     contact_type: isMobile(mobile) ? 'phone' : 'email',
     contact: isMobile(mobile)
       ? {
