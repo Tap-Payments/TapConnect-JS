@@ -128,7 +128,8 @@ class ConnectVM {
 
   onFinishedFetchingData() {
     if (!ConnectDataSource.isDataReady) return;
-
+    /// check country and segment only for Signup
+    if (![PageMode.CONNECT, PageMode.SIGNUP].includes(this.props.pageMode)) return;
     if (
       !(
         this.props.country &&
@@ -136,6 +137,7 @@ class ConnectVM {
       )
     ) {
       this.onFailure({ error: 'A valid supported business country is required.' });
+      ConnectDataSource.isDataReady = false;
       return;
     }
 
@@ -146,6 +148,7 @@ class ConnectVM {
       )
     ) {
       this.onFailure({ error: 'A valid business segment is required.' });
+      ConnectDataSource.isDataReady = false;
       return;
     }
 
