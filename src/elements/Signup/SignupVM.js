@@ -408,18 +408,16 @@ class SignupVM {
         },
       },
       (data) => {
-        if (data && data.signup_token) {
-          this.signUpToken = data.signup_token;
-          this.update('User info is updated', 6);
+        if (data && data.status == 'success') {
+          this.update('User info is updated', 2);
 
           this.changeStep(3);
-        } else {
-          if (data && data.status == 'ALREADY_TAKEN') {
-            this.setError('signup_user_exists_error');
-          } else if (data && data.errors != null) {
-            this.setError(this.getErrorString(data));
-          }
+        } else if (data && data.status == 'ALREADY_TAKEN') {
+          this.setError('signup_user_exists_error');
+        } else if (data && data.errors != null) {
+          this.setError(this.getErrorString(data));
         }
+
         this.changeLoader(false);
       },
     );
@@ -494,24 +492,6 @@ class SignupVM {
         case 3:
           this.changeLoader(false);
 
-          break;
-        default:
-          //// update lead
-          this.signupService.updateLead({ ...this.getStepData(), ...stepData }, (data) => {
-            if (!data) {
-              this.setError('signup_invalid_api_response_error');
-            } else {
-              if (data.errors != null) this.setError(this.getErrorString(data));
-              if (data.contact && data.contact != {}) this.updatedContactLeadObject = data.contact;
-
-              if (['Active', 'COMPLETED'].includes(data.status) && data.step_type) {
-                this.update('Data is updated', data.step_type - 1);
-                this.changeStep(data.step_type);
-              }
-            }
-
-            this.changeLoader(false);
-          });
           break;
       }
     }
