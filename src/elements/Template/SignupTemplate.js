@@ -172,47 +172,12 @@ export default function SignupTemplate(props) {
               reference={reference}
             />
           </CollapseFadeTemplate>
+
           <CollapseFadeTemplate in={props.page === 3}>
-            <BusinessTypeLicensed
-              onMouseDown={handleMouseDown}
-              infos={props.activeStepInfo}
-              reference={reference}
-              tapCardId={props.id}
-              direction={props.direction}
-            />
-          </CollapseFadeTemplate>
-          <CollapseFadeTemplate in={props.page === 4}>
-            <Licensed infos={props.activeStepInfo} direction={props.direction} />
-          </CollapseFadeTemplate>
-          <CollapseFadeTemplate in={props.page === 5}>
-            <UserTemplate textField={props.activeStepInfo} />
-          </CollapseFadeTemplate>
-          <CollapseFadeTemplate in={props.page === 7}>
-            <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
-              <CreatePasswordTemplate infos={props.activeStepInfo} onPasswordUpdated={props.storeConfirmedPassword} />
-            </div>
-          </CollapseFadeTemplate>
-          <CollapseFadeTemplate in={props.page === 8}>
             <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
               <Typography variant="h2">{t('signup_successful_message')}</Typography>
             </div>
           </CollapseFadeTemplate>
-          {props.page === 9 ? (
-            <div style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-              <ReactCodeInput
-                onKeyUp={() => {}}
-                updated={false}
-                type="otpCode"
-                ref={targetElement}
-                autoFocus={false}
-                placeholder={'0'}
-                {...styles}
-                // onChange={this.handleChange.bind(this)}
-                fields={6}
-                // {...props}
-              />
-            </div>
-          ) : null}
 
           <CollapseFadeTemplate in={props.page !== 4}>
             <Button variant={props.nextButtonVariant} className={classes.containedButton} onClick={props.onSubmit}>
@@ -226,10 +191,8 @@ export default function SignupTemplate(props) {
                 />
               ) : (
                 t(
-                  props.page === 8
-                    ? props.isConnect
-                      ? props.loginButtonText
-                      : props.doneButtonText
+                  props.page === 3
+                    ? props.doneButtonText
                     : props.page === 7
                     ? props.submitButtonText
                     : props.nextButtonText,
