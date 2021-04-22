@@ -8,6 +8,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { theme } from './theme/index';
 import _defaultProps from './defaultProps';
 import _ from 'lodash';
+import VerifyAuthService from './API_Services/AuthServices/VerifyAuthService';
+
 class ConnectVM {
   constructor(props) {
     this.onFinishedFetchingData = this.onFinishedFetchingData.bind(this);
@@ -24,6 +26,7 @@ class ConnectVM {
     this.updatePageMode = this.updatePageMode.bind(this);
     this.updateAnimationType = this.updateAnimationType.bind(this);
     this.reConstruct = this.reConstruct.bind(this);
+    this.checkForAuthToken = this.checkForAuthToken.bind(this);
 
     console.log('ConnectVM');
     console.log(props);
@@ -35,6 +38,7 @@ class ConnectVM {
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
     axios.defaults.headers['connect_live_mode'] = this.props.liveMode;
+    this.checkForAuthToken();
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
@@ -125,7 +129,19 @@ class ConnectVM {
     console.log('new animation type');
     console.log(this.animationType);
   }
+  checkForAuthToken() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
 
+    if (urlParams.has('auth')) {
+      VerifyAuthService.verifyAuth(
+        { auth_token: urlParams.get('auth'), step_name: 'VERIFY_AUTH_FROM_QUERY' },
+        (data) => {
+          if (data != null) alert(JSON.stringify(data));
+        },
+      );
+    }
+  }
   onFinishedFetchingData() {
     if (!ConnectDataSource.isDataReady) return;
     /// check country and segment only for Signup
