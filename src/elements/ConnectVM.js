@@ -136,7 +136,7 @@ class ConnectVM {
     if (urlParams.has('auth')) {
       VerifyAuthService.verifyAuth(
         {
-          auth_token: urlParams.get('auth'),
+          auth_token: encodeURIComponent(urlParams.get('auth')),
           auth_type: urlParams.get('type'),
           step_name: 'VERIFY_AUTH_FROM_QUERY',
         },
