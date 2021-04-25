@@ -133,11 +133,11 @@ class ConnectVM {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    if (urlParams.has('authToken')) {
+    if (urlParams.has('auth')) {
       VerifyAuthService.verifyAuth(
         {
-          auth_token: urlParams.get('authToken'),
-          auth_type: urlParams.get('authType'),
+          auth_token: urlParams.get('auth'),
+          auth_type: urlParams.get('type'),
           step_name: 'VERIFY_AUTH_FROM_QUERY',
         },
         (data) => {
