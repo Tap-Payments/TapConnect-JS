@@ -78,15 +78,15 @@ const SegmentType = {
   WebsiteBuilder: 'wbb',
   WebsiteHosting: 'wbh',
 };
-
 const SIGNUP_STEPS_ARRAY = [
   'CREATE_AUTH_SIGNUP',
   'VERIFY_AUTH_SIGNUP',
   'USER_EMAIL',
-  'BUSINESS_TYPE',
-  'USER_NAME',
-  'USER_CONTACT',
+  'MAGIC_LINK_SENT',
   'USER_PASSWORD',
+  'ACCOUNT_CREATED',
+  'BUSINESS_TYPE',
+  'USER_CONTACT',
 ];
 module.exports = {
   AnimationType,
