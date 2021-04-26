@@ -563,14 +563,14 @@ class SignupVM {
       case 3: //// magic link, don't proceed
         return {};
 
-      case 5: //// final step, don't proceed
-        this.props.onSignupSuccess('success', this.FP.browser.browser_id);
-
       case 4: ////password step
         error = validateNewPassword(this.confirmedNewPassword).name;
         console.log(error);
         this.setError(error);
         return error ? false : preparePasswordRequest(this.confirmedNewPassword, this.signUpToken, this.props.scopes);
+
+      case 5: //// final step, don't proceed
+        this.props.onSignupSuccess('success', this.FP.browser.browser_id);
 
       default:
         return {};

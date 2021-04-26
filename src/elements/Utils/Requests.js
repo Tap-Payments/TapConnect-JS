@@ -42,7 +42,7 @@ export function preparePasswordRequest(password, signupToken, scopes) {
   return {
     signup_token: signupToken,
     password: password,
-    scopes: scopes,
+    // scopes: scopes,
   };
 }
 export function prepareCreateAccountRequest(username, countryCode, mobile, businessCountry, businessSegment) {
