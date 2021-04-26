@@ -173,13 +173,17 @@ export default function SignupTemplate(props) {
             />
           </CollapseFadeTemplate>
 
-          <CollapseFadeTemplate in={props.page === 3}>
+          <CollapseFadeTemplate in={props.page === 3 || props.page === 5}>
             <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
               <Typography variant="h2">{t('signup_successful_message')}</Typography>
             </div>
           </CollapseFadeTemplate>
-
-          <CollapseFadeTemplate in={props.page !== 4}>
+          <CollapseFadeTemplate in={props.page === 4}>
+            <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
+              <CreatePasswordTemplate infos={props.activeStepInfo} onPasswordUpdated={props.storeConfirmedPassword} />
+            </div>
+          </CollapseFadeTemplate>
+          <CollapseFadeTemplate in={props.page !== 3}>
             <Button variant={props.nextButtonVariant} className={classes.containedButton} onClick={props.onSubmit}>
               {props.loadingStatus ? (
                 <TapLoader
@@ -191,15 +195,16 @@ export default function SignupTemplate(props) {
                 />
               ) : (
                 t(
-                  props.page === 3
+                  props.page === 3 || props.page === 5
                     ? props.doneButtonText
-                    : props.page === 7
+                    : props.page === 4
                     ? props.submitButtonText
                     : props.nextButtonText,
                 )
               )}
             </Button>
           </CollapseFadeTemplate>
+
           <div className={classes.link} style={props.page !== 0 ? { paddingBottom: '0px' } : {}}>
             <Collapse in={props.page === 0 && props.showSigninSection} timeout={{ enter: 1000, exit: 800 }}>
               <span>{t(props.footerTitle) + ' '}</span>
