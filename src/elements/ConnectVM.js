@@ -141,7 +141,10 @@ class ConnectVM {
           step_name: 'VERIFY_AUTH_FROM_QUERY',
         },
         (data) => {
-          if (data != null) alert(JSON.stringify(data));
+          if (data && data.signup_token) {
+            ConnectDataSource.signUpToken = data.signup_token;
+            this.moveToSignup();
+          }
         },
       );
     }

@@ -54,10 +54,10 @@ class SignupVM {
     this.errorInfo = { error: '' };
     // this.leadID = 'LEAD_ID_213456789';
     this.signupService = new SignupService(this);
-
+    this.signUpToken = props.dataSource.signUpToken || '';
+    this.page = props.initialLeadID ? 2 : this.signUpToken ? 4 : 0;
     this.signupService.browserID = 'TEMP_BROWSER_ID';
     this.signupService.leadID = props.initialLeadID;
-    this.page = this.signupService.leadID ? 2 : 0;
 
     this.businessName = null;
     this.firstName = null;
@@ -67,7 +67,6 @@ class SignupVM {
     this.isLicensed = true;
     this.confirmedNewPassword = null;
     this.activeTextFieldName = TextFieldType.OTP;
-    this.signUpToken = null;
     this.direction = props.direction;
     this.itemGetTextPattern = this.direction === 'rtl' ? 'item.name.ar' : 'item.name.en';
     this.searchPattern = this.direction === 'rtl' ? 'item.name.ar' : 'item.name.en';
@@ -339,6 +338,19 @@ class SignupVM {
         };
 
         break;
+
+      case 4:
+        this.activeStepInfo = NEW_PASSWORD_INFO;
+
+        this.activeStepInfo[0].onEnterPressed = () => {
+          this.onSubmit();
+        };
+
+        this.activeStepInfo[1].onEnterPressed = () => {
+          this.onSubmit();
+        };
+        break;
+
       default:
         this.activeStepInfo = EMAIL_INFO; /// this is default placeholder
 
@@ -491,7 +503,21 @@ class SignupVM {
 
         case 3:
           this.changeLoader(false);
+          break;
+        case 4: ////password step
+          this.signupService.signUp({ ...this.getStepData(), ...stepData }, (data) => {
+            if (!data) {
+              this.setError('signup_invalid_api_response_error');
+            } else {
+              if (data.errors != null) this.setError(this.getErrorString(data));
+              if (data.status == 'success') {
+                this.update('Password is updated', 7);
+                this.changeStep(8);
+              }
+            }
 
+            this.changeLoader(false);
+          });
           break;
       }
     }
@@ -534,8 +560,18 @@ class SignupVM {
               this.props.businessSegment,
             );
 
-      case 3: //// final step, don't proceed
+      case 3: //// magic link, don't proceed
+        return {};
+
+      case 5: //// final step, don't proceed
         this.props.onSignupSuccess('success', this.FP.browser.browser_id);
+
+      case 4: ////password step
+        error = validateNewPassword(this.confirmedNewPassword).name;
+        console.log(error);
+        this.setError(error);
+        return error ? false : preparePasswordRequest(this.confirmedNewPassword, this.signUpToken, this.props.scopes);
+
       default:
         return {};
     }

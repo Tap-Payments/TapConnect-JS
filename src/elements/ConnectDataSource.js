@@ -24,7 +24,7 @@ class ConnectDataSource {
     this.isDataReady = false;
     this.publicKey = null;
     this.liveMode = true;
-
+    this.signUpToken = '';
     this.onFingerPrintReady = this.onFingerPrintReady.bind(this);
     this.fingerPrintModel = new FingerPrintModel(this.language, this.onFingerPrintReady);
     this.sectors = [];
