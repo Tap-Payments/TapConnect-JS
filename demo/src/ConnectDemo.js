@@ -1,6 +1,6 @@
 import React, { Fragment, useState, Component } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { TapAuthButton, DialogMode, AnimationType, PageMode, SegmentType } from '../../src/index';
+import { TapAuthButton, DialogMode, AnimationType, PageMode, SegmentType, ConnectPackage } from '../../src/index';
 import {
   Card,
   CardHeader,
@@ -251,7 +251,8 @@ function ConnectDemo(props) {
           </div>
 
           <div style={{ width: '230px', margin: '0px auto', marginTop: '60px' }}>
-            <TapAuthButton
+            <ConnectPackage
+              openPopup={true}
               publicKey={vm.publicKey}
               pageMode={vm.pageMode}
               buttonText={vm.buttonText}
