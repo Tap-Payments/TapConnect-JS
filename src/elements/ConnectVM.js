@@ -143,7 +143,10 @@ class ConnectVM {
         (data) => {
           if (data && data.signup_token) {
             ConnectDataSource.signUpToken = data.signup_token;
-            this.moveToSignup();
+            /// bypass country, business country api etc...
+            ConnectDataSource.isDataReady = true;
+          } else {
+            this.onFailure({ error: 'Auth token is invalid [MagicLink]' });
           }
         },
       );
