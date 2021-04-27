@@ -350,7 +350,17 @@ class SignupVM {
           this.onSubmit();
         };
         break;
+      case 5:
+        this.activeStepInfo = NEW_PASSWORD_INFO;
 
+        this.activeStepInfo[0].onEnterPressed = () => {
+          this.onSubmit();
+        };
+
+        this.activeStepInfo[1].onEnterPressed = () => {
+          this.onSubmit();
+        };
+        break;
       default:
         this.activeStepInfo = EMAIL_INFO; /// this is default placeholder
 
@@ -511,13 +521,15 @@ class SignupVM {
             } else {
               if (data.errors != null) this.setError(this.getErrorString(data));
               if (data.status == 'success') {
-                this.update('Password is updated', 7);
-                this.changeStep(8);
+                this.update('Password is updated', 4);
+                this.changeStep(5);
               }
             }
-
             this.changeLoader(false);
           });
+          break;
+        case 5: ////password step
+          window.location.href = 'https://dashboard.tap.company/en/login';
           break;
       }
     }
