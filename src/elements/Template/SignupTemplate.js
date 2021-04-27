@@ -173,14 +173,19 @@ export default function SignupTemplate(props) {
             />
           </CollapseFadeTemplate>
 
-          <CollapseFadeTemplate in={props.page === 3 || props.page === 5}>
+          <CollapseFadeTemplate in={props.page === 3}>
             <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
-              <Typography variant="h2">{t('signup_successful_message')}</Typography>
+              <Typography variant="h2">{t('signup_ml_message')}</Typography>
             </div>
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page === 4}>
             <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
               <CreatePasswordTemplate infos={props.activeStepInfo} onPasswordUpdated={props.storeConfirmedPassword} />
+            </div>
+          </CollapseFadeTemplate>
+          <CollapseFadeTemplate in={props.page === 5}>
+            <div style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
+              <Typography variant="h2">{t('signup_successful_message')}</Typography>
             </div>
           </CollapseFadeTemplate>
           <CollapseFadeTemplate in={props.page !== 3}>
