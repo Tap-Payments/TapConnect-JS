@@ -146,12 +146,7 @@ class SignupVM {
     this.businessCountryIcon = this.ipObject && this.ipObject.location && this.ipObject.location.country_flag;
     this.businessCountryCode = this.ipObject && this.ipObject.location && this.ipObject.location.calling_code;
 
-    //////// [Temp code to navigate steps]
-    this.changeStep(
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].includes(parseInt(window.location.pathname.split('/').pop()))
-        ? parseInt(window.location.pathname.split('/').pop())
-        : this.page,
-    );
+    this.changeStep(this.page);
 
     this.showInitialLoader = false;
   }
@@ -528,8 +523,8 @@ class SignupVM {
             this.changeLoader(false);
           });
           break;
-        case 5: ////password step
-          window.location.href = 'https://dashboard.tap.company/en/login';
+        case 5: //// signup confirmation step
+          this.changeLoader(false);
           break;
       }
     }
