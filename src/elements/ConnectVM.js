@@ -156,6 +156,8 @@ class ConnectVM {
     if (!ConnectDataSource.isDataReady) return;
     /// check country and segment only for Signup
     if (![PageMode.CONNECT, PageMode.SIGNUP].includes(this.props.pageMode)) return;
+    /// don;t check country and segment if there is SignupID [user already signed up]
+    if (ConnectDataSource.signUpToken) return;
     if (
       !(
         this.props.country &&
