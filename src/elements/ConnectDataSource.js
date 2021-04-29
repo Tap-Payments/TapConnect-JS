@@ -7,6 +7,7 @@ import GetSectorsService from './API_Services/AuthServices/GetSectorsService';
 import GetCountriesService from './API_Services/AuthServices/GetCountriesService';
 import GetSegmentsService from './API_Services/AuthServices/GetSegmentsService';
 import OperatorService from './API_Services/AuthServices/OperatorService';
+import VerifyAuthService from './API_Services/AuthServices/VerifyAuthService';
 import { getLocaleFromFirebase } from './API_Services/LocaleService/getLocaleFromFirebase';
 import { filterCountries } from './Utils/filtering';
 import { sortCountries } from './Utils/sorting';
@@ -37,6 +38,7 @@ class ConnectDataSource {
 
     this.init = this.init.bind(this);
     this.getLocale = this.getLocale.bind(this);
+    this.checkForMagicLink = this.checkForMagicLink.bind(this);
     this.infoUpdated = this.infoUpdated.bind(this);
     this.getSectorsInfos = this.getSectorsInfos.bind(this);
     this.getCountryInfos = this.getCountryInfos.bind(this);
@@ -65,6 +67,7 @@ class ConnectDataSource {
 
   async init() {
     await this.getLocale();
+    await this.checkForMagicLink();
     // await this.getSectorsInfos();
     await this.getCountryInfos();
     await this.getBusinessCountryInfos();
@@ -84,10 +87,16 @@ class ConnectDataSource {
 
     try {
       console.log(
-        `this.sectors ${this.sectors.length}\nthis.countryInfos ${this.countryInfos.length}\nthis.businessCountries ${this.businessCountries.length}\nthis.businessTypes ${this.businessTypes.length} \nthis.businessSegments ${this.businessSegments.length}`,
+        `this.signUpToken ${this.signUpToken}\nthis.sectors ${this.sectors.length}\nthis.countryInfos ${this.countryInfos.length}\nthis.businessCountries ${this.businessCountries.length}\nthis.businessTypes ${this.businessTypes.length} \nthis.businessSegments ${this.businessSegments.length}`,
       );
 
+      /// if there is signup token, no need to get more info
+      if (this.signUpToken) {
+        this.onFinishedFetchingData();
+        return;
+      }
       if (
+        this.signUpToken === undefined &&
         this.isOperatorValid &&
         i18n.isInitialized &&
         // this.sectors.length &&
@@ -223,6 +232,35 @@ class ConnectDataSource {
         this.countryInfos = this.countryInfos.sort(sortCountries(this.direction));
       if (this.businessCountries && this.businessCountries.length > 0)
         this.businessCountries = this.businessCountries.sort(sortCountries(this.direction));
+    }
+  }
+
+  checkForMagicLink() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has('auth')) {
+      VerifyAuthService.verifyAuth(
+        {
+          auth_token: encodeURIComponent(urlParams.get('auth')),
+          auth_type: urlParams.get('type'),
+          step_name: 'VERIFY_AUTH_FROM_QUERY',
+        },
+        (data) => {
+          if (data && data.signup_token) {
+            this.signUpToken = data.signup_token;
+          } else {
+            /// [signUpToken == undefined] => that means we checked and got no valid token from server
+            this.signUpToken = undefined;
+            this.onFailure({ error: 'Auth token is invalid [MagicLink]' });
+          }
+          this.infoUpdated();
+        },
+      );
+    } else {
+      /// [signUpToken == undefined] => that means we checked and got no token from URL
+      this.signUpToken = undefined;
+      this.infoUpdated();
     }
   }
 }

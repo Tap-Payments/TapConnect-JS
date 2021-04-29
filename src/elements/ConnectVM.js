@@ -26,7 +26,6 @@ class ConnectVM {
     this.updatePageMode = this.updatePageMode.bind(this);
     this.updateAnimationType = this.updateAnimationType.bind(this);
     this.reConstruct = this.reConstruct.bind(this);
-    this.checkForAuthToken = this.checkForAuthToken.bind(this);
 
     console.log('ConnectVM');
     console.log(props);
@@ -38,7 +37,6 @@ class ConnectVM {
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
     axios.defaults.headers['connect_live_mode'] = this.props.liveMode;
-    this.checkForAuthToken();
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
       ConnectDataSource.updatePublicKey(props.publicKey);
@@ -129,29 +127,7 @@ class ConnectVM {
     console.log('new animation type');
     console.log(this.animationType);
   }
-  checkForAuthToken() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
 
-    if (urlParams.has('auth')) {
-      VerifyAuthService.verifyAuth(
-        {
-          auth_token: encodeURIComponent(urlParams.get('auth')),
-          auth_type: urlParams.get('type'),
-          step_name: 'VERIFY_AUTH_FROM_QUERY',
-        },
-        (data) => {
-          if (data && data.signup_token) {
-            ConnectDataSource.signUpToken = data.signup_token;
-            /// bypass country, business country api etc...
-            ConnectDataSource.isDataReady = true;
-          } else {
-            this.onFailure({ error: 'Auth token is invalid [MagicLink]' });
-          }
-        },
-      );
-    }
-  }
   onFinishedFetchingData() {
     if (!ConnectDataSource.isDataReady) return;
     /// check country and segment only for Signup
