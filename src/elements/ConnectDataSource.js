@@ -228,6 +228,7 @@ class ConnectDataSource {
 }
 decorate(ConnectDataSource, {
   isDataReady: observable,
+  signUpToken: observable,
 });
 
 let connectDataSource = new ConnectDataSource();

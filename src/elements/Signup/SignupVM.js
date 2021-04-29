@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { action, observable, decorate, computed, toJS } from 'mobx';
+import { autorun, observable, decorate, computed, toJS } from 'mobx';
 
 import CreateAuthService from '../API_Services/AuthServices/CreateAuthService';
 import VerifyAuthService from '../API_Services/AuthServices/VerifyAuthService';
@@ -55,6 +55,12 @@ class SignupVM {
     // this.leadID = 'LEAD_ID_213456789';
     this.signupService = new SignupService(this);
     this.signUpToken = props.dataSource.signUpToken || '';
+    this.autorunDisposer = autorun(() => {
+      if (props.dataSource.signUpToken && this.signUpToken != props.dataSource.signUpToken) {
+        this.signUpToken = props.dataSource.signUpToken;
+        this.changeStep(4);
+      }
+    });
     this.page = props.initialLeadID ? 2 : this.signUpToken ? 4 : 0;
     this.signupService.browserID = 'TEMP_BROWSER_ID';
     this.signupService.leadID = props.initialLeadID;
