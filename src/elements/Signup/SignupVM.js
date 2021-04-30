@@ -513,6 +513,10 @@ class SignupVM {
           break;
 
         case 3:
+          /// move to email domain
+          if (this.username && this.username.includes('@')) {
+            location.href = `https://${this.username.split('@').pop()}`;
+          }
           this.changeLoader(false);
           break;
         case 4: ////password step
