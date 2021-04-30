@@ -25,7 +25,7 @@ export default {
     palette: {},
     typography: {},
   },
-  mobileCountryCode: '965',
+  // mobileCountryCode: '965',
   country: null,
   businessSegment: null,
   openPopup: true,

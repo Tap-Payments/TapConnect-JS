@@ -47,7 +47,6 @@ class SignupVM {
     this.FP = props.dataSource && props.dataSource.fingerPrintModel && props.dataSource.fingerPrintModel.FP;
     this.isConnect = props.isConnect;
     this.ipObject = this.FP && this.FP.ipObject;
-    console.log(this.ipObject);
     this.props = props;
     this.showInitialLoader = false;
     this.loadingStatus = false;
@@ -100,11 +99,10 @@ class SignupVM {
     this.leadMaxLength = 11;
     this.leadUsername = this.props.defaultEmailOrMobile || '';
     this.leadOtp = '';
-
     /// Email / Mobile
     this.selectedCountryIndex = null;
     this.maxLength = 11;
-    this.countryCode = props.countryCode ? props.countryCode : 965;
+    this.countryCode = props.mobileCountryCode || 965;
     this.countryIcon = 'https://www.gotapnow.com/web/countryflag/Kuwait.png';
     this.getCountryTextPattern = this.direction === 'rtl' ? 'item.name.arabic' : 'item.name.english';
     this.countrySearchPattern = this.direction === 'rtl' ? 'item.name.arabic' : 'item.name.english';
@@ -260,9 +258,11 @@ class SignupVM {
               </div>
             );
         };
-
+        console.log('this.countryInfos');
+        console.log(this.countryInfos);
+        console.log(this.countryCode);
         this.countryInfos.map((country, index) => {
-          if (country.idd_prefix.toString() === this.countryCode) {
+          if (country.idd_prefix.toString() == this.countryCode) {
             this.leadMaxLength = country.digits ? country.digits : 11;
             this.countryIcon = country.logo || this.countryIcon;
             this.selectedCountryIndex = index;

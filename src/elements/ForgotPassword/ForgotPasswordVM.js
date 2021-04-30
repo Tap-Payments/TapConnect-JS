@@ -38,7 +38,7 @@ class ForgotPasswordVM {
     /// Email / Mobile
     this.selectedCountryIndex = null;
     this.maxLength = 11;
-    this.countryCode = props.countryCode ? props.countryCode : 965;
+    this.countryCode = props.mobileCountryCode || 965;
     this.countryIcon = 'https://www.gotapnow.com/web/countryflag/Kuwait.png';
     this.getCountryTextPattern = this.direction === 'rtl' ? 'item.name.arabic' : 'item.name.english';
     this.countrySearchPattern = this.direction === 'rtl' ? 'item.name.arabic' : 'item.name.english';
@@ -148,15 +148,8 @@ class ForgotPasswordVM {
         this.activeStepInfo.filter = (value) => {
           return this.activeStepInfo.dropdownInfos.filter(
             (item) =>
-              eval(this.countrySearchPattern)
-                .toLowerCase()
-                .includes(value.toLowerCase()) ||
-              (
-                '+' +
-                eval('item.idd_prefix')
-                  .toString()
-                  .toLowerCase()
-              ).includes(value.toLowerCase()),
+              eval(this.countrySearchPattern).toLowerCase().includes(value.toLowerCase()) ||
+              ('+' + eval('item.idd_prefix').toString().toLowerCase()).includes(value.toLowerCase()),
           );
         };
 
@@ -173,7 +166,7 @@ class ForgotPasswordVM {
         };
 
         this.countryInfos.map((country, index) => {
-          if (country.idd_prefix.toString() === this.countryCode) {
+          if (country.idd_prefix.toString() == this.countryCode) {
             this.maxLength = country.digits ? country.digits : 11;
             this.countryIcon = country.logo || this.countryIcon;
             this.selectedCountryIndex = index;

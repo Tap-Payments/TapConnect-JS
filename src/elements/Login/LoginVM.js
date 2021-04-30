@@ -60,7 +60,7 @@ class LoginVM {
     /// Email / Mobile
     this.selectedCountryIndex = null;
     this.maxLength = 9;
-    this.countryCode = props.countryCode ? props.countryCode : 965;
+    this.countryCode = props.mobileCountryCode || 965;
     this.countryIcon = 'https://www.gotapnow.com/web/countryflag/Kuwait.png';
     this.getCountryTextPattern = this.direction === 'rtl' ? 'item.name.arabic' : 'item.name.english';
     this.searchPattern = this.direction === 'rtl' ? 'item.name.arabic' : 'item.name.english';
@@ -472,7 +472,7 @@ class LoginVM {
 
   getDropdownInfos() {
     this.dropdownInfos.map((country, index) => {
-      if (country.idd_prefix.toString() === this.countryCode) {
+      if (country.idd_prefix.toString() == this.countryCode) {
         this.countryCode = country.idd_prefix.toString();
         this.maxLength = country.digits ? country.digits : 11;
         this.countryIcon = country.logo;
