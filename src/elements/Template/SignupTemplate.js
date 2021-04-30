@@ -188,7 +188,7 @@ export default function SignupTemplate(props) {
               <Typography variant="h2">{t('signup_successful_message')}</Typography>
             </div>
           </CollapseFadeTemplate>
-          <CollapseFadeTemplate in={props.page}>
+          <CollapseFadeTemplate in>
             <Button variant={props.nextButtonVariant} className={classes.containedButton} onClick={props.onSubmit}>
               {props.loadingStatus ? (
                 <TapLoader
