@@ -22,24 +22,13 @@ function Signup(props) {
 
   return (
     <Fragment>
-      {props.dialogMode === DialogMode.POPUP && props.showBackButton && vm.page == 0 ? (
+      {props.dialogMode === DialogMode.POPUP && (vm.page == 2 || (props.showBackButton && vm.page == 0)) && (
         <NavigationButtons
           type={vm.direction == 'rtl' ? 'next' : 'back'}
           btnStyle={{ background: '#15151575' }}
           onClick={vm.goBack}
         />
-      ) : (
-        props.dialogMode === DialogMode.POPUP &&
-        vm.page != 0 &&
-        ((vm.page == 2 && props.initialLeadID == null) || vm.page != 2) && (
-          <NavigationButtons
-            type={vm.direction == 'rtl' ? 'next' : 'back'}
-            btnStyle={{ background: '#15151575' }}
-            onClick={vm.goBack}
-          />
-        )
       )}
-      {/* <NavigationButtons type="next" onClick={() => console.log('next pressed')} /> */}
       <SignupTemplate
         id={'signup-tap-card-150720'}
         page={vm.page}
