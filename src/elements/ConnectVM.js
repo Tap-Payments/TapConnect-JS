@@ -36,6 +36,10 @@ class ConnectVM {
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
+    this.signinDirectory = props.urlPortion.signin || 'login';
+    this.signupDirectory = props.urlPortion.signup || 'signup';
+    this.forgotDirectory = props.urlPortion.forgot || 'forgot';
+
     axios.defaults.headers['connect_live_mode'] = this.props.liveMode;
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
     if (ConnectDataSource.publicKey && ConnectDataSource.publicKey != this.props.publicKey)
@@ -67,11 +71,11 @@ class ConnectVM {
   initializePageMode(mode) {
     if (mode == PageMode.CONNECT) {
       this.isConnect = true;
-      if (window.location.pathname.search(this.props.signinDirectory) > 0) {
+      if (window.location.pathname.search(this.signinDirectory) > 0) {
         this.activePageMode = PageMode.LOGIN;
-      } else if (window.location.pathname.search(this.props.signupDirectory) > 0) {
+      } else if (window.location.pathname.search(this.signupDirectory) > 0) {
         this.activePageMode = PageMode.SIGNUP;
-      } else if (window.location.pathname.search(this.props.forgotDirectory) > 0) {
+      } else if (window.location.pathname.search(this.forgotDirectory) > 0) {
         this.activePageMode = PageMode.FORGOT;
       } else {
         this.activePageMode = PageMode.LOGIN;
@@ -165,11 +169,7 @@ class ConnectVM {
   moveToForgot() {
     this.hideLoader(false);
     this.updatePageMode(PageMode.FORGOT, this.isConnect);
-    window.history.pushState(
-      '',
-      '',
-      window.location.pathname.replace(this.props.signinDirectory, this.props.forgotDirectory),
-    );
+    window.history.pushState('', '', window.location.pathname.replace(this.signinDirectory, this.forgotDirectory));
     this.hideLoader(true);
   }
 
@@ -188,8 +188,8 @@ class ConnectVM {
         window.location.pathname.replace(
           window.location.pathname.search(this.props.landingDirectory) > 0
             ? this.props.landingDirectory
-            : this.props.signinDirectory,
-          this.props.signupDirectory,
+            : this.signinDirectory,
+          this.signupDirectory,
         ),
       );
     } else if (this.props.moveToSignup) this.props.moveToSignup();
@@ -210,12 +210,12 @@ class ConnectVM {
         '',
         '',
         window.location.pathname.replace(
-          window.location.pathname.search(this.props.signupDirectory) > 0
-            ? this.props.signupDirectory
-            : !(window.location.pathname.search(this.props.forgotDirectory) > 0)
+          window.location.pathname.search(this.signupDirectory) > 0
+            ? this.signupDirectory
+            : !(window.location.pathname.search(this.forgotDirectory) > 0)
             ? this.props.landingDirectory
-            : this.props.forgotDirectory,
-          this.props.signinDirectory,
+            : this.forgotDirectory,
+          this.signinDirectory,
         ),
       );
     } else if (this.props.moveToLogin) this.props.moveToLogin();
