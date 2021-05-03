@@ -259,7 +259,7 @@ function ConnectDemo(props) {
               dialogMode={DialogMode.POPUP}
               animationType={vm.animationType}
               animationDuration={500}
-              closeOnOutsideClick={true}
+              enableBackdropClick={true}
               liveMode={vm.isLiveMode == 'sandbox' ? false : true}
               hideInitialLoader={props.hideInitialLoader}
               onSuccess={props.handleSuccess}

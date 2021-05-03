@@ -61,7 +61,7 @@ class TapAuthButton extends Component {
             {...this.props}
             dialogMode={DialogMode.POPUP}
             hideInitialLoader={true}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             openPopup={this.vm.openPopup}
             onClose={this.vm.onClose}
           />

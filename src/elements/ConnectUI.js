@@ -45,7 +45,7 @@ export class ConnectUI extends Component {
           open={ConnectDataSource.isDataReady && (vm.openController == null ? vm.openPopup : vm.openController)}
           direction={vm.props.direction}
           animationDuration={vm.props.animationDuration}
-          closeOnOutsideClick={vm.props.closeOnOutsideClick}
+          enableBackdropClick={vm.props.enableBackdropClick}
           animationType={vm.animationType}
           onClose={(e) => {
             vm.openLoaderModal = false;

@@ -21,7 +21,7 @@ export default function ButtonDemo(props) {
             countryCode={'965'}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             onSuccess={props.handleSuccess}
@@ -40,7 +40,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToSignup={vm.moveToSignup}
@@ -60,7 +60,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToLogin={vm.moveToLogin}
@@ -84,7 +84,7 @@ export default function ButtonDemo(props) {
             logo={'https://tap-connecet.b-cdn.net/imgs/whiteLogo.svg'}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             onSuccess={props.handleSuccess}
@@ -107,7 +107,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToSignup={vm.moveToSignup}
@@ -131,7 +131,7 @@ export default function ButtonDemo(props) {
             // onCancel={vm.onCancel}
             animationType={AnimationType.SLIDEUP}
             animationDuration={500}
-            closeOnOutsideClick={true}
+            enableBackdropClick={true}
             // defaultEmailOrMobile={vm.initialUsername}
             hideInitialLoader={props.hideInitialLoader}
             // moveToLogin={vm.moveToLogin}

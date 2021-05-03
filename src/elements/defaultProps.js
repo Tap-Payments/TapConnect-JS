@@ -18,7 +18,7 @@ export default {
   dialogMode: DialogMode.FULLPAGE,
   animationType: null,
   animationDuration: 500,
-  closeOnOutsideClick: false,
+  enableBackdropClick: false,
   theme: {
     direction: 'ltr',
     overrides: {

@@ -126,7 +126,7 @@ class AnimationEngine extends React.Component {
   }
 
   handleClose() {
-    if (this.props.closeOnOutsideClick) {
+    if (this.props.enableBackdropClick) {
       if (this.props.showConfirmationDialog)
         this.setState({
           openAlert: true,
@@ -191,7 +191,7 @@ AnimationEngine.defaultProps = {
   animationType: AnimationType.FADE,
   animationDuration: 500,
   showConfirmationDialog: false,
-  closeOnOutsideClick: false,
+  enableBackdropClick: false,
 };
 
 export default AnimationEngine;

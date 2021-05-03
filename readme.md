@@ -79,7 +79,7 @@ Languages used to the change the direction of the dialog (EN, AR).
         dialogMode: Connect.DialogMode.POPUP,
         animationType: Connect.AnimationType.SLIDEDOWN,
         animationDuration: 500,
-        closeOnOutsideClick: false,
+        enableBackdropClick: false,
         theme: {
           direction: 'ltr',
         },
@@ -124,7 +124,7 @@ function Login(props) {
       pageMode={PageMode.LOGIN}
       animationType={AnimationType.SLIDEDOWN}
       animationDuration={500}
-      closeOnOutsideClick={false}
+      enableBackdropClick={false}
       defaultEmailOrMobile={null}
       hideInitialLoader={props.hideInitialLoader}
       theme={{
@@ -165,7 +165,7 @@ function Signup(props) {
       removeAuthType={removeAuthType}
       animationType={AnimationType.SLIDEDOWN}
       animationDuration={500}
-      closeOnOutsideClick={false}
+      enableBackdropClick={false}
       defaultEmailOrMobile={null}
       hideInitialLoader={props.hideInitialLoader}
       theme={{
@@ -204,7 +204,7 @@ function Connect(props) {
       removeAuthType={removeAuthType}
       animationType={AnimationType.SLIDEDOWN}
       animationDuration={500}
-      closeOnOutsideClick={false}
+      enableBackdropClick={false}
       defaultEmailOrMobile={null}
       hideInitialLoader={props.hideInitialLoader}
       theme={{
@@ -248,7 +248,7 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/js-conne
   countryCode={'965'}
   animationType={AnimationType.SLIDEUP}
   animationDuration={500}
-  closeOnOutsideClick={true}
+  enableBackdropClick={true}
   hideInitialLoader={props.hideInitialLoader}
   onSuccess={props.handleSuccess}
   theme={{
@@ -284,7 +284,7 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/js-conne
 | dialogMode                          | DialogMode       |        | DialogMode.FULLPAGE         | how to show the dialog popup or fullpage.                                              |
 | animationType                       | AnimationType    |        | AnimationType.SLIDEUP       | to change the animation behaviour .                                                    |
 | animationDuration                   | int              |        | 500                         | animation duaration.                                                                   |
-| closeOnOutsideClick                 | bool             |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
+| enableBackdropClick                 | bool             |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
 | theme                               | object           |        | `theme: {direction: 'ltr'}` | theme of the package.                                                                  |
 | openPopup                           | bool             |        | true                        | show or hide the popup .                                                               |
 | onSuccess                           | Function         |        |                             | on successfull case will trigger that function.                                        |
@@ -318,7 +318,7 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/js-conne
 | dialogMode                          | DialogMode       |        | DialogMode.FULLPAGE         | how to show the dialog popup or fullpage.                                              |
 | animationType                       | AnimationType    |        | AnimationType.SLIDEUP       | to change the animation behaviour .                                                    |
 | animationDuration                   | int              |        | 500                         | animation duaration.                                                                   |
-| closeOnOutsideClick                 | bool             |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
+| enableBackdropClick                 | bool             |        | false                       | this is enabled only for dialogmode is popup to restrict close popup on outside click. |
 | theme                               | object           |        | `theme: {direction: 'ltr'}` | theme of the package.                                                                  |
 | openPopup                           | bool             |        | true                        | show or hide the popup .                                                               |
 | onSuccess                           | Function         |        |                             | on successfull case will trigger that function.                                        |
