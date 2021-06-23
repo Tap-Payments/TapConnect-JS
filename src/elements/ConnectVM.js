@@ -36,9 +36,9 @@ class ConnectVM {
   }
   reConstruct(props) {
     this.props = { ..._defaultProps, ...props };
-    this.signinDirectory = props.urlPortion.signin || 'login';
-    this.signupDirectory = props.urlPortion.signup || 'signup';
-    this.forgotDirectory = props.urlPortion.forgot || 'forgot';
+    this.signinDirectory = this.props.urlPortion.signin || 'login';
+    this.signupDirectory = this.props.urlPortion.signup || 'signup';
+    this.forgotDirectory = this.props.urlPortion.forgot || 'forgot';
 
     axios.defaults.headers['connect_live_mode'] = this.props.liveMode;
     if (!ConnectDataSource.publicKey) ConnectDataSource.publicKey = this.props.publicKey;
