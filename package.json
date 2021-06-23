@@ -1,7 +1,7 @@
 {
   "homepage": "https://tap-payments.github.io/TapConnect-JS",
   "name": "@tap-payments/js-connect",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.9",
   "description": "Auth Component, used to Connect Merchants with Tap Payments",
   "main": "dist/index.js",
   "scripts": {
