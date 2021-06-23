@@ -50,7 +50,7 @@ class LoginVM {
     this.title = LOGIN_INFO.title;
 
     this.data = { email: '', password: '', mobile: '', otp: '' };
-    this.username;
+    this.username = props.defaultEmailOrMobile;
     this.password;
     this.otp;
     this.rememberMe = true;
@@ -96,121 +96,120 @@ class LoginVM {
 
     // this.changeLoader(true);
     this.showInitialLoader = true;
-    CreateAuthService.getLoginFormData((data) => {
-      this.editButtonInfo.onPress = () => {
-        this.loginSteps = LOGIN_STEPS.GO_BACK;
-        this.newUser = false;
-        this.updateLoginInfo();
+
+    if (this.props.initialAuthType) this.handleInitialData();
+
+    this.editButtonInfo.onPress = () => {
+      this.loginSteps = LOGIN_STEPS.GO_BACK;
+      this.newUser = false;
+      this.updateLoginInfo();
+    };
+
+    console.log('getLoginFormData');
+    this.activeTextFieldName = TextFieldType.EMAIL;
+
+    this.checkBoxInfo.onChange = (event) => {
+      this.rememberMe = event.target.checked;
+      this.checkBoxInfo = {
+        checked: this.rememberMe,
+        label: this.checkBoxInfo.label,
+        size: this.checkBoxInfo.size,
+        inputProps: this.checkBoxInfo.inputProps,
+        onChange: this.checkBoxInfo.onChange,
       };
+    };
 
-      console.log('getLoginFormData');
-      this.activeTextFieldName = TextFieldType.EMAIL;
+    this.emailTextField = EMAIL_INFO;
+    this.getDropdownInfos();
 
-      this.checkBoxInfo.onChange = (event) => {
-        this.rememberMe = event.target.checked;
-        this.checkBoxInfo = {
-          checked: this.rememberMe,
-          label: this.checkBoxInfo.label,
-          size: this.checkBoxInfo.size,
-          inputProps: this.checkBoxInfo.inputProps,
-          onChange: this.checkBoxInfo.onChange,
-        };
-      };
+    this.emailTextField.initialValue = this.username;
 
-      this.emailTextField = EMAIL_INFO;
-      this.getDropdownInfos();
+    this.emailTextField.dropdownInfos = this.dropdownInfos;
+    this.emailTextField.getTextPattern = this.getCountryTextPattern;
+    this.emailTextField.searchPattern = this.searchPattern;
+    this.emailTextField.isSelected = (item) => item.idd_prefix.toString() === this.countryCode;
 
-      this.emailTextField.initialValue = this.props.defaultEmailOrMobile;
-      this.emailTextField.dropdownInfos = this.dropdownInfos;
-      this.emailTextField.getTextPattern = this.getCountryTextPattern;
-      this.emailTextField.searchPattern = this.searchPattern;
-      this.emailTextField.isSelected = (item) => item.idd_prefix.toString() === this.countryCode;
+    this.emailTextField.getDropdownIcon = (item) => {
+      return item.logo;
+    };
 
-      this.emailTextField.getDropdownIcon = (item) => {
-        return item.logo;
-      };
+    this.emailTextField.getSelectedItem = (item) => {
+      if (item) return this.direction === 'rtl' ? item.name.arabic : item.name.english;
+    };
 
-      this.emailTextField.getSelectedItem = (item) => {
-        if (item) return this.direction === 'rtl' ? item.name.arabic : item.name.english;
-      };
+    this.emailTextField.filter = (value) => {
+      return this.emailTextField.dropdownInfos.filter(
+        (item) =>
+          eval(this.searchPattern).toLowerCase().includes(value.toLowerCase()) ||
+          ('+' + eval('item.idd_prefix').toString().toLowerCase()).includes(value.toLowerCase()),
+      );
+    };
 
-      this.emailTextField.filter = (value) => {
-        return this.emailTextField.dropdownInfos.filter(
-          (item) =>
-            eval(this.searchPattern).toLowerCase().includes(value.toLowerCase()) ||
-            ('+' + eval('item.idd_prefix').toString().toLowerCase()).includes(value.toLowerCase()),
+    this.emailTextField.renderMenuItem = (item) => {
+      if (item)
+        return (
+          <div>
+            <span style={{ float: this.direction === 'ltr' ? 'left' : 'right', paddingInlineEnd: '10px' }}>
+              {this.direction === 'rtl' ? item.name.arabic : item.name.english}
+            </span>
+            <span style={{ float: this.direction === 'ltr' ? 'right' : 'left' }}>{'+' + item.idd_prefix}</span>
+          </div>
         );
-      };
+    };
+    this.emailTextField.onClose = this.handleClose;
+    this.emailTextField.getCountryIcon = this.getCountryIcon;
+    this.emailTextField.getMaxLength = this.getMaxLength;
+    this.emailTextField.clear = this.clearUserName;
 
-      this.emailTextField.renderMenuItem = (item) => {
-        if (item)
-          return (
-            <div>
-              <span style={{ float: this.direction === 'ltr' ? 'left' : 'right', paddingInlineEnd: '10px' }}>
-                {this.direction === 'rtl' ? item.name.arabic : item.name.english}
-              </span>
-              <span style={{ float: this.direction === 'ltr' ? 'right' : 'left' }}>{'+' + item.idd_prefix}</span>
-            </div>
-          );
-      };
-      this.emailTextField.onClose = this.handleClose;
-      this.emailTextField.getCountryIcon = this.getCountryIcon;
-      this.emailTextField.getMaxLength = this.getMaxLength;
-      this.emailTextField.clear = this.clearUserName;
+    this.passwordTextField = PASSWORD_INFO;
+    this.otpTextField = OTP_INFO;
 
-      this.passwordTextField = PASSWORD_INFO;
-      this.otpTextField = OTP_INFO;
+    this.otpTextField.clear = this.clearOtp;
 
-      this.otpTextField.clear = this.clearOtp;
+    this.emailTextField.onChange = (event) => {
+      console.log('onChangeEmail');
+      // console.log(event.target.value);
+      if (this.errorInfo.error !== null) this.setError(null);
+      this.storeUserName(event.target.value);
+    };
+    this.emailTextField.onButtonPress = () => {
+      console.log('onButtonPress');
+      this.onFormSubmit();
+    };
+    this.emailTextField.onEnterPressed = () => {
+      console.log('onEnterPressed');
+      this.onFormSubmit();
+    };
 
-      this.username = this.emailTextField.initialValue;
+    this.passwordTextField.onChange = (event) => {
+      console.log('onChangePassword');
+      if (this.errorInfo.error !== null) this.setError(null);
+      this.storePassword(event.target.value);
+    };
+    this.passwordTextField.onButtonPress = () => {
+      console.log('onButtonPress');
+      this.onFormSubmit();
+    };
+    this.passwordTextField.onEnterPressed = () => {
+      console.log('onEnterPressed');
+      this.onFormSubmit();
+    };
 
-      this.emailTextField.onChange = (event) => {
-        console.log('onChangeEmail');
-        // console.log(event.target.value);
-        if (this.errorInfo.error !== null) this.setError(null);
-        this.storeUserName(event.target.value);
-      };
-      this.emailTextField.onButtonPress = () => {
-        console.log('onButtonPress');
-        this.onFormSubmit();
-      };
-      this.emailTextField.onEnterPressed = () => {
-        console.log('onEnterPressed');
-        this.onFormSubmit();
-      };
+    this.otpTextField.onChange = (value) => {
+      console.log('onChangeOtp');
+      if (this.errorInfo.error !== null) this.setError(null);
+      this.storeOtp(value);
+    };
+    this.otpTextField.onButtonPress = () => {
+      console.log('onButtonPress');
+      this.onFormSubmit();
+    };
+    this.otpTextField.onEnterPressed = () => {
+      console.log('onEnterPressed');
+      this.onFormSubmit();
+    };
 
-      this.passwordTextField.onChange = (event) => {
-        console.log('onChangePassword');
-        if (this.errorInfo.error !== null) this.setError(null);
-        this.storePassword(event.target.value);
-      };
-      this.passwordTextField.onButtonPress = () => {
-        console.log('onButtonPress');
-        this.onFormSubmit();
-      };
-      this.passwordTextField.onEnterPressed = () => {
-        console.log('onEnterPressed');
-        this.onFormSubmit();
-      };
-
-      this.otpTextField.onChange = (value) => {
-        console.log('onChangeOtp');
-        if (this.errorInfo.error !== null) this.setError(null);
-        this.storeOtp(value);
-      };
-      this.otpTextField.onButtonPress = () => {
-        console.log('onButtonPress');
-        this.onFormSubmit();
-      };
-      this.otpTextField.onEnterPressed = () => {
-        console.log('onEnterPressed');
-        this.onFormSubmit();
-      };
-      if (this.props.initialAuthType) this.handleInitialData();
-
-      this.showInitialLoader = false;
-    });
+    this.showInitialLoader = false;
   }
 
   handleInitialData() {
@@ -322,9 +321,14 @@ class LoginVM {
   }
 
   changeLoginStep(data) {
-    let status = data.status;
-    let auth_type = data.auth_type;
-
+    let { status, auth_type } = data;
+    if (!status) {
+      /// when there is authType and  no status
+      /// [1] no status => no api response
+      /// [2] check if there is a username, call auth api to grant a new token and status
+      this.onSubmit();
+      return;
+    }
     if (status == 'success') {
       this.openLoginPopup = false;
 

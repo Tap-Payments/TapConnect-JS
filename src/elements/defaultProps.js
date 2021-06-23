@@ -15,6 +15,7 @@ export default {
   direction: 'ltr',
   pageMode: PageMode.LOGIN,
   hideInitialLoader: false,
+  // initialAuthType: { email: 'k.naqawa@tap.company' },
   dialogMode: DialogMode.FULLPAGE,
   animationType: null,
   animationDuration: 500,

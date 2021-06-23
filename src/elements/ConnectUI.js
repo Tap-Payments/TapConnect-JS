@@ -69,7 +69,6 @@ export class ConnectUI extends Component {
               moveToSignup={vm.moveToSignup}
               showSignupSection={vm.isConnect ? true : false}
               moveToForgot={vm.moveToForgot}
-              initialAuthType={vm.initialAuthType}
               hideInitialLoader={vm.hideInitialLoader}
               dataSource={ConnectDataSource}
               showBackButton={vm.showBackButton}

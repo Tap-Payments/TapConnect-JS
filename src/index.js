@@ -10,16 +10,16 @@ import ConnectPackage from './elements/ConnectPackage';
 import { DialogMode, AnimationType, Languages, PageMode, SegmentType } from './elements/Constants/constants';
 
 module.exports = {
-  Login: Login,
-  Signup: Signup,
-  ForgotPassword: ForgotPassword,
-  DialogMode: DialogMode,
-  PageMode: PageMode,
-  TapAuthButton: TapAuthButton,
-  AnimationType: AnimationType,
-  Languages: Languages,
-  ConnectPackage: ConnectPackage,
-  SegmentType: SegmentType,
+  Login,
+  Signup,
+  ForgotPassword,
+  DialogMode,
+  PageMode,
+  TapAuthButton,
+  AnimationType,
+  Languages,
+  ConnectPackage,
+  SegmentType,
 
   renderConnectElement: function (object) {
     ReactDOM.render(
