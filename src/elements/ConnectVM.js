@@ -35,7 +35,7 @@ class ConnectVM {
     });
   }
   reConstruct(props) {
-    this.props = { ..._defaultProps, ...props };
+    this.props = { ..._defaultProps, ...this.props, ...props };
     this.signinDirectory = this.props.urlPortion.signin || 'login';
     this.signupDirectory = this.props.urlPortion.signup || 'signup';
     this.forgotDirectory = this.props.urlPortion.forgot || 'forgot';
