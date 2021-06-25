@@ -124,6 +124,7 @@ export default function LoginTemplate(props) {
             in={props.activeTextFieldName === TextFieldType.PASSWORD || props.activeTextFieldName === TextFieldType.OTP}
           >
             <PasswordOTPTemplate
+              strictUsername={props.strictUsername}
               passwordTextField={props.passwordTextField}
               otpTextField={props.otpTextField}
               verifyValue={props.verifyValue}
@@ -182,13 +183,15 @@ export default function LoginTemplate(props) {
               )
             )}
           </Button>
-          <CollapseFadeTemplate in={props.newUser && props.activeTextFieldName != TextFieldType.EMAIL ? false : true}>
-            <Link onClick={props.moveToForgot} variant={'body1'} color={'primary'} className={classes.link}>
-              {props.newUser && props.activeTextFieldName != TextFieldType.EMAIL
-                ? ''
-                : t(props.forgotPasswordInfo.text)}
-            </Link>
-          </CollapseFadeTemplate>
+          {!props.strictUsername && (
+            <CollapseFadeTemplate in={props.newUser && props.activeTextFieldName != TextFieldType.EMAIL ? false : true}>
+              <Link onClick={props.moveToForgot} variant={'body1'} color={'primary'} className={classes.link}>
+                {props.newUser && props.activeTextFieldName != TextFieldType.EMAIL
+                  ? ''
+                  : t(props.forgotPasswordInfo.text)}
+              </Link>
+            </CollapseFadeTemplate>
+          )}
         </div>
         <CollapseFadeTemplate in={props.activeTextFieldName === TextFieldType.EMAIL && props.showSignupSection}>
           <Divider />

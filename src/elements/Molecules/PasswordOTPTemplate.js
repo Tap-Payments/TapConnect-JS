@@ -42,11 +42,14 @@ export default function PasswordOTPTemplate(props) {
   return (
     <div style={{ textAlign: 'center' }}>
       <UserNameButton classes={classes} verifyValue={props.verifyValue} t={t}></UserNameButton>
-      <span>
-        <Link color={'primary'} variant={'body1'} onClick={props.editButtonInfo.onPress}>
-          {t(props.editButtonInfo.text)}
-        </Link>
-      </span>
+
+      {!props.strictUsername && (
+        <span>
+          <Link color={'primary'} variant={'body1'} onClick={props.editButtonInfo.onPress}>
+            {t(props.editButtonInfo.text)}
+          </Link>
+        </span>
+      )}
       {props.activeTextFieldName === TextFieldType.PASSWORD ? (
         <PasswordTemplate textField={props.passwordTextField} onMouseDown={handleMouseDown} />
       ) : props.activeTextFieldName === TextFieldType.OTP ? (
@@ -56,7 +59,8 @@ export default function PasswordOTPTemplate(props) {
       )}
       {location.href.search('tap.company') > 0 &&
       props.checkBoxInfo &&
-      props.activeTextFieldName === TextFieldType.PASSWORD ? (
+      props.activeTextFieldName === TextFieldType.PASSWORD &&
+      !props.strictUsername ? (
         <div className={classes.checkboxLabel}>
           <FormControlLabel
             control={

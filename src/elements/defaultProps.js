@@ -41,4 +41,5 @@ export default {
   onUpdate: () => {},
   moveToLogin: () => {},
   moveToSignup: () => {},
+  strictUsername: false,
 };
