@@ -15,7 +15,9 @@
     "predeploy": "npm run build_dev",
     "publish-demo": "npm run build && npm run deploy"
   },
-  "author": "Khaled N. <k.naqawa@tap.company> (https://tap.company)",
+  "author": {
+    "name": "Khaled N. <k.naqawa@tap.company> (https://tap.company)"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
