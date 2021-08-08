@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = 'https://godatasandbox.payments.tap.company/api/v1/segmenttype/list';
+const URL = 'https://godata.sandbox.tap.company/api/v1/segmenttype/list';
 class GetSegmentsService {
   static async getSegmentsData(callback) {
     //// call API, bring raw data
