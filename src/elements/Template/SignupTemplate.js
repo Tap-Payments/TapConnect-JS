@@ -1,21 +1,14 @@
 import React, { useRef } from 'react';
 import { Button, Link, Collapse, Typography, makeStyles } from '@material-ui/core';
-import TapLoader from '../Login_Loader/Loader';
-import { useTranslation, composeInitialProps } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { Loader as TapLoader } from '@tap-ui/react-design-kit.loader';
 import TapAlert from '../Atoms/TapAlert';
 import TapCard from '../Atoms/TapCard';
-import BusinessNameSector from '../Molecules/BusinessNameSector';
-import UserTemplate from '../Molecules/UserTemplate';
-import BusinessTypeLicensed from '../Molecules/BusinessTypeLicensed';
-import Licensed from '../Molecules/Licensed';
 import CreatePasswordTemplate from '../Molecules/CreatePasswordTemplate/CreatePasswordTemplate';
 import EmailTemplate from '../Atoms/EmailTemplate';
 import PasswordOTPWrapper from '../Molecules/PasswordOTPWrapper';
 import CollapseFadeTemplate from './CollapseFadeTemplate';
 import { LOGO as TapLogo } from '../Constants/constants';
-
-import ReactCodeInput from '../ReactCodeInput/ReactCodeInput.js';
-
 import '../../elements/ReactCodeInput/style.css';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,18 +1,11 @@
-import React, { Fragment, useRef } from 'react';
-
+import React, { Fragment } from 'react';
 import { toJS } from 'mobx';
-
 import { useVm } from '../../hooks';
 import { observer } from 'mobx-react-lite';
-
 import SignupVM from './SignupVM';
 import SignupTemplate from '../Template/SignupTemplate';
-import TapLoader from '../Login_Loader/Loader';
-
-import AnimationEngine from '../Animation/AnimationEngine';
 import { DialogMode } from '../Constants/constants';
 import NavigationButtons from '../Atoms/Navigator/NaviButton';
-
 import { SIGNUP_INFO } from '../Utils/FieldArraysSignup';
 
 function Signup(props) {

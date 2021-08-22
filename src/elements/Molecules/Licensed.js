@@ -1,8 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import LicensedSwitch from '../Atoms/LicensedSwitch';
-import { makeStyles, Typography, Button, Grid } from '@material-ui/core';
-import TapLoader from '../Login_Loader/Loader';
+import { makeStyles, Typography, Button } from '@material-ui/core';
+import { Loader as TapLoader } from '@tap-ui/react-design-kit.loader';
 
 const useStyles = makeStyles((theme) => ({
   switch: {

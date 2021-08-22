@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { Button, Link, Collapse, Typography, makeStyles, Divider } from '@material-ui/core';
-import TapLoader from '../Login_Loader/Loader';
+import { Button, Link, Typography, makeStyles, Divider } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { Loader as TapLoader } from '@tap-ui/react-design-kit.loader';
 import { TextFieldType } from '../Constants/constants';
 import TapAlert from '../Atoms/TapAlert';
 import TapCard from '../Atoms/TapCard';
