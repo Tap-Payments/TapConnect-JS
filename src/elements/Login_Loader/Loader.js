@@ -1,19 +1,3 @@
-// import React from 'react';
-// import { Loader } from '@tap-payments/loader';
-// import './Loader.css';
-
-// function TapLoader(props) {
-//   return (
-//     <div
-//       style={props.style}
-//       className={props.className != null && props.className != '' ? props.className : 'dashboard_loader'}
-//     >
-//       <Loader toggleAnimation={true} duration={2.5} />
-//     </div>
-//   );
-// }
-// export default TapLoader;
-
 import React, { Fragment } from 'react';
 const loaderContainerStyle = {
   width: '100px',

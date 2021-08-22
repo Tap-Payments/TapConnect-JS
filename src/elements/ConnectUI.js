@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-
-import { Backdrop, Modal, Dialog } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { PageMode, AnimationType, DialogMode } from './Constants/constants';
+import { Loader as TapLoader } from '@tap-ui/react-design-kit.loader';
+import { PageMode, DialogMode } from './Constants/constants';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
@@ -10,8 +10,6 @@ import ConnectDataSource from './ConnectDataSource';
 import { observer } from 'mobx-react';
 import AnimationEngine from './Animation/AnimationEngine';
 import ConnectPackage from './ConnectPackage';
-import TapLoader from './Login_Loader/Loader';
-
 import _defaultProps from './defaultProps';
 
 export class ConnectUI extends Component {

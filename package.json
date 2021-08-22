@@ -1,7 +1,7 @@
 {
   "homepage": "https://tap-payments.github.io/TapConnect-JS",
   "name": "@tap-payments/js-connect",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Auth Component, used to Connect Merchants with Tap Payments",
   "main": "dist/index.js",
   "scripts": {
@@ -49,13 +49,13 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.1"
   },
-  "peerDependencies": {},
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.55",
     "@tap-payments/loader": "1.0.11",
+    "@tap-ui/react-design-kit.loader": "^0.0.4",
     "axios": "^0.18.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

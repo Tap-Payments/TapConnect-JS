@@ -62,9 +62,6 @@ class ConnectPackage extends Component {
   render() {
     //// ensure only one instance in the DOM
     if (this.isDuplicateInstance) return null;
-    // if (ConnectPackage.vm && ConnectPackage.vm.dataSource && ConnectPackage.vm.dataSource.isDataReady)
-    //   return <TapLoader />;
-
     return <div className={CONNECT_ELEMENT_ID} id={CONNECT_ELEMENT_ID} />;
   }
 }

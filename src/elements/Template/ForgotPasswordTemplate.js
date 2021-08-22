@@ -1,14 +1,12 @@
 import React, { useRef } from 'react';
 import { Button, Typography, makeStyles } from '@material-ui/core';
-import TapLoader from '../Login_Loader/Loader';
-import { useTranslation, composeInitialProps } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { Loader as TapLoader } from '@tap-ui/react-design-kit.loader';
 import TapAlert from '../Atoms/TapAlert';
 import TapCard from '../Atoms/TapCard';
-
 import CreatePasswordWrapper from '../Molecules/CreatePasswordWrapper';
 import EmailTemplate from '../Atoms/EmailTemplate';
 import OTPField from '../Atoms/OTPField';
-import PasswordOTPWrapper from '../Molecules/PasswordOTPWrapper';
 import CollapseFadeTemplate from './CollapseFadeTemplate';
 import { LOGO as TapLogo } from '../Constants/constants';
 

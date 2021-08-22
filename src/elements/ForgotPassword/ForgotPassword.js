@@ -8,9 +8,6 @@ import { observer } from 'mobx-react-lite';
 
 import ForgotPasswordVM from './ForgotPasswordVM';
 import ForgotPasswordTemplate from '../Template/ForgotPasswordTemplate';
-import TapLoader from '../Login_Loader/Loader';
-
-import AnimationEngine from '../Animation/AnimationEngine';
 import { DialogMode } from '../Constants/constants';
 import NavigationButtons from '../Atoms/Navigator/NaviButton';
 
@@ -18,9 +15,6 @@ import { RESET_PASSWORD_INFO } from '../Utils/FieldArraysForgotPassword';
 
 function ForgotPassword(props) {
   const vm = useVm(ForgotPasswordVM, props);
-
-  // if (!props.hideInitialLoader) if (vm.showInitialLoader) return null;
-
   return (
     <Fragment>
       {props.dialogMode === DialogMode.POPUP && (
