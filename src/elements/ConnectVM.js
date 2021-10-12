@@ -1,4 +1,4 @@
-import { action, observable, decorate, autorun } from 'mobx';
+import { makeObservable, observable, autorun } from 'mobx';
 
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import ConnectDataSource from './ConnectDataSource';
@@ -32,6 +32,13 @@ class ConnectVM {
     this.reConstruct(props);
     this.autorunDisposer = autorun(() => {
       if (ConnectDataSource.isDataReady) this.onFinishedFetchingData();
+    });
+    makeObservable(this, {
+      activePageMode: observable,
+      openController: observable,
+      openPopup: observable,
+      openLoaderModal: observable,
+      animationType: observable,
     });
   }
   reConstruct(props) {
@@ -279,24 +286,5 @@ class ConnectVM {
     if (this.props && this.props.onFailure) this.props.onFailure(response);
   }
 }
-
-decorate(ConnectVM, {
-  // initialUsername: observable,
-  // signUp: observable,
-  // hideInitialLoader: observable,
-  // isLoading: observable,
-  activePageMode: observable,
-  // isConnect: observable,
-  openController: observable,
-  openPopup: observable,
-  openLoaderModal: observable,
-  // animationType: observable,
-  onAnimationExited: observable,
-  animationType: observable,
-  // direction: observable,
-  // language: observable,
-  // combinedTheme: observable,
-  // props: observable,
-});
 
 export default ConnectVM;

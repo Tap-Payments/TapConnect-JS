@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { action, observable, decorate, computed } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import CreateAuthService from '../API_Services/AuthServices/CreateAuthService';
 import VerifyAuthService from '../API_Services/AuthServices/VerifyAuthService';
 import { EMAIL_INFO, PASSWORD_INFO, OTP_INFO, LOGIN_INFO } from '../Utils/FieldArrays';
@@ -72,6 +72,23 @@ class LoginVM {
 
     /// on load, prepare
     this.prepareLoginData();
+    makeObservable(this, {
+      loadingStatus: observable,
+      showInitialLoader: observable,
+      emailTextField: observable,
+      activeTextFieldName: observable,
+      passwordTextField: observable,
+      otpTextField: observable,
+      verifyValue: observable,
+      editButtonInfo: observable,
+      checkBoxInfo: observable,
+      forgotPasswordInfo: observable,
+      errorInfo: observable,
+      signUpInfo: observable,
+      openLoginPopup: observable,
+      dropdownInfos: observable,
+      newUser: observable,
+    });
   }
 
   moveToSignup() {
@@ -507,22 +524,5 @@ class LoginVM {
     booleanValue == true ? (this.loadingStatus = true) : (this.loadingStatus = false);
   }
 }
-decorate(LoginVM, {
-  loadingStatus: observable,
-  showInitialLoader: observable,
-  emailTextField: observable,
-  activeTextFieldName: observable,
-  passwordTextField: observable,
-  otpTextField: observable,
-  verifyValue: observable,
-  editButtonInfo: observable,
-  checkBoxInfo: observable,
-  ForgotPasswordInfo: observable,
-  errorInfo: observable,
-  signUpInfo: observable,
-  openLoginPopup: observable,
-  dropdownInfos: observable,
-  newUser: observable,
-});
 
 export default LoginVM;

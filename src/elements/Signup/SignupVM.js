@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { autorun, observable, decorate, computed, toJS } from 'mobx';
+import { autorun, observable, makeObservable } from 'mobx';
 
 import CreateAuthService from '../API_Services/AuthServices/CreateAuthService';
 import VerifyAuthService from '../API_Services/AuthServices/VerifyAuthService';
@@ -138,6 +138,15 @@ class SignupVM {
       /// delay to ensure there is browser ID
       this.signupService.browserID = this.FP.browser.browser_id;
     }, 2000);
+    makeObservable(this, {
+      loadingStatus: observable,
+      showInitialLoader: observable,
+      openSignupPopup: observable,
+      errorInfo: observable,
+      page: observable,
+      activeStepInfo: observable,
+      isLicensed: observable,
+    });
   }
 
   async init() {
@@ -614,14 +623,5 @@ class SignupVM {
     booleanValue == true ? (this.loadingStatus = true) : (this.loadingStatus = false);
   }
 }
-decorate(SignupVM, {
-  loadingStatus: observable,
-  showInitialLoader: observable,
-  openSignupPopup: observable,
-  errorInfo: observable,
-  page: observable,
-  activeStepInfo: observable,
-  isLicensed: observable,
-});
 
 export default SignupVM;

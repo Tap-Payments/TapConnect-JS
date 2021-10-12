@@ -63,7 +63,7 @@
     "babel-preset-react": "^6.24.1",
     "fingerprintjs2": "^2.1.0",
     "i18next": "^19.4.3",
-    "mobx": "^4.9.2",
+    "mobx": "^6.3.3",
     "mobx-react": "^6.3.0",
     "mobx-react-lite": "^2.0.6",
     "react": "^16.8.2",
