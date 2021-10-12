@@ -12,6 +12,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "build_dev": "cross-env NODE_ENV=development webpack",
     "deploy": "gh-pages -d build",
+    "publish": "npm publish && npm run build",
     "predeploy": "npm run build_dev",
     "publish-demo": "npm run build && npm run deploy"
   },
