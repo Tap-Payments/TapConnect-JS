@@ -8,7 +8,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { theme } from './theme/index';
 import _defaultProps from './defaultProps';
 import _ from 'lodash';
-import VerifyAuthService from './API_Services/AuthServices/VerifyAuthService';
 
 class ConnectVM {
   constructor(props) {
@@ -247,13 +246,10 @@ class ConnectVM {
       if (this.isConnect) this.moveToSignup();
     } else {
       ConnectPackage.close();
-      if (this.props.onSuccess) {
-        if (this.props.dialogMode == DialogMode.POPUP)
-          this.onAnimationExited = () =>
-            this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
-      } else {
-        this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
-      }
+      if (!this.props.onSuccess) return;
+      if (this.props.dialogMode == DialogMode.POPUP)
+        this.onAnimationExited = () => this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
+      else this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
     }
   }
 
