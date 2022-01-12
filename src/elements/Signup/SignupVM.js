@@ -141,7 +141,6 @@ class SignupVM {
     makeObservable(this, {
       loadingStatus: observable,
       showInitialLoader: observable,
-      openSignupPopup: observable,
       errorInfo: observable,
       page: observable,
       activeStepInfo: observable,
