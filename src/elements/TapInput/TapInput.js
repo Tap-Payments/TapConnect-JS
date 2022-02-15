@@ -198,8 +198,11 @@ class TapInput extends React.Component {
   handleEmail(text) {
     if (this.containsEmailCharacter(text)) {
       // TODO: use constant value instead of using the fixed one
+      if (text.length === 5) {
+        document.getElementById('tap-input-field-2520').maxlength = '70';
+        this.setState({ inputLength: 70 });
+      }
       this.setState({
-        inputLength: 70,
         inputCssClass: this.inputClass + ' hide',
         inputCssClassCode: 'codeHide',
         value: text,
@@ -429,7 +432,6 @@ function RenderTapInput(props) {
             inputProps={{ maxLength: props.maxLength, ...props.inputProps }}
             type={'emailmobile'}
             value={props.value}
-            onChange={props.onChange}
             onFocus={props.onFocus}
             onBlur={props.onBlur}
             onKeyUp={props.handleKeyUp}

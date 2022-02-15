@@ -22,7 +22,7 @@ class ConnectDemoVM {
     this.props = props;
     this.direction = 'ltr';
     this.isLiveMode = 'sandbox';
-    this.pageMode = PageMode.CONNECT;
+    this.pageMode = PageMode.LOGIN; //
     this.animationType = AnimationType.SLIDEUP;
     this.buttonText = 'Connect';
     this.publicKey = 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon';
