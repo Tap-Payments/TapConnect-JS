@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { action, observable, decorate, computed, toJS } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { TapAuthButton, AnimationType, PageMode } from '../../src/index';
 const ButtonText = {
   connect: {
@@ -35,6 +35,15 @@ class ConnectDemoVM {
     this.onPublicKeyClick = this.onPublicKeyClick.bind(this);
     this.onPublicKeyFieldChange = this.onPublicKeyFieldChange.bind(this);
     this.onChangeAnimationType = this.onChangeAnimationType.bind(this);
+    makeObservable(this, {
+      direction: observable,
+      pageMode: observable,
+      isLiveMode: observable,
+      buttonText: observable,
+      animationType: observable,
+      publicKeyFieldValue: observable,
+      publicKey: observable,
+    });
   }
 
   onPublicKeyClick() {
@@ -71,14 +80,5 @@ class ConnectDemoVM {
     this.animationType = event.target.value;
   }
 }
-decorate(ConnectDemoVM, {
-  direction: observable,
-  pageMode: observable,
-  isLiveMode: observable,
-  buttonText: observable,
-  animationType: observable,
-  publicKeyFieldValue: observable,
-  publicKey: observable,
-});
 
 export default ConnectDemoVM;

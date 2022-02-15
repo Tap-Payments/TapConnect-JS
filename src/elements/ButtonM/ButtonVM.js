@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { action, observable, decorate, computed, toJS } from 'mobx';
+import { makeObservable, observable, decorate } from 'mobx';
 
 class ButtonVM {
   constructor(props) {
@@ -9,6 +9,9 @@ class ButtonVM {
 
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
+    makeObservable(this, {
+      openPopup: observable,
+    });
   }
 
   onOpen() {
@@ -21,8 +24,5 @@ class ButtonVM {
     if (this.props.onClose) this.props.onClose();
   }
 }
-decorate(ButtonVM, {
-  openPopup: observable,
-});
 
 export default ButtonVM;

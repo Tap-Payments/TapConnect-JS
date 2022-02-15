@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { action, observable, decorate, computed, toJS } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 
 import { EMAIL_INFO, PASSWORD_OTP_INFO, NEW_PASSWORD_INFO, OTP_INFO } from '../Utils/FieldArraysForgotPassword';
 
@@ -65,6 +65,14 @@ class ForgotPasswordVM {
     this.update = this.update.bind(this);
 
     this.init();
+    makeObservable(this, {
+      loadingStatus: observable,
+      showInitialLoader: observable,
+      openForgotPasswordPopup: observable,
+      errorInfo: observable,
+      page: observable,
+      activeStepInfo: observable,
+    });
   }
 
   async init() {
@@ -370,13 +378,5 @@ class ForgotPasswordVM {
     booleanValue == true ? (this.loadingStatus = true) : (this.loadingStatus = false);
   }
 }
-decorate(ForgotPasswordVM, {
-  loadingStatus: observable,
-  showInitialLoader: observable,
-  openForgotPasswordPopup: observable,
-  errorInfo: observable,
-  page: observable,
-  activeStepInfo: observable,
-});
 
 export default ForgotPasswordVM;

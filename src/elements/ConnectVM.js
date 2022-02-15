@@ -1,4 +1,4 @@
-import { action, observable, decorate, autorun } from 'mobx';
+import { makeObservable, observable, autorun } from 'mobx';
 
 import { PageMode, AnimationType, DialogMode } from './Constants/constants';
 import ConnectDataSource from './ConnectDataSource';
@@ -8,7 +8,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { theme } from './theme/index';
 import _defaultProps from './defaultProps';
 import _ from 'lodash';
-import VerifyAuthService from './API_Services/AuthServices/VerifyAuthService';
 
 class ConnectVM {
   constructor(props) {
@@ -32,6 +31,13 @@ class ConnectVM {
     this.reConstruct(props);
     this.autorunDisposer = autorun(() => {
       if (ConnectDataSource.isDataReady) this.onFinishedFetchingData();
+    });
+    makeObservable(this, {
+      activePageMode: observable,
+      openController: observable,
+      openPopup: observable,
+      openLoaderModal: observable,
+      animationType: observable,
     });
   }
   reConstruct(props) {
@@ -240,13 +246,10 @@ class ConnectVM {
       if (this.isConnect) this.moveToSignup();
     } else {
       ConnectPackage.close();
-      if (this.props.onSuccess) {
-        if (this.props.dialogMode == DialogMode.POPUP)
-          this.onAnimationExited = () =>
-            this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
-      } else {
-        this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
-      }
+      if (!this.props.onSuccess) return;
+      if (this.props.dialogMode == DialogMode.POPUP)
+        this.onAnimationExited = () => this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
+      else this.props.onSuccess({ ...response, browserID: browserID }, this.activePageMode);
     }
   }
 
@@ -279,24 +282,5 @@ class ConnectVM {
     if (this.props && this.props.onFailure) this.props.onFailure(response);
   }
 }
-
-decorate(ConnectVM, {
-  // initialUsername: observable,
-  // signUp: observable,
-  // hideInitialLoader: observable,
-  // isLoading: observable,
-  activePageMode: observable,
-  // isConnect: observable,
-  openController: observable,
-  openPopup: observable,
-  openLoaderModal: observable,
-  // animationType: observable,
-  onAnimationExited: observable,
-  animationType: observable,
-  // direction: observable,
-  // language: observable,
-  // combinedTheme: observable,
-  // props: observable,
-});
 
 export default ConnectVM;

@@ -197,8 +197,9 @@ class TapInput extends React.Component {
 
   handleEmail(text) {
     if (this.containsEmailCharacter(text)) {
+      // TODO: use constant value instead of using the fixed one
       this.setState({
-        inputLength: 30,
+        inputLength: 70,
         inputCssClass: this.inputClass + ' hide',
         inputCssClassCode: 'codeHide',
         value: text,

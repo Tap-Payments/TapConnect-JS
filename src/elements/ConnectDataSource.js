@@ -1,4 +1,4 @@
-import { action, observable, decorate } from 'mobx';
+import { makeObservable, observable, runInAction } from 'mobx';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as baseAR from '../locales/ar/base.json';
@@ -56,8 +56,14 @@ class ConnectDataSource {
 
     this.onFinishedFetchingData = () => {
       console.log('%c REQUIRED INFO FETCHED! ', 'background:yellow; color:black;');
-      this.isDataReady = true;
+      runInAction(() => {
+        this.isDataReady = true;
+      })
     };
+    makeObservable(this, {
+      isDataReady: observable,
+      signUpToken: observable,
+    });
   }
 
   onFingerPrintReady() {
@@ -264,10 +270,6 @@ class ConnectDataSource {
     }
   }
 }
-decorate(ConnectDataSource, {
-  isDataReady: observable,
-  signUpToken: observable,
-});
 
 let connectDataSource = new ConnectDataSource();
 export default connectDataSource;

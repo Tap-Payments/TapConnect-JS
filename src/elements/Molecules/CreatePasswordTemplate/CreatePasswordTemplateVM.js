@@ -1,4 +1,4 @@
-import { action, observable, decorate, computed } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 
 class CreatePasswordTemplateVM {
   constructor(props) {
@@ -17,6 +17,14 @@ class CreatePasswordTemplateVM {
     this.handleConfirmationPasswordChange = this.handleConfirmationPasswordChange.bind(this);
     this.updateCallback = this.updateCallback.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+    makeObservable(this, {
+      hasChar: observable,
+      hasDigit: observable,
+      hasSymbol: observable,
+      hasSix: observable,
+      passwordApproved: observable,
+      showPassword: observable,
+    });
   }
 
   handleFirstPasswordChange(event) {
@@ -65,14 +73,5 @@ class CreatePasswordTemplateVM {
     }
   }
 }
-
-decorate(CreatePasswordTemplateVM, {
-  hasChar: observable,
-  hasDigit: observable,
-  hasSymbol: observable,
-  hasSix: observable,
-  passwordApproved: observable,
-  showPassword: observable,
-});
 
 export default CreatePasswordTemplateVM;

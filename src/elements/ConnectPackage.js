@@ -13,7 +13,7 @@ const CONNECT_ELEMENT_ID = 'tap-connect-module-id';
 class ConnectPackage extends Component {
   constructor(props) {
     super(props);
-    if (props.development) axios.defaults.connectMW = SANDBOX_MW_URL;
+    axios.defaults.connectMW = props.liveMode ? LIVE_MW_URL : SANDBOX_MW_URL;
     //// ensure only one instance in the DOM
     if (document.body.hasAttribute(CONNECT_UNIQUE_ATTRIBUTE)) {
       this.isDuplicateInstance = true;
