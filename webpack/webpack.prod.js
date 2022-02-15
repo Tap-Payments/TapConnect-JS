@@ -52,7 +52,7 @@ module.exports = {
     },
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
 
     new webpack.optimize.ModuleConcatenationPlugin(),
 

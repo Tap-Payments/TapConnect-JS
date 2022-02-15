@@ -1,18 +1,14 @@
-import React, { Fragment, useState, Component } from 'react';
+import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { TapAuthButton, DialogMode, AnimationType, PageMode, SegmentType, ConnectPackage } from '../../src/index';
+import { DialogMode, AnimationType, PageMode, SegmentType, ConnectPackage } from '../../src/index';
 import {
   Card,
-  CardHeader,
   CardContent,
   Divider,
-  Button,
   FormControl,
-  FormLabel,
   RadioGroup,
   FormControlLabel,
   Radio,
-  Typography,
   Input,
   IconButton,
   InputAdornment,
