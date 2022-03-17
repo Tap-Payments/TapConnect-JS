@@ -274,7 +274,7 @@ class LoginVM {
         let emailMobileObject = isMobile(this.getUserName())
           ? { phone: this.getUserName(), code: this.getCountryCode() }
           : { email: this.getUserName() };
-        let createBody = { user_credentail: emailMobileObject, device_info: this.FP };
+        let createBody = { user_credentail: emailMobileObject, device_info: this.FP, sign_in: true };
         CreateAuthService.createAuth(createBody, (data) => {
           if (data != null)
             if (data.errors != null) {
@@ -292,7 +292,7 @@ class LoginVM {
         });
         break;
       case LOGIN_STEPS.VERIFY_OTP:
-        let otpBody = { data: this.getOTP(), ...this.authPrevResponse, scopes: this.props.scopes };
+        let otpBody = { data: this.getOTP(), ...this.authPrevResponse, scopes: this.props.scopes, sign_in: true };
         VerifyAuthService.verifyAuth(otpBody, (data) => {
           if (data != null)
             if (data != null && data.errors != null) this.setError(data.errors[0].description);
@@ -310,6 +310,7 @@ class LoginVM {
           remember_me: this.rememberMe,
           ...this.authPrevResponse,
           scopes: this.props.scopes,
+          sign_in: true,
         };
 
         console.log('passBody');
