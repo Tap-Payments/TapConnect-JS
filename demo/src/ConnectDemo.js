@@ -265,7 +265,7 @@ function ConnectDemo(props) {
                 direction: vm.direction,
               }}
               country="KW"
-              businessSegment={SegmentType.Ecommerce}
+              businessSegment={SegmentType.Developer}
             />
           </div>
         </CardContent>
