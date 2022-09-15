@@ -109,14 +109,13 @@ import LoginVM from './LoginVM';
 import { observer } from 'mobx-react-lite';
 import { ConnectPackage, DialogMode, AnimationType } from '@tap-payments/js-connect';
 
-
 function Login(props) {
   if (props.isAuthorized) return <Fragment />;
   const vm = useVm(LoginVM, [useAppCtx(), props]);
   return (
     <ConnectPackage
-      publicKey: 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon',
-      scopes: ['API_ACCESS_KEY'],
+      publicKey="pk_test_OxCj0DhX9EyTLpGqsu2wHMon"
+      scopes={['API_ACCESS_KEY']}
       onSuccess={vm.onSuccess}
       initialAuthType={vm.initialAuthType}
       dialogMode={DialogMode.POPUP}
@@ -136,7 +135,6 @@ function Login(props) {
 }
 
 export default Login;
-
 ```
 
 ## Example Signup
@@ -146,17 +144,14 @@ import React, { Fragment } from 'react';
 import { useVm, useAppCtx } from '../../hooks';
 import SignupVM from './SignupVM';
 import { observer } from 'mobx-react-lite';
-import { ConnectPackage,
-  DialogMode,
-  AnimationType,
-  PageMode } from '@tap-payments/js-connect';
+import { ConnectPackage, DialogMode, AnimationType, PageMode } from '@tap-payments/js-connect';
 
 function Signup(props) {
   const vm = useVm(SignupVM, [useAppCtx(), props]);
   return (
-     <ConnectPackage
-      publicKey: 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon',
-      scopes: ['API_ACCESS_KEY'],
+    <ConnectPackage
+      publicKey="pk_test_OxCj0DhX9EyTLpGqsu2wHMon"
+      scopes={['API_ACCESS_KEY']}
       onSuccess={vm.onSuccess}
       pageMode={PageMode.SIGNUP}
       initialAuthType={vm.initialAuthType}
@@ -176,7 +171,6 @@ function Signup(props) {
 }
 
 export default Signup;
-
 ```
 
 ## Example Connect
@@ -194,8 +188,8 @@ function Connect(props) {
   const vm = useVm(ConnectVM, [useAppCtx(), props]);
   return (
     <ConnectPackage
-      publicKey: 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon',
-      scopes: ['API_ACCESS_KEY'],
+      publicKey="pk_test_OxCj0DhX9EyTLpGqsu2wHMon"
+      scopes={['API_ACCESS_KEY']}
       onSuccess={vm.onSuccess}
       pageMode={PageMode.CONNECT}
       initialAuthType={vm.initialAuthType}
@@ -215,7 +209,6 @@ function Connect(props) {
 }
 
 export default Connect;
-
 ```
 
 If you want to use TapAuthButton need to import below one.
@@ -240,8 +233,8 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/js-conne
 
 ```js
 <TapAuthButton
-  publicKey: 'pk_test_OxCj0DhX9EyTLpGqsu2wHMon',
-  scopes: ['API_ACCESS_KEY'],
+  publicKey="pk_test_OxCj0DhX9EyTLpGqsu2wHMon"
+  scopes={['API_ACCESS_KEY']}
   dialogMode={DialogMode.POPUP}
   pageMode={PageMode.CONNECT}
   buttonText={'Connect'}
@@ -255,7 +248,6 @@ import { TapAuthButton, DialogMode, AnimationType } from '@tap-payments/js-conne
     direction: 'ltr',
   }}
 />
-
 ```
 
 ## Technical Overview
